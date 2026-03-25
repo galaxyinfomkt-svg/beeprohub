@@ -14,9 +14,9 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", fn);
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
   useEffect(() => {
@@ -36,82 +36,53 @@ export default function Header() {
 
   return (
     <>
-      <header style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
-        background: scrolled ? "rgba(255,255,255,0.97)" : "#ffffff",
-        backdropFilter: "blur(12px)",
-        borderBottom: scrolled ? "1px solid #F3F4F6" : "1px solid #E5E7EB",
-        transition: "all 0.3s ease",
-        boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.06)" : "none",
-      }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 1rem" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
-            <Link href={`/${locale}`} style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-              <Image src="/images/logo.png" alt="Bee Pro Hub Logo" width={140} height={48} style={{ height: 44, width: "auto" }} priority />
+      <header className={`fixed top-0 left-0 right-0 z-[1000] bg-white backdrop-blur-xl border-b transition-all duration-300 ${scrolled ? "border-gray-100 shadow-md" : "border-gray-200"}`}>
+        <div className="max-w-[1200px] mx-auto px-4">
+          <div className="flex items-center justify-between h-[72px]">
+            <Link href={`/${locale}`} className="flex-shrink-0">
+              <Image src="/images/logo.png" alt="Bee Pro Hub" width={140} height={48} className="h-11 w-auto" priority />
             </Link>
 
-            {/* Desktop Nav */}
-            <nav style={{ display: "none", alignItems: "center", gap: 24 }} className="lg:!flex">
+            <nav className="hidden lg:flex items-center gap-6">
               {links.map((link) => (
-                <Link key={link.href} href={link.href} style={{ fontSize: 14, fontWeight: 500, color: "#374151", transition: "color 0.2s", whiteSpace: "nowrap" }}>
+                <Link key={link.href} href={link.href} className="text-sm font-medium text-gray-600 hover:text-primary transition-colors whitespace-nowrap">
                   {link.label}
                 </Link>
               ))}
             </nav>
 
-            {/* Desktop Actions */}
-            <div style={{ display: "none", alignItems: "center", gap: 12 }} className="lg:!flex">
+            <div className="hidden lg:flex items-center gap-3">
               <LanguageSwitcher />
-              <a href={PHONE_LINK} style={{ fontSize: 13, fontWeight: 700, color: "#1A1A1A", whiteSpace: "nowrap" }}>
-                {PHONE}
-              </a>
-              <Link href={`/${locale}/contact`} className="animate-pulse-glow" style={{
-                background: "linear-gradient(135deg, #F5B800, #E0A800)", color: "#1A1A1A", fontWeight: 700,
-                padding: "10px 22px", borderRadius: 10, fontSize: 14, whiteSpace: "nowrap",
-                boxShadow: "0 4px 15px rgba(245,184,0,0.3)",
-              }}>
+              <a href={PHONE_LINK} className="text-sm font-bold text-dark whitespace-nowrap">{PHONE}</a>
+              <Link href={`/${locale}/contact`} className="bg-gradient-to-r from-primary to-primary-hover text-dark font-bold px-5 py-2.5 rounded-xl text-sm whitespace-nowrap shadow-[0_4px_15px_rgba(245,184,0,0.3)] hover:-translate-y-0.5 transition-all animate-pulse-glow">
                 {t("getDemo")}
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:!hidden" style={{ padding: 8, color: "#1A1A1A" }} aria-label="Menu">
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 text-dark" aria-label="Menu">
               <svg width={28} height={28} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileOpen
                   ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                }
+                  : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
               </svg>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Overlay */}
       {mobileOpen && (
-        <div className="animate-slide-down" style={{
-          position: "fixed", inset: 0, zIndex: 999, background: "#ffffff",
-          display: "flex", flexDirection: "column", paddingTop: 80, overflowY: "auto",
-        }}>
-          <nav style={{ display: "flex", flexDirection: "column", padding: "1rem" }}>
+        <div className="fixed inset-0 z-[999] bg-white flex flex-col pt-20 overflow-y-auto animate-slide-down">
+          <nav className="flex flex-col p-4">
             {links.map((link) => (
-              <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} style={{
-                color: "#1A1A1A", fontSize: 18, fontWeight: 500, padding: "14px 16px",
-                borderRadius: 12, borderBottom: "1px solid #F3F4F6",
-              }}>
+              <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="text-dark text-lg font-medium py-3.5 px-4 rounded-xl border-b border-gray-100">
                 {link.label}
               </Link>
             ))}
           </nav>
-          <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: 16, marginTop: "auto", borderTop: "1px solid #F3F4F6" }}>
+          <div className="p-6 flex flex-col gap-4 mt-auto border-t border-gray-100">
             <LanguageSwitcher />
-            <a href={PHONE_LINK} style={{ textAlign: "center", color: "#1A1A1A", fontWeight: 700, fontSize: 20, padding: 12 }}>
-              {PHONE}
-            </a>
-            <Link href={`/${locale}/contact`} onClick={() => setMobileOpen(false)} style={{
-              background: "linear-gradient(135deg, #F5B800, #E0A800)", color: "#1A1A1A", fontWeight: 700,
-              padding: "16px 24px", borderRadius: 12, fontSize: 16, textAlign: "center",
-            }}>
+            <a href={PHONE_LINK} className="text-center text-dark font-bold text-xl py-3">{PHONE}</a>
+            <Link href={`/${locale}/contact`} onClick={() => setMobileOpen(false)} className="bg-gradient-to-r from-primary to-primary-hover text-dark font-bold py-4 px-6 rounded-xl text-center text-lg">
               {t("getDemo")}
             </Link>
           </div>

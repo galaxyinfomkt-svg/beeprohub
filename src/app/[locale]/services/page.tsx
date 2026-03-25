@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -10,7 +10,7 @@ import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schemas";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "services" });
-  return { title: t("title"), description: t("subtitle"), alternates: { languages: { en: "/en/services", pt: "/pt/services", es: "/es/services" } } };
+  return { title: t("title"), description: t("subtitle") };
 }
 
 const serviceKeys = ["crm", "automation", "leadgen", "websites", "ads"] as const;
@@ -24,65 +24,51 @@ const icons = [
 
 export default function ServicesPage() {
   const t = useTranslations("services");
-  const locale = "pt";
-
+  const locale = useLocale();
   const faqs = [1, 2, 3, 4, 5].map((i) => ({ question: t(`faq.items.${i}.q`), answer: t(`faq.items.${i}.a`) }));
-  const schemas = [
-    ...serviceKeys.map((key) => serviceSchema(t(`items.${key}.title`), t(`items.${key}.description`), `https://beeprohub.com/pt/services`)),
-    faqSchema(faqs),
-    breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: "Services", url: "https://beeprohub.com/pt/services" }]),
-  ];
+  const schemas = [...serviceKeys.map((k) => serviceSchema(t(`items.${k}.title`), t(`items.${k}.description`), `https://beeprohub.com/pt/services`)), faqSchema(faqs), breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: "Services", url: "https://beeprohub.com/pt/services" }])];
 
   return (
     <>
       <JsonLd data={schemas} />
-
-      {/* Hero */}
-      <section className="hero-gradient" style={{ paddingTop: 32, paddingBottom: 48 }}>
-        <div className="container-main">
-          <div style={{ display: "grid", gap: 40, alignItems: "center" }} className="lg:!grid-cols-2">
+      <section className="hero-gradient pt-8 pb-12 lg:pt-12 lg:pb-20">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="animate-fade-in-left">
-              <span className="section-tag">{t("title")}</span>
-              <h1 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 800, color: "#1A1A1A", lineHeight: 1.12, marginTop: 12, marginBottom: 16 }}>{t("title")}</h1>
-              <p style={{ fontSize: 17, color: "#4B5563", lineHeight: 1.7 }}>{t("subtitle")}</p>
+              <span className="section-tag inline-block mb-4">{t("title")}</span>
+              <h1 className="text-[clamp(2rem,5vw,3rem)] font-extrabold text-dark leading-[1.1] mb-4">{t("title")}</h1>
+              <p className="text-[17px] text-gray-500 leading-relaxed">{t("subtitle")}</p>
             </div>
-            <HeroForm />
+            <div className="animate-fade-in-right"><HeroForm /></div>
           </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="section-padding" style={{ background: "#fff" }}>
-        <div className="container-main" style={{ display: "flex", flexDirection: "column", gap: 48 }}>
+      <section className="section-padding bg-white">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
           {serviceKeys.map((key, idx) => (
-            <div key={key} className="animate-fade-in-up" style={{ background: idx % 2 === 0 ? "#F9FAFB" : "#FFFBEB", borderRadius: 24, padding: "clamp(24px, 4vw, 40px)", border: "1px solid #F3F4F6" }}>
-              <div style={{ display: "grid", gap: 32, alignItems: "center" }} className="lg:!grid-cols-2">
-                <div style={{ order: idx % 2 === 1 ? 2 : 1 }} className={idx % 2 === 1 ? "lg:!order-2" : ""}>
-                  <div className="icon-circle" style={{ marginBottom: 16, width: 56, height: 56, borderRadius: 16 }}>
-                    <svg style={{ width: 28, height: 28, color: "#F5B800" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={icons[idx]} />
-                    </svg>
+            <div key={key} className={`rounded-3xl p-6 sm:p-8 lg:p-10 border ${idx % 2 === 0 ? "bg-gray-50 border-gray-100" : "bg-primary-light border-primary/10"}`}>
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+                <div className={`lg:col-span-3 ${idx % 2 === 1 ? "lg:order-2" : ""}`}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="icon-circle w-14 h-14 rounded-2xl">
+                      <svg className="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={icons[idx]} /></svg>
+                    </div>
+                    <h2 className="text-xl font-bold text-dark">{t(`items.${key}.title`)}</h2>
                   </div>
-                  <h2 style={{ fontSize: "clamp(1.25rem, 3vw, 1.6rem)", fontWeight: 700, color: "#1A1A1A", marginBottom: 12 }}>{t(`items.${key}.title`)}</h2>
-                  <p style={{ color: "#6B7280", marginBottom: 20, lineHeight: 1.7 }}>{t(`items.${key}.description`)}</p>
-                  <ul style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 20 }}>
-                    {(t.raw(`items.${key}.features`) as string[]).map((feat: string, i: number) => (
-                      <li key={i} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: "#4B5563" }}>
-                        <svg style={{ width: 16, height: 16, color: "#F5B800", flexShrink: 0 }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                        </svg>
-                        {feat}
+                  <p className="text-gray-500 mb-5 leading-relaxed">{t(`items.${key}.description`)}</p>
+                  <ul className="flex flex-col gap-2 mb-5">
+                    {(t.raw(`items.${key}.features`) as string[]).map((f: string, i: number) => (
+                      <li key={i} className="flex items-center gap-2.5 text-sm text-gray-600">
+                        <svg className="w-4 h-4 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                        {f}
                       </li>
                     ))}
                   </ul>
-                  <Link href={`/${locale}/contact`} className="btn-primary" style={{ padding: "12px 28px", fontSize: 15 }}>
-                    {t(`items.${key}.title`)}
-                  </Link>
+                  <Link href={`/${locale}/contact`} className="btn-primary inline-flex px-7 py-3 text-[15px]">{t(`items.${key}.title`)}</Link>
                 </div>
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", order: idx % 2 === 1 ? 1 : 2, minHeight: 200 }} className={idx % 2 === 1 ? "lg:!order-1" : ""}>
-                  <svg style={{ width: 120, height: 120, color: "rgba(245,184,0,0.15)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d={icons[idx]} />
-                  </svg>
+                <div className={`lg:col-span-2 flex justify-center items-center ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
+                  <svg className="w-32 h-32 text-primary/10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d={icons[idx]} /></svg>
                 </div>
               </div>
             </div>
@@ -90,10 +76,9 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="section-padding" style={{ background: "#F9FAFB" }}>
-        <div style={{ maxWidth: 720, margin: "0 auto", padding: "0 1rem" }}>
-          <h2 className="section-title" style={{ textAlign: "center", marginBottom: 40 }}>{t("faq.title")}</h2>
+      <section className="section-padding bg-gray-50">
+        <div className="max-w-[720px] mx-auto px-4">
+          <h2 className="section-title text-center mb-10">{t("faq.title")}</h2>
           <FAQ items={faqs} />
         </div>
       </section>
