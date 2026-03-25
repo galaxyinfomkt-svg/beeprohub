@@ -4,9 +4,9 @@ import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 
 const languages = [
-  { code: "en", label: "EN" },
-  { code: "pt", label: "PT" },
-  { code: "es", label: "ES" },
+  { code: "pt", label: "PT", flag: "\u{1F1E7}\u{1F1F7}" },
+  { code: "en", label: "EN", flag: "\u{1F1FA}\u{1F1F8}" },
+  { code: "es", label: "ES", flag: "\u{1F1EA}\u{1F1F8}" },
 ];
 
 export default function LanguageSwitcher() {
@@ -21,25 +21,28 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 2 }}>
       {languages.map((lang) => (
         <button
           key={lang.code}
           onClick={() => switchLocale(lang.code)}
           style={{
-            padding: "4px 10px",
-            fontSize: 12,
-            fontWeight: 700,
-            borderRadius: 6,
+            padding: "6px 10px",
+            fontSize: 13,
+            fontWeight: 600,
+            borderRadius: 8,
             border: "none",
             cursor: "pointer",
             transition: "all 0.2s",
             background: locale === lang.code ? "#F5B800" : "transparent",
             color: locale === lang.code ? "#1A1A1A" : "#6B7280",
+            display: "flex",
+            alignItems: "center",
+            gap: 4,
           }}
-          aria-label={`Switch to ${lang.label}`}
         >
-          {lang.label}
+          <span style={{ fontSize: 16 }}>{lang.flag}</span>
+          <span>{lang.label}</span>
         </button>
       ))}
     </div>

@@ -4,21 +4,18 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
+import HeroForm from "@/components/ui/HeroForm";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schemas";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "services" });
-  return {
-    title: t("title"),
-    description: t("subtitle"),
-    alternates: { languages: { en: "/en/services", pt: "/pt/services", es: "/es/services" } },
-  };
+  return { title: t("title"), description: t("subtitle"), alternates: { languages: { en: "/en/services", pt: "/pt/services", es: "/es/services" } } };
 }
 
 const serviceKeys = ["crm", "automation", "leadgen", "websites", "ads"] as const;
-const serviceIcons = [
-  "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+const icons = [
+  "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z",
   "M13 10V3L4 14h7v7l9-11h-7z",
   "M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z",
   "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9",
@@ -27,64 +24,66 @@ const serviceIcons = [
 
 export default function ServicesPage() {
   const t = useTranslations("services");
+  const locale = "pt";
 
-  const faqs = [1, 2, 3, 4, 5].map((i) => ({
-    question: t(`faq.items.${i}.q`),
-    answer: t(`faq.items.${i}.a`),
-  }));
-
+  const faqs = [1, 2, 3, 4, 5].map((i) => ({ question: t(`faq.items.${i}.q`), answer: t(`faq.items.${i}.a`) }));
   const schemas = [
-    ...serviceKeys.map((key) =>
-      serviceSchema(t(`items.${key}.title`), t(`items.${key}.description`), `https://beeprohub.com/en/services`)
-    ),
+    ...serviceKeys.map((key) => serviceSchema(t(`items.${key}.title`), t(`items.${key}.description`), `https://beeprohub.com/pt/services`)),
     faqSchema(faqs),
-    breadcrumbSchema([
-      { name: "Home", url: "https://beeprohub.com" },
-      { name: "Services", url: "https://beeprohub.com/en/services" },
-    ]),
+    breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: "Services", url: "https://beeprohub.com/pt/services" }]),
   ];
 
   return (
     <>
       <JsonLd data={schemas} />
 
-      <section className="bg-dark py-20">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">{t("title")}</h1>
-          <p className="text-lg text-gray-400">{t("subtitle")}</p>
+      {/* Hero */}
+      <section className="hero-gradient" style={{ paddingTop: 32, paddingBottom: 48 }}>
+        <div className="container-main">
+          <div style={{ display: "grid", gap: 40, alignItems: "center" }} className="lg:!grid-cols-2">
+            <div className="animate-fade-in-left">
+              <span className="section-tag">{t("title")}</span>
+              <h1 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 800, color: "#1A1A1A", lineHeight: 1.12, marginTop: 12, marginBottom: 16 }}>{t("title")}</h1>
+              <p style={{ fontSize: 17, color: "#4B5563", lineHeight: 1.7 }}>{t("subtitle")}</p>
+            </div>
+            <HeroForm />
+          </div>
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      {/* Services */}
+      <section className="section-padding" style={{ background: "#fff" }}>
+        <div className="container-main" style={{ display: "flex", flexDirection: "column", gap: 48 }}>
           {serviceKeys.map((key, idx) => (
-            <div key={key} className={`grid lg:grid-cols-2 gap-12 items-center ${idx % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
-              <div>
-                <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                  <svg className="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={serviceIcons[idx]} />
+            <div key={key} className="animate-fade-in-up" style={{ background: idx % 2 === 0 ? "#F9FAFB" : "#FFFBEB", borderRadius: 24, padding: "clamp(24px, 4vw, 40px)", border: "1px solid #F3F4F6" }}>
+              <div style={{ display: "grid", gap: 32, alignItems: "center" }} className="lg:!grid-cols-2">
+                <div style={{ order: idx % 2 === 1 ? 2 : 1 }} className={idx % 2 === 1 ? "lg:!order-2" : ""}>
+                  <div className="icon-circle" style={{ marginBottom: 16, width: 56, height: 56, borderRadius: 16 }}>
+                    <svg style={{ width: 28, height: 28, color: "#F5B800" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={icons[idx]} />
+                    </svg>
+                  </div>
+                  <h2 style={{ fontSize: "clamp(1.25rem, 3vw, 1.6rem)", fontWeight: 700, color: "#1A1A1A", marginBottom: 12 }}>{t(`items.${key}.title`)}</h2>
+                  <p style={{ color: "#6B7280", marginBottom: 20, lineHeight: 1.7 }}>{t(`items.${key}.description`)}</p>
+                  <ul style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 20 }}>
+                    {(t.raw(`items.${key}.features`) as string[]).map((feat: string, i: number) => (
+                      <li key={i} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: "#4B5563" }}>
+                        <svg style={{ width: 16, height: 16, color: "#F5B800", flexShrink: 0 }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                        {feat}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href={`/${locale}/contact`} className="btn-primary" style={{ padding: "12px 28px", fontSize: 15 }}>
+                    {t(`items.${key}.title`)}
+                  </Link>
+                </div>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", order: idx % 2 === 1 ? 1 : 2, minHeight: 200 }} className={idx % 2 === 1 ? "lg:!order-1" : ""}>
+                  <svg style={{ width: 120, height: 120, color: "rgba(245,184,0,0.15)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d={icons[idx]} />
                   </svg>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-dark mb-4">{t(`items.${key}.title`)}</h2>
-                <p className="text-gray-500 mb-6 leading-relaxed">{t(`items.${key}.description`)}</p>
-                <ul className="space-y-2 mb-6">
-                  {(t.raw(`items.${key}.features`) as string[]).map((feat: string, i: number) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-gray-600">
-                      <svg className="w-4 h-4 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {feat}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/en/contact" className="bg-primary hover:bg-primary-hover text-dark font-bold px-6 py-3 rounded-xl text-sm transition-colors">
-                  Get Started
-                </Link>
-              </div>
-              <div className="bg-gray-50 rounded-2xl p-8 flex items-center justify-center min-h-[280px]">
-                <svg className="w-32 h-32 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d={serviceIcons[idx]} />
-                </svg>
               </div>
             </div>
           ))}
@@ -92,9 +91,9 @@ export default function ServicesPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-3xl font-extrabold text-dark text-center mb-10">{t("faq.title")}</h2>
+      <section className="section-padding" style={{ background: "#F9FAFB" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto", padding: "0 1rem" }}>
+          <h2 className="section-title" style={{ textAlign: "center", marginBottom: 40 }}>{t("faq.title")}</h2>
           <FAQ items={faqs} />
         </div>
       </section>

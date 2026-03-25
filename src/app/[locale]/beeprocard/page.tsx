@@ -3,16 +3,13 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
+import HeroForm from "@/components/ui/HeroForm";
 import { breadcrumbSchema } from "@/lib/schemas";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "beeprocard" });
-  return {
-    title: "BeeProCard - Digital Business Card",
-    description: t("subtitle"),
-    alternates: { languages: { en: "/en/beeprocard", pt: "/pt/beeprocard", es: "/es/beeprocard" } },
-  };
+  return { title: "BeeProCard - Cartao Digital", description: t("subtitle"), alternates: { languages: { en: "/en/beeprocard", pt: "/pt/beeprocard", es: "/es/beeprocard" } } };
 }
 
 export default function BeeProCardPage() {
@@ -20,66 +17,63 @@ export default function BeeProCardPage() {
 
   return (
     <>
-      <JsonLd data={[
-        breadcrumbSchema([
-          { name: "Home", url: "https://beeprohub.com" },
-          { name: "BeeProCard", url: "https://beeprohub.com/en/beeprocard" },
-        ]),
-      ]} />
+      <JsonLd data={[breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: "BeeProCard", url: "https://beeprohub.com/pt/beeprocard" }])]} />
 
-      <section className="bg-dark py-20">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <span className="text-primary font-bold text-sm uppercase tracking-wider">{t("sectionTag")}</span>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mt-3 mb-4">{t("title")}</h1>
-          <p className="text-lg text-gray-400">{t("subtitle")}</p>
+      <section className="hero-gradient" style={{ paddingTop: 32, paddingBottom: 48 }}>
+        <div className="container-main">
+          <div style={{ display: "grid", gap: 40, alignItems: "center" }} className="lg:!grid-cols-2">
+            <div className="animate-fade-in-left">
+              <span className="section-tag">{t("sectionTag")}</span>
+              <h1 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 800, color: "#1A1A1A", lineHeight: 1.12, marginTop: 12, marginBottom: 16 }}>{t("title")}</h1>
+              <p style={{ fontSize: 17, color: "#4B5563", lineHeight: 1.7 }}>{t("subtitle")}</p>
+            </div>
+            <HeroForm />
+          </div>
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-dark">{t("tagline")}</h2>
-            <p className="text-gray-500 mt-3 max-w-2xl mx-auto">{t("description")}</p>
+      <section className="section-padding" style={{ background: "#fff" }}>
+        <div className="container-main">
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <h2 className="section-title">{t("tagline")}</h2>
+            <p style={{ color: "#6B7280", marginTop: 12, maxWidth: 600, margin: "12px auto 0" }}>{t("description")}</p>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 20, marginBottom: 48 }} className="md:!grid-cols-2 lg:!grid-cols-4">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-gray-50 p-6 rounded-2xl border border-gray-100 text-center hover:border-primary/30 hover:shadow-lg transition-all">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              <div key={i} className="glass-card" style={{ padding: 28, textAlign: "center" }}>
+                <div className="icon-circle" style={{ margin: "0 auto 16px" }}>
+                  <svg style={{ width: 24, height: 24, color: "#F5B800" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="font-bold text-dark mb-2">{t(`features.${i}.title`)}</h3>
-                <p className="text-sm text-gray-500">{t(`features.${i}.desc`)}</p>
+                <h3 style={{ fontWeight: 700, color: "#1A1A1A", marginBottom: 8 }}>{t(`features.${i}.title`)}</h3>
+                <p style={{ fontSize: 14, color: "#6B7280" }}>{t(`features.${i}.desc`)}</p>
               </div>
             ))}
           </div>
 
-          {/* How it Works */}
-          <div className="bg-gray-50 rounded-3xl p-8 md:p-12 mb-12">
-            <h2 className="text-2xl font-bold text-dark text-center mb-8">How It Works</h2>
-            <div className="grid md:grid-cols-3 gap-8">
+          {/* How it works */}
+          <div style={{ background: "#F9FAFB", borderRadius: 24, padding: "clamp(24px, 4vw, 48px)", border: "1px solid #F3F4F6", marginBottom: 40 }}>
+            <h2 style={{ fontSize: 24, fontWeight: 700, color: "#1A1A1A", textAlign: "center", marginBottom: 32 }}>Como Funciona</h2>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 24 }} className="md:!grid-cols-3">
               {[
-                { step: "1", title: "Create Your Card", desc: "Sign up and customize your digital business card with your brand colors, logo, photo, and all your important links." },
-                { step: "2", title: "Share Anywhere", desc: "Share your card via QR code, direct link, WhatsApp, email, or add it to your social media bios." },
-                { step: "3", title: "Track & Grow", desc: "See who viewed your card, which links they clicked, and collect Google reviews automatically." },
+                { step: "1", title: "Crie Seu Card", desc: "Cadastre-se e personalize seu cartao digital com suas cores, logo, foto e links." },
+                { step: "2", title: "Compartilhe", desc: "Compartilhe via QR Code, link direto, WhatsApp, email ou redes sociais." },
+                { step: "3", title: "Acompanhe", desc: "Veja quem acessou, quais botoes clicaram e colete avaliacoes automaticamente." },
               ].map((item) => (
-                <div key={item.step} className="text-center">
-                  <div className="w-14 h-14 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-4 text-dark font-extrabold text-xl">
+                <div key={item.step} style={{ textAlign: "center" }}>
+                  <div style={{ width: 56, height: 56, background: "linear-gradient(135deg, #F5B800, #E0A800)", borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", color: "#1A1A1A", fontWeight: 800, fontSize: 22 }}>
                     {item.step}
                   </div>
-                  <h3 className="font-bold text-dark mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-500">{item.desc}</p>
+                  <h3 style={{ fontWeight: 700, color: "#1A1A1A", marginBottom: 8 }}>{item.title}</h3>
+                  <p style={{ fontSize: 14, color: "#6B7280" }}>{item.desc}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="text-center">
-            <Link href="/en/contact" className="bg-primary hover:bg-primary-hover text-dark font-bold px-10 py-4 rounded-xl text-lg transition-colors animate-pulse-glow">
-              {t("cta")}
-            </Link>
+          <div style={{ textAlign: "center" }}>
+            <Link href="/pt/contact" className="btn-primary animate-pulse-glow" style={{ fontSize: 17, padding: "16px 40px" }}>{t("cta")}</Link>
           </div>
         </div>
       </section>

@@ -14,7 +14,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -36,50 +36,24 @@ export default function Header() {
 
   return (
     <>
-      <header
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1000,
-          background: scrolled ? "rgba(26,26,26,0.98)" : "rgba(26,26,26,0.95)",
-          backdropFilter: "blur(12px)",
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
-          transition: "all 0.3s ease",
-          boxShadow: scrolled ? "0 4px 30px rgba(0,0,0,0.3)" : "none",
-        }}
-      >
+      <header style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
+        background: scrolled ? "rgba(255,255,255,0.97)" : "#ffffff",
+        backdropFilter: "blur(12px)",
+        borderBottom: scrolled ? "1px solid #F3F4F6" : "1px solid #E5E7EB",
+        transition: "all 0.3s ease",
+        boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.06)" : "none",
+      }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 1rem" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
-            {/* Logo */}
             <Link href={`/${locale}`} style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-              <Image
-                src="/images/logo.png"
-                alt="Bee Pro Hub Logo"
-                width={140}
-                height={48}
-                style={{ height: 44, width: "auto" }}
-                priority
-              />
+              <Image src="/images/logo.png" alt="Bee Pro Hub Logo" width={140} height={48} style={{ height: 44, width: "auto" }} priority />
             </Link>
 
             {/* Desktop Nav */}
-            <nav style={{ display: "none", alignItems: "center", gap: 28 }} className="lg:!flex">
+            <nav style={{ display: "none", alignItems: "center", gap: 24 }} className="lg:!flex">
               {links.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  style={{
-                    fontSize: 14,
-                    fontWeight: 500,
-                    color: "#9CA3AF",
-                    transition: "color 0.2s",
-                    whiteSpace: "nowrap",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#F5B800")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#9CA3AF")}
-                >
+                <Link key={link.href} href={link.href} style={{ fontSize: 14, fontWeight: 500, color: "#374151", transition: "color 0.2s", whiteSpace: "nowrap" }}>
                   {link.label}
                 </Link>
               ))}
@@ -88,43 +62,25 @@ export default function Header() {
             {/* Desktop Actions */}
             <div style={{ display: "none", alignItems: "center", gap: 12 }} className="lg:!flex">
               <LanguageSwitcher />
-              <a
-                href={PHONE_LINK}
-                style={{ fontSize: 14, fontWeight: 700, color: "#F5B800", whiteSpace: "nowrap" }}
-              >
+              <a href={PHONE_LINK} style={{ fontSize: 13, fontWeight: 700, color: "#1A1A1A", whiteSpace: "nowrap" }}>
                 {PHONE}
               </a>
-              <Link
-                href={`/${locale}/contact`}
-                className="animate-pulse-glow"
-                style={{
-                  background: "#F5B800",
-                  color: "#1A1A1A",
-                  fontWeight: 700,
-                  padding: "10px 24px",
-                  borderRadius: 10,
-                  fontSize: 14,
-                  whiteSpace: "nowrap",
-                  transition: "all 0.3s",
-                }}
-              >
+              <Link href={`/${locale}/contact`} className="animate-pulse-glow" style={{
+                background: "linear-gradient(135deg, #F5B800, #E0A800)", color: "#1A1A1A", fontWeight: 700,
+                padding: "10px 22px", borderRadius: 10, fontSize: 14, whiteSpace: "nowrap",
+                boxShadow: "0 4px 15px rgba(245,184,0,0.3)",
+              }}>
                 {t("getDemo")}
               </Link>
             </div>
 
             {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:!hidden"
-              style={{ padding: 8, color: "#fff", background: "none", border: "none" }}
-              aria-label="Toggle menu"
-            >
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:!hidden" style={{ padding: 8, color: "#1A1A1A" }} aria-label="Menu">
               <svg width={28} height={28} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {mobileOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
+                {mobileOpen
+                  ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                }
               </svg>
             </button>
           </div>
@@ -133,68 +89,29 @@ export default function Header() {
 
       {/* Mobile Overlay */}
       {mobileOpen && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 999,
-            background: "rgba(26,26,26,0.98)",
-            backdropFilter: "blur(20px)",
-            display: "flex",
-            flexDirection: "column",
-            paddingTop: 80,
-            overflowY: "auto",
-          }}
-        >
-          <nav style={{ display: "flex", flexDirection: "column", padding: "1rem 1.5rem", gap: 4 }}>
+        <div className="animate-slide-down" style={{
+          position: "fixed", inset: 0, zIndex: 999, background: "#ffffff",
+          display: "flex", flexDirection: "column", paddingTop: 80, overflowY: "auto",
+        }}>
+          <nav style={{ display: "flex", flexDirection: "column", padding: "1rem" }}>
             {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                style={{
-                  color: "#D1D5DB",
-                  fontSize: 18,
-                  fontWeight: 500,
-                  padding: "14px 16px",
-                  borderRadius: 12,
-                  transition: "all 0.2s",
-                  display: "block",
-                }}
-              >
+              <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} style={{
+                color: "#1A1A1A", fontSize: 18, fontWeight: 500, padding: "14px 16px",
+                borderRadius: 12, borderBottom: "1px solid #F3F4F6",
+              }}>
                 {link.label}
               </Link>
             ))}
           </nav>
-
-          <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: 12, marginTop: "auto" }}>
+          <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: 16, marginTop: "auto", borderTop: "1px solid #F3F4F6" }}>
             <LanguageSwitcher />
-            <a
-              href={PHONE_LINK}
-              style={{
-                textAlign: "center",
-                color: "#F5B800",
-                fontWeight: 700,
-                fontSize: 20,
-                padding: "12px 0",
-              }}
-            >
+            <a href={PHONE_LINK} style={{ textAlign: "center", color: "#1A1A1A", fontWeight: 700, fontSize: 20, padding: 12 }}>
               {PHONE}
             </a>
-            <Link
-              href={`/${locale}/contact`}
-              onClick={() => setMobileOpen(false)}
-              style={{
-                background: "#F5B800",
-                color: "#1A1A1A",
-                fontWeight: 700,
-                padding: "16px 24px",
-                borderRadius: 12,
-                fontSize: 16,
-                textAlign: "center",
-                display: "block",
-              }}
-            >
+            <Link href={`/${locale}/contact`} onClick={() => setMobileOpen(false)} style={{
+              background: "linear-gradient(135deg, #F5B800, #E0A800)", color: "#1A1A1A", fontWeight: 700,
+              padding: "16px 24px", borderRadius: 12, fontSize: 16, textAlign: "center",
+            }}>
               {t("getDemo")}
             </Link>
           </div>
