@@ -1,0 +1,314 @@
+{
+  "meta": {
+    "title": "Bee Pro Hub | CRM y Automatizacion de Marketing Todo-en-Uno para Negocios Locales",
+    "description": "Transforma leads en clientes fieles en automatico. CRM, automatizacion, telefonia y gestion financiera en una sola plataforma. Prueba gratis por 14 dias.",
+    "keywords": "CRM, automatizacion de marketing, generacion de leads, GoHighLevel, CRM para pequenas empresas, agencia de marketing Massachusetts"
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "pricing": "Planes",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "beeprocard": "BeeProCard",
+    "login": "Ingresar",
+    "callNow": "Llamar Ahora",
+    "getDemo": "Demo Gratis",
+    "freeTrial": "Prueba Gratis"
+  },
+  "hero": {
+    "badge": "+300% de Aumento en Ventas en Promedio",
+    "title": "Transforma Leads en Clientes Fieles en Automatico",
+    "subtitle": "La plataforma todo-en-uno que une CRM, Automatizacion, Telefonia y Gestion Financiera en un solo lugar.",
+    "features": {
+      "1": "Centraliza todos los contactos e interacciones en un CRM inteligente",
+      "2": "Automatiza follow-ups via WhatsApp, Email, SMS y Voz",
+      "3": "Haz llamadas y envia SMS directo desde la plataforma",
+      "4": "Crea presupuestos y facturas profesionales en minutos",
+      "5": "Agenda citas con sincronizacion Google Calendar"
+    },
+    "cta": "Probar Gratis por 14 Dias",
+    "ctaSecondary": "Ver Demo",
+    "phone": "(774) 285-2299",
+    "trust": "+100 empresas confian",
+    "rating": "5.0 evaluaciones"
+  },
+  "stats": {
+    "trial": { "value": "14 Dias", "label": "Prueba Gratis" },
+    "support": { "value": "24/7", "label": "Soporte Total" },
+    "companies": { "value": "50+", "label": "Empresas Activas" },
+    "sales": { "value": "300%", "label": "Aumento Promedio en Ventas" },
+    "messages": { "value": "10.000+", "label": "Mensajes Enviados/Mes" },
+    "uptime": { "value": "99.9%", "label": "Uptime Garantizado" }
+  },
+  "features": {
+    "sectionTag": "5 Herramientas Poderosas en 1 Plataforma",
+    "title": "Todo Lo Que Necesitas Para Vender Mas",
+    "subtitle": "Deja de usar 10 herramientas diferentes. Bee Pro Hub centraliza todo en un solo lugar, ahorrando tiempo y dinero mientras multiplica tus resultados.",
+    "crm": {
+      "number": "01",
+      "tag": "CRM Inteligente",
+      "title": "Gestiona Todos Tus Leads en Un Solo Lugar",
+      "description": "Nunca mas pierdas un cliente potencial! Nuestro CRM captura, organiza y da seguimiento automaticamente a cada lead desde el primer contacto hasta el cierre de la venta.",
+      "features": {
+        "1": { "title": "Segmentacion Avanzada", "desc": "Organiza leads por tags, estado, origen, valor y mas de 50 criterios personalizables." },
+        "2": { "title": "Historial Completo", "desc": "Ve todas las interacciones, llamadas, emails y mensajes con cada contacto." },
+        "3": { "title": "Score Automatico", "desc": "La IA clasifica leads calientes automaticamente para que priorices los que mas convierten." },
+        "4": { "title": "Alertas Inteligentes", "desc": "Recibe notificaciones cuando los leads abren emails, hacen clic en links o regresan al sitio." }
+      },
+      "testimonial": { "quote": "Aumentamos en 250% nuestra tasa de conversion en solo 60 dias usando el CRM de Bee Pro Hub para priorizar los leads correctos.", "author": "Carlos Silva, CEO de TechSales" },
+      "cta": "Probar CRM Gratis",
+      "ctaSecondary": "Hablar con Especialista"
+    },
+    "calendar": {
+      "number": "02",
+      "tag": "Agendamiento Inteligente",
+      "title": "Calendario Sincronizado Que Nunca Falla",
+      "description": "Basta de confusion con horarios! Deja que tus clientes agenden reuniones automaticamente en tus horarios disponibles, con recordatorios automaticos que reducen las ausencias en 80%.",
+      "features": {
+        "1": { "title": "Sincronizacion Google Calendar", "desc": "Conecta con Google Calendar, Outlook e iCloud. Todas las citas sincronizadas en tiempo real." },
+        "2": { "title": "Recordatorios Automaticos", "desc": "SMS, Email y WhatsApp automaticos 24h y 1h antes. Reduce las ausencias drasticamente." },
+        "3": { "title": "Equipo Completo", "desc": "Gestiona las agendas de todo el equipo en un solo lugar. Round-robin automatico." }
+      },
+      "bonus": "Pagina de agendamiento personalizada con tu marca + Link personalizado para compartir en redes sociales y WhatsApp.",
+      "cta": "Probar Calendario"
+    },
+    "financial": {
+      "number": "03",
+      "tag": "Gestion Financiera",
+      "title": "Presupuestos y Facturas Profesionales en Minutos",
+      "description": "Crea propuestas comerciales impecables que impresionan y convierten. Templates listos, calculos automaticos y envio con un clic.",
+      "features": {
+        "1": "Templates profesionales editables con tu marca",
+        "2": "Calculos automaticos de impuestos, descuentos y cuotas",
+        "3": "Rastreo de visualizaciones en tiempo real",
+        "4": "Firma electronica integrada",
+        "5": "Control de pagos y morosidad",
+        "6": "Exportacion PDF con marca de agua personalizada"
+      },
+      "timeSave": "De 2 horas para crear un presupuesto manualmente a solo 3 minutos con nuestros templates automatizados.",
+      "cta": "Crear Mi Primer Presupuesto"
+    },
+    "automation": {
+      "number": "04",
+      "tag": "Automatizacion 24/7",
+      "title": "Marketing en Piloto Automatico",
+      "description": "Imagina tu empresa vendiendo mientras duermes! Nuestra automatizacion inteligente nutre leads, envia follow-ups, reactiva clientes inactivos y recupera carritos abandonados automaticamente.",
+      "types": {
+        "1": { "title": "Email Marketing Automatico", "desc": "Secuencias de bienvenida, nutricion de leads, recuperacion de carrito, cumpleanos y mucho mas." },
+        "2": { "title": "SMS y WhatsApp Automatico", "desc": "Mensajes instantaneos para leads calientes, recordatorios, confirmaciones y follow-ups personalizados." },
+        "3": { "title": "Mensajes de Voz", "desc": "Envia grabaciones de voz personalizadas en masa. Ideal para recordatorios y ofertas especiales." },
+        "4": { "title": "Notificaciones Push", "desc": "Alertas directo en el navegador para re-enganchar visitantes que dejaron tu sitio." }
+      },
+      "testimonial": { "quote": "Con las automatizaciones de Bee Pro Hub, nuestra empresa paso de 5 a 50 ventas por mes sin contratar a nadie mas. El sistema hace el trabajo de 3 vendedores!", "author": "Marina Costa, Propietaria de Beauty Store" },
+      "cta": "Activar Automatizacion",
+      "ctaSecondary": "Ver Demo en Vivo"
+    },
+    "telephony": {
+      "number": "05",
+      "tag": "Telefonia Integrada",
+      "title": "Llama y Recibe Llamadas Directo desde la Plataforma",
+      "description": "Olvida el celular! Haz y recibe llamadas profesionales directo desde Bee Pro Hub. Todas las llamadas son grabadas, transcritas automaticamente y vinculadas al historial del cliente en el CRM.",
+      "features": {
+        "1": "Haz llamadas con un clic directo del CRM",
+        "2": "Recibe llamadas con numero fijo profesional",
+        "3": "Grabacion automatica de todas las conversaciones",
+        "4": "Transcripcion por IA para revisar despues",
+        "5": "SMS integrado - envia textos en la misma pantalla",
+        "6": "Voicemail automatico cuando no contestas"
+      },
+      "bonus": "Obtiene un numero fijo gratis + 70 minutos gratuitos para probar el sistema telefonico sin compromiso!",
+      "cta": "Obtener Numero Gratis"
+    }
+  },
+  "benefits": {
+    "sectionTag": "Por Que Bee Pro Hub?",
+    "title": "Beneficios Que Van a Cambiar Tu Negocio",
+    "items": {
+      "1": { "title": "Aumento de 300% en Ventas", "desc": "Empresas que usan Bee Pro Hub aumentan sus ventas en promedio 300% en los primeros 90 dias con automatizacion y follow-up inteligente." },
+      "2": { "title": "Ahorra 15 Horas por Semana", "desc": "Automatiza tareas repetitivas y recupera tu tiempo para enfocarte en lo que realmente importa: crecer tu negocio." },
+      "3": { "title": "Reduce Costos en 70%", "desc": "Reemplaza 10+ herramientas caras por una plataforma completa. Paga menos y obtiene mas resultados." },
+      "4": { "title": "Equipo Mas Productivo", "desc": "Centraliza comunicacion y gestion. Tu equipo trabaja 3x mas rapido con todo en un solo lugar." },
+      "5": { "title": "Cero Leads Perdidos", "desc": "Captura, organiza y da seguimiento a cada lead automaticamente. Nunca mas dejes dinero en la mesa." },
+      "6": { "title": "Seguridad y Confiabilidad", "desc": "99.9% de uptime, backups automaticos y encriptacion de punta. Tus datos siempre seguros y accesibles." }
+    }
+  },
+  "beeprocard": {
+    "sectionTag": "BeeProCard - Tu Tarjeta Digital",
+    "title": "Todo Tu Negocio en Un QR Code",
+    "subtitle": "Basta de tarjetas de visita perdidas! Con BeeProCard, comparte todos tus contactos, redes sociales y portafolio con un simple QR Code o link.",
+    "tagline": "Networking Inteligente y Profesional",
+    "description": "Crea tu mini-sitio personalizado en minutos. Agrega tu foto, logo, descripcion, links importantes y hasta botones de agendamiento. Comparte via QR Code, WhatsApp o link directo.",
+    "features": {
+      "1": { "title": "Compartir Instantaneo", "desc": "Genera QR Code para imprimir o comparte link via WhatsApp, Email, Instagram Bio y mas." },
+      "2": { "title": "100% Personalizable", "desc": "Colores de tu marca, logo, foto, descripcion, botones personalizados y mucho mas." },
+      "3": { "title": "Recopila Evaluaciones", "desc": "Boton directo a Google Reviews. Aumenta tu reputacion online automaticamente." },
+      "4": { "title": "Rastrea Visualizaciones", "desc": "Ve cuantas personas accedieron a tu card, hicieron clic en botones y guardaron tu contacto." }
+    },
+    "cta": "Crear Mi BeeProCard Gratis"
+  },
+  "cta": {
+    "ready": "Listo Para Aumentar Tus Ventas en 100%?",
+    "subtitle": "Unete a las empresas que ya transformaron sus resultados con Bee Pro Hub!",
+    "button": "Comenzar Prueba Gratis Ahora",
+    "noCard": "Sin necesidad de tarjeta de credito",
+    "cancel": "Cancelacion en cualquier momento",
+    "support": "Soporte en Espanol, Ingles y Portugues 24/7"
+  },
+  "pricing": {
+    "title": "Planes Simples y Transparentes",
+    "subtitle": "Elige el plan ideal para tu negocio. Todos los planes incluyen 14 dias de prueba gratis.",
+    "starter": {
+      "name": "Starter",
+      "price": "$97",
+      "period": "/mes",
+      "description": "Perfecto para pequenas empresas comenzando con automatizacion.",
+      "features": ["CRM Inteligente", "Email Marketing", "Calendario y Agendamiento", "1 Pipeline de Ventas", "Automatizaciones Basicas", "Soporte via Chat"]
+    },
+    "professional": {
+      "name": "Professional",
+      "price": "$197",
+      "period": "/mes",
+      "popular": "Mas Popular",
+      "description": "Ideal para empresas en crecimiento que quieren el poder total de la automatizacion.",
+      "features": ["Todo del Starter", "Automatizacion SMS y WhatsApp", "Sistema Telefonico (incluido)", "Pipelines Ilimitados", "Automatizaciones Avanzadas", "Presupuestos y Facturas", "BeeProCard", "Soporte Prioritario"]
+    },
+    "enterprise": {
+      "name": "Enterprise",
+      "price": "$397",
+      "period": "/mes",
+      "description": "Para empresas establecidas que necesitan maximo poder y personalizacion.",
+      "features": ["Todo del Professional", "Opciones White-Label", "Acceso a API", "Integraciones Personalizadas", "Gerente de Cuenta Dedicado", "Workflows Personalizados", "Entrenamiento para Equipo", "SLA 99.9% Uptime"]
+    },
+    "cta": "Comenzar Prueba Gratis",
+    "guarantee": "Garantia de 14 dias. Sin preguntas."
+  },
+  "about": {
+    "title": "Sobre Bee Pro Hub",
+    "subtitle": "Transformando negocios a traves de tecnologia y marketing inteligente",
+    "mission": {
+      "title": "Nuestra Mision",
+      "text": "Empoderar negocios locales en Estados Unidos con tecnologia de nivel empresarial que es simple de usar, accesible y entrega resultados reales. Creemos que todo negocio merece acceso a las mismas herramientas poderosas que usan las grandes corporaciones."
+    },
+    "story": {
+      "title": "Nuestra Historia",
+      "text": "Nacido de la experiencia de Galaxy IT & Marketing, empresa innovando desde 2004, Bee Pro Hub fue creado para resolver un problema comun: negocios locales perdiendo clientes por falta de organizacion, follow-ups lentos y herramientas desconectadas. Construimos una plataforma todo-en-uno que reemplaza 10+ herramientas separadas con una solucion unificada."
+    },
+    "whyUs": {
+      "title": "Por Que Elegirnos?",
+      "items": {
+        "1": { "title": "Experiencia Local", "desc": "Basados en Marlborough, MA, entendemos los desafios unicos de negocios en Massachusetts y en EE.UU." },
+        "2": { "title": "Solucion Completa", "desc": "CRM, email, SMS, telefono, agendamiento, facturacion y automatizacion — todo en una plataforma." },
+        "3": { "title": "Soporte Bilingue", "desc": "Soporte completo en Ingles, Portugues y Espanol. Servimos comunidades diversas." },
+        "4": { "title": "Resultados Comprobados", "desc": "Nuestros clientes ven un aumento promedio de 300% en ventas en los primeros 90 dias." }
+      }
+    }
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Soluciones completas de marketing digital y automatizacion para negocios locales",
+    "items": {
+      "crm": {
+        "title": "CRM y Gestion de Leads",
+        "description": "Centraliza todos los datos de tus clientes, da seguimiento a interacciones y nunca pierdas un lead. Nuestro CRM inteligente basado en GoHighLevel te da las herramientas para cerrar mas negocios rapidamente.",
+        "features": ["Gestion de contactos", "Score de leads", "Seguimiento de pipeline", "Historial de interacciones", "Segmentacion inteligente"]
+      },
+      "automation": {
+        "title": "Automatizacion de Marketing",
+        "description": "Pon tu marketing en piloto automatico. Desde secuencias de email hasta campanas SMS, nuestro motor de automatizacion trabaja 24/7 para nutrir leads y cerrar ventas.",
+        "features": ["Secuencias de email", "Campanas SMS", "Automatizacion WhatsApp", "Nutricion de leads", "Recuperacion de carrito"]
+      },
+      "leadgen": {
+        "title": "Generacion de Leads",
+        "description": "Atrae leads calificados con embudos de alta conversion, landing pages y campanas de anuncios dirigidos. Traemos clientes a tu puerta.",
+        "features": ["Embudos de ventas", "Landing pages", "Facebook Ads", "Google Ads", "Optimizacion SEO"]
+      },
+      "websites": {
+        "title": "Sitios Web y Embudos",
+        "description": "Sitios web profesionales y embudos optimizados para conversion construidos para transformar visitantes en clientes que pagan.",
+        "features": ["Sitios web responsivos", "Embudos de ventas", "Paginas de agendamiento", "Sitios de miembros", "Configuracion de blog"]
+      },
+      "ads": {
+        "title": "Gestion de Anuncios",
+        "description": "Campanas estrategicas de Google y Facebook Ads que maximizan tu ROI y traen leads calificados consistentemente.",
+        "features": ["Gestion Google Ads", "Facebook/Instagram Ads", "Campanas de retargeting", "Analiticos de rendimiento", "Pruebas A/B"]
+      }
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "items": {
+        "1": { "q": "Que es Bee Pro Hub?", "a": "Bee Pro Hub es una plataforma todo-en-uno de CRM y automatizacion de marketing construida en GoHighLevel. Combina CRM, email marketing, SMS, sistema telefonico, agendamiento, facturacion y automatizacion en una sola plataforma disenada para negocios locales." },
+        "2": { "q": "Necesito conocimiento tecnico para usarlo?", "a": "Para nada! Bee Pro Hub fue disenado para ser facil de usar. Proporcionamos setup completo, entrenamiento y soporte 24/7 en Ingles, Portugues y Espanol." },
+        "3": { "q": "Puedo cancelar en cualquier momento?", "a": "Si, absolutamente. No hay contratos a largo plazo. Puedes cancelar tu suscripcion en cualquier momento sin penalidad." },
+        "4": { "q": "Que hace diferente a Bee Pro Hub de otros CRMs?", "a": "A diferencia de CRMs tradicionales, Bee Pro Hub es una solucion completa de negocios. Reemplaza 10+ herramientas separadas (CRM, email, SMS, telefono, calendario, facturacion, etc.) a una fraccion del costo." },
+        "5": { "q": "Ofrecen soporte en otros idiomas?", "a": "Si! Ofrecemos soporte completo en Ingles, Portugues y Espanol. Nuestro equipo es bilingue y esta listo para ayudarte en tu idioma preferido." }
+      }
+    }
+  },
+  "contact": {
+    "title": "Contactanos",
+    "subtitle": "Listo para transformar tu negocio? Contactanos hoy para una consultoria gratuita.",
+    "form": {
+      "name": "Nombre Completo",
+      "email": "Correo Electronico",
+      "phone": "Telefono",
+      "company": "Nombre de la Empresa",
+      "message": "Como podemos ayudarte?",
+      "submit": "Enviar Mensaje",
+      "success": "Gracias! Te responderemos en menos de 24 horas."
+    },
+    "info": {
+      "phone": "(774) 285-2299",
+      "phoneLabel": "Llamanos",
+      "hours": "Lun-Vie: 9AM-7PM EST",
+      "location": "Marlborough, Massachusetts",
+      "email": "contact@beeprohub.com"
+    },
+    "cta": {
+      "title": "Ultima Oportunidad!",
+      "subtitle": "Comienza ahora mismo sin pagar nada!",
+      "bonuses": {
+        "1": "Setup completo de la plataforma (valor: $497)",
+        "2": "70 minutos de telefono gratis (valor: $50)",
+        "3": "50 emails gratis (valor: $100)",
+        "4": "Templates listos + Entrenamiento (valor: $297)"
+      },
+      "total": "Total: $944 en bonos GRATIS!",
+      "callCta": "Llamar y Activar Ahora",
+      "onlineCta": "Comenzar Prueba Online"
+    }
+  },
+  "blog": {
+    "title": "Blog y Recursos",
+    "subtitle": "Consejos, estrategias e insights para crecer tu negocio local",
+    "readMore": "Leer Mas",
+    "backToBlog": "Volver al Blog"
+  },
+  "footer": {
+    "description": "La plataforma todo-en-uno que revoluciona tu marketing, ventas y gestion.",
+    "byLine": "By Galaxy IT & Marketing",
+    "navigation": "Navegacion",
+    "resources": "Recursos",
+    "contactTitle": "Contacto",
+    "phone": "(774) 285-2299",
+    "hours": "Lun-Vie: 9AM-7PM",
+    "company": "Galaxy IT & Marketing",
+    "since": "Innovando desde 2004",
+    "copyright": "Bee Pro Hub by Galaxy IT & Marketing. Todos los derechos reservados.",
+    "crmComplete": "CRM Completo",
+    "integratedCalendar": "Calendario Integrado",
+    "quotesInvoices": "Presupuestos y Facturas",
+    "totalAutomation": "Automatizacion Total",
+    "phoneSystem": "Sistema Telefonico"
+  },
+  "common": {
+    "learnMore": "Saber Mas",
+    "getStarted": "Comenzar",
+    "watchDemo": "Ver Demo",
+    "talkToSpecialist": "Hablar con Especialista",
+    "noCreditCard": "Sin tarjeta de credito",
+    "instantActivation": "Activacion instantanea",
+    "dataSecure": "Tus datos 100% seguros"
+  }
+}
