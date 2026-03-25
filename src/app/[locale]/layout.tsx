@@ -1,4 +1,4 @@
-import { NextIntlClientProvider, useMessages } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/layout/Header";
@@ -30,11 +30,15 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <html lang={locale} className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-white text-dark">
+    <html lang={locale}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/images/logo.png" />
+      </head>
+      <body style={{ margin: 0, padding: 0, minHeight: "100vh", display: "flex", flexDirection: "column", background: "#fff", color: "#1A1A1A" }}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
-          <main className="flex-1 pt-16 lg:pt-20">{children}</main>
+          <main style={{ flex: 1, paddingTop: 72 }}>{children}</main>
           <Footer />
           <WhatsAppButton />
           <ChatWidget />
