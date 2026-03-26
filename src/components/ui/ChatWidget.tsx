@@ -4,13 +4,21 @@ import { useState } from "react";
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "sent">("idle");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => { setSent(false); setOpen(false); setForm({ name: "", email: "", message: "" }); }, 3000);
+    setStatus("loading");
+    try {
+      await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, page: window.location.pathname }),
+      });
+    } catch { /* silent */ }
+    setStatus("sent");
+    setTimeout(() => { setStatus("idle"); setOpen(false); setForm({ name: "", email: "", message: "" }); }, 3000);
   };
 
   return (
@@ -42,7 +50,7 @@ export default function ChatWidget() {
           </div>
 
           <div className="p-4">
-            {sent ? (
+            {status === "sent" ? (
               <div className="text-center py-6">
                 <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3">
                   <svg width={24} height={24} fill="none" stroke="#059669" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
@@ -58,8 +66,8 @@ export default function ChatWidget() {
                 <input type="text" placeholder="Seu nome" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-dark outline-none focus:border-primary" />
                 <input type="email" placeholder="Seu email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-dark outline-none focus:border-primary" />
                 <textarea placeholder="Sua mensagem..." required rows={3} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-dark outline-none focus:border-primary resize-none" />
-                <button type="submit" className="w-full bg-primary hover:bg-primary-hover text-dark font-bold py-2.5 rounded-lg text-sm transition-colors">
-                  Enviar Mensagem
+                <button type="submit" disabled={status === "loading"} className={`w-full bg-primary hover:bg-primary-hover text-dark font-bold py-2.5 rounded-lg text-sm transition-colors ${status === "loading" ? "opacity-70" : ""}`}>
+                  {status === "loading" ? "Enviando..." : "Enviar Mensagem"}
                 </button>
               </form>
             )}

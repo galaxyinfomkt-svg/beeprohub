@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { isBusinessEmail } from "@/lib/email-validation";
+import { trackLeadSubmit } from "@/lib/tracking";
 
 export default function HeroForm() {
   const [form, setForm] = useState({ name: "", phone: "", email: "" });
@@ -22,10 +23,11 @@ export default function HeroForm() {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: form.name, phone: form.phone, email: form.email, source: "Hero Form - Free Trial" }),
+        body: JSON.stringify({ name: form.name, phone: form.phone, email: form.email, source: "BeeProHub - Free Trial", page: typeof window !== "undefined" ? window.location.pathname : "" }),
       });
       const data = await res.json();
       if (data.success) {
+        trackLeadSubmit("BeeProHub - Free Trial");
         setStatus("sent");
       } else {
         setErrorMsg(data.error || "Erro ao enviar. Tente novamente.");

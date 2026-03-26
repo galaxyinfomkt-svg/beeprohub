@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { isBusinessEmail } from "@/lib/email-validation";
+import { trackContactSubmit } from "@/lib/tracking";
 
 export default function ContactForm() {
   const t = useTranslations("contact.form");
@@ -24,10 +25,11 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, source: "Website - Contact Form" }),
+        body: JSON.stringify({ ...form, source: "BeeProHub - Contact Form", page: typeof window !== "undefined" ? window.location.pathname : "" }),
       });
       const data = await res.json();
       if (data.success) {
+        trackContactSubmit("BeeProHub - Contact Form");
         setStatus("sent");
       } else {
         setErrorMsg(data.error || "Erro ao enviar. Tente novamente.");

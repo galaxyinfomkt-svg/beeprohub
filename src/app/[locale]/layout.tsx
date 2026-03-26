@@ -51,6 +51,17 @@ export default async function LocaleLayout({ children, params }: Props) {
         <link rel="alternate" hrefLang="x-default" href="https://beeprohub.com/pt" />
         {/* Preconnect for performance */}
         <link rel="preconnect" href="https://images.unsplash.com" />
+        {/* Google Analytics - replace GA_MEASUREMENT_ID with your actual ID */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />
+            <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${process.env.NEXT_PUBLIC_GA_ID}');` }} />
+          </>
+        )}
+        {/* Facebook Pixel - replace FB_PIXEL_ID with your actual ID */}
+        {process.env.NEXT_PUBLIC_FB_PIXEL_ID && (
+          <script dangerouslySetInnerHTML={{ __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${process.env.NEXT_PUBLIC_FB_PIXEL_ID}');fbq('track','PageView');` }} />
+        )}
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
       </head>
       <body className="m-0 p-0 min-h-screen bg-white text-dark antialiased">
