@@ -1,5 +1,5 @@
 {
-  "name": "BeeProHub - Hero Lead Form > GHL + Sheets",
+  "name": "BeeProHub - Free Trial Lead > GHL + Sheets + Email",
   "nodes": [
     {
       "parameters": {
@@ -23,10 +23,9 @@
             { "id": "2", "name": "lastName", "value": "={{ $json.body.lastName }}", "type": "string" },
             { "id": "3", "name": "email", "value": "={{ $json.body.email }}", "type": "string" },
             { "id": "4", "name": "phone", "value": "={{ $json.body.phone }}", "type": "string" },
-            { "id": "5", "name": "source", "value": "={{ $json.body.source }}", "type": "string" },
+            { "id": "5", "name": "source", "value": "BeeProHub - Free Trial", "type": "string" },
             { "id": "6", "name": "fullName", "value": "={{ $json.body.firstName }} {{ $json.body.lastName }}", "type": "string" },
-            { "id": "7", "name": "date", "value": "={{ $json.body.date }}", "type": "string" },
-            { "id": "8", "name": "tags", "value": "={{ JSON.stringify($json.body.tags) }}", "type": "string" }
+            { "id": "7", "name": "date", "value": "={{ new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'}) }}", "type": "string" }
           ]
         }
       },
@@ -39,14 +38,17 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://services.leadconnectorhq.com/contacts/",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
+        "url": "https://rest.gohighlevel.com/v1/contacts/",
+        "authentication": "none",
         "sendHeaders": true,
-        "headerParameters": { "parameters": [{ "name": "Version", "value": "2021-07-28" }] },
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2NhdGlvbl9pZCI6IlpwbEh0N0pzQjdlMUEyRzhScm03IiwidmVyc2lvbiI6MSwiaWF0IjoxNzczNDQwMDY0OTgzLCJzdWIiOiI0eW9wSmw1ODVCRk1acG50eXg4RiJ9.SGPfA8zzIe5GMxx4aeHSFqj92u7HTGJ-qzceuWb8hbw" }
+          ]
+        },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\"firstName\":\"{{ $json.firstName }}\",\"lastName\":\"{{ $json.lastName }}\",\"email\":\"{{ $json.email }}\",\"phone\":\"{{ $json.phone }}\",\"source\":\"{{ $json.source }}\",\"tags\":[\"website-lead\",\"free-trial\",\"hero-form\",\"beeprohub\"],\"locationId\":\"BCczy6muFwhd63dPhKCC\"}",
+        "jsonBody": "={\"firstName\":\"{{ $json.firstName }}\",\"lastName\":\"{{ $json.lastName }}\",\"email\":\"{{ $json.email }}\",\"phone\":\"{{ $json.phone }}\",\"source\":\"BeeProHub - Free Trial\",\"tags\":[\"beeprohub\",\"website-lead\",\"free-trial\",\"hero-form\"]}",
         "options": {}
       },
       "id": "ghl-create-contact",
@@ -58,40 +60,45 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://services.leadconnectorhq.com/opportunities/",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
+        "url": "=https://rest.gohighlevel.com/v1/contacts/{{ $json.contact.id }}/notes/",
+        "authentication": "none",
         "sendHeaders": true,
-        "headerParameters": { "parameters": [{ "name": "Version", "value": "2021-07-28" }] },
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2NhdGlvbl9pZCI6IlpwbEh0N0pzQjdlMUEyRzhScm03IiwidmVyc2lvbiI6MSwiaWF0IjoxNzczNDQwMDY0OTgzLCJzdWIiOiI0eW9wSmw1ODVCRk1acG50eXg4RiJ9.SGPfA8zzIe5GMxx4aeHSFqj92u7HTGJ-qzceuWb8hbw" }
+          ]
+        },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\"pipelineId\":\"SEU_PIPELINE_ID\",\"pipelineStageId\":\"SEU_STAGE_ID\",\"locationId\":\"BCczy6muFwhd63dPhKCC\",\"contactId\":\"{{ $json.contact.id }}\",\"name\":\"{{ $('Format Data').item.json.fullName }} - Free Trial\",\"status\":\"open\",\"source\":\"BeeProHub Hero Form\"}",
+        "jsonBody": "={\"body\":\"BeeProHub Free Trial Signup\\n\\nSource: Hero Form - Website\"}",
         "options": {}
       },
-      "id": "ghl-create-opp",
-      "name": "GHL - Create Opportunity",
+      "id": "ghl-add-note",
+      "name": "GHL - Add Note",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [960, 100]
+      "position": [960, 200]
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://services.leadconnectorhq.com/conversations/messages",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "sendHeaders": true,
-        "headerParameters": { "parameters": [{ "name": "Version", "value": "2021-07-28" }] },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\"type\":\"Email\",\"contactId\":\"{{ $('GHL - Create Contact').item.json.contact.id }}\",\"subject\":\"Bem-vindo ao Bee Pro Hub - Seu Teste Gratis!\",\"message\":\"Ola {{ $('Format Data').item.json.firstName }},\\n\\nObrigado por se cadastrar para o teste gratis de 14 dias do Bee Pro Hub!\\n\\nNossa equipe vai configurar sua conta e entrar em contato em ate 24 horas para o seu treinamento personalizado.\\n\\nEnquanto isso, nos envie uma mensagem no WhatsApp para comecar mais rapido: (774) 285-2299\\n\\nSeus bonus inclusos:\\n- Setup completo da plataforma\\n- 70 minutos de telefone gratis\\n- 50 emails gratis\\n- Templates prontos + Treinamento\\n\\nAtenciosamente,\\nEquipe Bee Pro Hub\\nby Galaxy IT & Marketing\",\"locationId\":\"BCczy6muFwhd63dPhKCC\"}",
+        "fromEmail": "galaxyinfomkt@gmail.com",
+        "toEmail": "info@galaxyinfo.us, galaxyinfomkt@gmail.com",
+        "subject": "=🐝 BeeProHub - NEW FREE TRIAL: {{ $('Format Data').item.json.fullName }}",
+        "emailFormat": "html",
+        "html": "=<div style=\"font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;background:#f5f5f5;\">\n  <div style=\"background:linear-gradient(135deg,#141112 0%,#2D2D2D 100%);padding:32px 40px;text-align:center;border-radius:8px 8px 0 0;\">\n    <h1 style=\"color:#fec603;font-size:22px;margin:0;font-weight:700;\">🐝 New BeeProHub Free Trial!</h1>\n    <p style=\"color:rgba(255,255,255,0.7);font-size:13px;margin:8px 0 0;\">{{ $('Format Data').item.json.date }}</p>\n  </div>\n  <div style=\"background:#ffffff;padding:32px 40px;\">\n    <div style=\"background:#fef3c7;border:2px solid #fec603;border-radius:8px;padding:16px;margin-bottom:20px;text-align:center;\">\n      <p style=\"color:#92400e;font-size:14px;font-weight:700;margin:0;\">⚡ ACTION REQUIRED: Set up this client's account within 48 hours!</p>\n    </div>\n    <h2 style=\"color:#141112;font-size:18px;margin:0 0 20px;border-bottom:2px solid #fec603;padding-bottom:12px;\">Lead Information</h2>\n    <table style=\"width:100%;border-collapse:collapse;\">\n      <tr style=\"border-bottom:1px solid #eee;\"><td style=\"padding:12px 0;color:#6b7280;font-size:13px;width:130px;\">Full Name</td><td style=\"padding:12px 0;color:#333;font-size:14px;font-weight:600;\">{{ $('Format Data').item.json.fullName }}</td></tr>\n      <tr style=\"border-bottom:1px solid #eee;\"><td style=\"padding:12px 0;color:#6b7280;font-size:13px;\">Email</td><td style=\"padding:12px 0;\"><a href=\"mailto:{{ $('Format Data').item.json.email }}\" style=\"color:#141112;text-decoration:none;font-size:14px;\">{{ $('Format Data').item.json.email }}</a></td></tr>\n      <tr><td style=\"padding:12px 0;color:#6b7280;font-size:13px;\">Phone</td><td style=\"padding:12px 0;\"><a href=\"tel:{{ $('Format Data').item.json.phone }}\" style=\"color:#141112;text-decoration:none;font-size:14px;\">{{ $('Format Data').item.json.phone }}</a></td></tr>\n    </table>\n    <div style=\"margin-top:24px;text-align:center;\">\n      <a href=\"https://app.gohighlevel.com/\" style=\"display:inline-block;background:linear-gradient(135deg,#fec603,#e5b003);color:#141112;padding:12px 32px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;\">Open GoHighLevel</a>\n    </div>\n  </div>\n  <div style=\"background:#141112;padding:20px 40px;text-align:center;border-radius:0 0 8px 8px;\">\n    <p style=\"color:rgba(255,255,255,0.5);font-size:11px;margin:0;\">Bee Pro Hub by Galaxy IT & Marketing | Marlborough, MA | (774) 285-2299</p>\n  </div>\n</div>",
         "options": {}
       },
-      "id": "ghl-welcome-email",
-      "name": "GHL - Welcome Email",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [1200, 200]
+      "id": "email-notify",
+      "name": "Email - Notify Team",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [960, 400],
+      "credentials": {
+        "smtp": {
+          "id": "2ei5OJfzS1oCZZ8e",
+          "name": "Gmail SMTP - Galaxy"
+        }
+      }
     },
     {
       "parameters": {
@@ -105,7 +112,7 @@
             "Name": "={{ $('Format Data').item.json.fullName }}",
             "Email": "={{ $('Format Data').item.json.email }}",
             "Phone": "={{ $('Format Data').item.json.phone }}",
-            "Source": "={{ $('Format Data').item.json.source }}",
+            "Source": "BeeProHub - Free Trial",
             "Status": "New Free Trial"
           }
         },
@@ -118,20 +125,36 @@
       "position": [720, 500]
     },
     {
-      "parameters": { "respondWith": "json", "responseBody": "={{ JSON.stringify({ success: true }) }}" },
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true }) }}"
+      },
       "id": "respond-ok",
       "name": "Respond Success",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [1440, 300]
+      "position": [1200, 300]
     }
   ],
   "connections": {
-    "Webhook Lead Form": { "main": [[{ "node": "Format Data", "type": "main", "index": 0 }]] },
-    "Format Data": { "main": [[{ "node": "GHL - Create Contact", "type": "main", "index": 0 }, { "node": "Google Sheets - Log Lead", "type": "main", "index": 0 }]] },
-    "GHL - Create Contact": { "main": [[{ "node": "GHL - Create Opportunity", "type": "main", "index": 0 }]] },
-    "GHL - Create Opportunity": { "main": [[{ "node": "GHL - Welcome Email", "type": "main", "index": 0 }]] },
-    "GHL - Welcome Email": { "main": [[{ "node": "Respond Success", "type": "main", "index": 0 }]] }
+    "Webhook Lead Form": {
+      "main": [[{ "node": "Format Data", "type": "main", "index": 0 }]]
+    },
+    "Format Data": {
+      "main": [[
+        { "node": "GHL - Create Contact", "type": "main", "index": 0 },
+        { "node": "Google Sheets - Log Lead", "type": "main", "index": 0 }
+      ]]
+    },
+    "GHL - Create Contact": {
+      "main": [[
+        { "node": "GHL - Add Note", "type": "main", "index": 0 },
+        { "node": "Email - Notify Team", "type": "main", "index": 0 }
+      ]]
+    },
+    "GHL - Add Note": {
+      "main": [[{ "node": "Respond Success", "type": "main", "index": 0 }]]
+    }
   },
   "settings": { "executionOrder": "v1" }
 }
