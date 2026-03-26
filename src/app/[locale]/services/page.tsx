@@ -7,11 +7,12 @@ import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
 import HeroForm from "@/components/ui/HeroForm";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schemas";
+import { pageSeo } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "services" });
-  return { title: t("title"), description: t("subtitle") };
+  return pageSeo({ title: t("title"), description: t("subtitle"), path: "/services", locale, keywords: "CRM services, marketing automation, lead generation, websites, funnels, ads management, GoHighLevel" });
 }
 
 const serviceKeys = ["crm", "automation", "leadgen", "websites", "ads"] as const;

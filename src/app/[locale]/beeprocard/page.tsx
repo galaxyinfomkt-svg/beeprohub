@@ -6,11 +6,12 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import HeroForm from "@/components/ui/HeroForm";
 import { breadcrumbSchema } from "@/lib/schemas";
+import { pageSeo } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "beeprocard" });
-  return { title: "BeeProCard", description: t("subtitle") };
+  return pageSeo({ title: "BeeProCard - Cartao Digital Profissional", description: t("subtitle"), path: "/beeprocard", locale, keywords: "cartao digital, QR code business card, cartao visita digital, BeeProCard" });
 }
 
 export default function BeeProCardPage() {

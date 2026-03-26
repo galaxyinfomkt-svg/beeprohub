@@ -5,12 +5,13 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import ContactForm from "@/components/ui/ContactForm";
 import { localBusinessSchema, breadcrumbSchema } from "@/lib/schemas";
+import { pageSeo } from "@/lib/seo";
 import { PHONE, PHONE_LINK, WHATSAPP_LINK } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact" });
-  return { title: t("title"), description: t("subtitle") };
+  return pageSeo({ title: t("title"), description: t("subtitle"), path: "/contact", locale, keywords: "contato bee pro hub, telefone, WhatsApp, demo gratis, teste gratis CRM" });
 }
 
 export default function ContactPage() {

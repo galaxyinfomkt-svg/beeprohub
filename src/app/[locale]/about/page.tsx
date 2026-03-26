@@ -6,12 +6,13 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import HeroForm from "@/components/ui/HeroForm";
 import { organizationSchema, breadcrumbSchema } from "@/lib/schemas";
+import { pageSeo } from "@/lib/seo";
 import { PHONE, PHONE_LINK } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about" });
-  return { title: t("title"), description: t("mission.text").slice(0, 160) };
+  return pageSeo({ title: t("title"), description: t("mission.text").slice(0, 160), path: "/about", locale, keywords: "sobre bee pro hub, agencia marketing Massachusetts, Galaxy IT Marketing, quem somos" });
 }
 
 export default function AboutPage() {

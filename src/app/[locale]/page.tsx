@@ -6,13 +6,14 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
 import HeroForm from "@/components/ui/HeroForm";
-import { organizationSchema, localBusinessSchema, faqSchema } from "@/lib/schemas";
+import { organizationSchema, localBusinessSchema, faqSchema, websiteSchema, siteNavigationSchema } from "@/lib/schemas";
+import { pageSeo } from "@/lib/seo";
 import { PHONE, PHONE_LINK } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
-  return { title: t("title"), description: t("description"), keywords: t("keywords"), alternates: { languages: { en: "/en", pt: "/pt", es: "/es" } } };
+  return pageSeo({ title: t("title"), description: t("description"), keywords: t("keywords"), path: "", locale });
 }
 
 function Check() {
@@ -25,7 +26,7 @@ export default function HomePage() {
 
   return (
     <>
-      <JsonLd data={[organizationSchema(), localBusinessSchema(), faqSchema(homeFaqs)]} />
+      <JsonLd data={[organizationSchema(), localBusinessSchema(), websiteSchema(), siteNavigationSchema(), faqSchema(homeFaqs)]} />
 
       {/* ========== HERO ========== */}
       <section className="relative overflow-hidden py-12 lg:py-20">

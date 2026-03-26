@@ -7,11 +7,12 @@ import { blogPosts } from "@/data/blog-posts";
 import { blogTranslations } from "@/data/blog-translations";
 import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schemas";
+import { pageSeo } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "blog" });
-  return { title: t("title"), description: t("subtitle") };
+  return pageSeo({ title: t("title"), description: t("subtitle"), path: "/blog", locale, keywords: "blog marketing digital, CRM tips, lead generation strategies, marketing automation guide" });
 }
 
 export default function BlogPage() {

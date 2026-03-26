@@ -6,12 +6,13 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
 import HeroForm from "@/components/ui/HeroForm";
-import { faqSchema, breadcrumbSchema } from "@/lib/schemas";
+import { faqSchema, breadcrumbSchema, productSchema } from "@/lib/schemas";
+import { pageSeo } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "pricing" });
-  return { title: t("title"), description: t("subtitle") };
+  return pageSeo({ title: t("title"), description: t("subtitle"), path: "/pricing", locale, keywords: "precos CRM, planos marketing automation, GoHighLevel pricing, CRM affordable" });
 }
 
 const plans = ["starter", "professional", "enterprise"] as const;
