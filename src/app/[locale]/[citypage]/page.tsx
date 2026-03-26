@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { massachusettsCities, cityServices } from "@/data/massachusetts-cities";
 import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
+import HeroForm from "@/components/ui/HeroForm";
 import { localBusinessSchema, serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schemas";
 import { PHONE, PHONE_LINK } from "@/lib/utils";
 
@@ -36,103 +37,139 @@ export async function generateMetadata({ params }: { params: Promise<{ citypage:
   const { service, city } = result;
   return {
     title: `${service.title} in ${city.name}, MA | Bee Pro Hub`,
-    description: `Looking for ${service.description.toLowerCase()} in ${city.name}, Massachusetts? Bee Pro Hub offers CRM, marketing automation, and lead generation services for local businesses in ${city.name}, ${city.county} County. Start your free trial today.`,
-    keywords: `${service.title} ${city.name}, CRM ${city.name} MA, marketing automation ${city.name}, lead generation ${city.name} Massachusetts`,
+    description: `${service.description} in ${city.name}, Massachusetts. CRM, marketing automation, and lead generation. Start free trial.`,
+    keywords: `${service.title} ${city.name}, CRM ${city.name} MA, marketing automation ${city.name}`,
   };
 }
+
+const labels = {
+  pt: {
+    badge: (city: string) => `${city}, Massachusetts`,
+    title: (svc: string, city: string) => `${svc} em ${city}, MA`,
+    desc: (svc: string, city: string, county: string) => `Procurando ${svc.toLowerCase()} em ${city}? O Bee Pro Hub ajuda negocios locais em ${city}, ${county} County a automatizar marketing, gerenciar leads e crescer receita com nossa plataforma CRM all-in-one.`,
+    whatWeOffer: (city: string) => `O Que Oferecemos para Negocios em ${city}`,
+    whyChoose: (city: string) => `Por Que Negocios em ${city} Escolhem Bee Pro Hub`,
+    whyText: (city: string, county: string) => `Baseados em Marlborough, Massachusetts, entendemos o mercado local em ${county} County. Seja voce um contractor, empresa de limpeza, restaurante ou qualquer negocio de servicos em ${city}, nossa plataforma e feita para ajudar voce a competir e vencer. Com suporte em Portugues, Ingles e Espanhol.`,
+    faqTitle: (city: string) => `FAQ Sobre Nossos Servicos em ${city}`,
+    ctaTitle: (city: string) => `Pronto para Crescer Seu Negocio em ${city}?`,
+    ctaBtn: "COMECAR TESTE GRATIS",
+    services: (city: string) => [
+      { title: "CRM Inteligente", desc: `Gerencie todos os relacionamentos com clientes de ${city} em uma plataforma centralizada.` },
+      { title: "Automacao de Marketing", desc: `Automatize email, SMS e WhatsApp para alcançar clientes de ${city} no momento perfeito.` },
+      { title: "Geracao de Leads", desc: `Atraia mais leads qualificados de ${city} e ${city} com funis otimizados.` },
+      { title: "Sistema Telefonico", desc: `Sistema telefonico profissional com presença local em ${city}. Gravacao e SMS integrados.` },
+      { title: "Agendamento", desc: `Clientes de ${city} agendam online. Lembretes automaticos reduzem faltas em 80%.` },
+      { title: "Orcamentos e Faturas", desc: `Crie propostas profissionais para clientes de ${city} em minutos.` },
+    ],
+    faq: (city: string, svc: string, county: string) => [
+      { question: `Quais servicos de CRM o Bee Pro Hub oferece em ${city}?`, answer: `CRM completo, automacao de marketing, geracao de leads, sistema telefonico, agendamento e faturamento para negocios em ${city}, MA.` },
+      { question: `O Bee Pro Hub esta disponivel para pequenas empresas em ${city}?`, answer: `Sim! Projetado para pequenas e medias empresas em ${city} e todo Massachusetts.` },
+      { question: `Voces oferecem suporte presencial em ${city}?`, answer: `Somos de Marlborough, MA e atendemos todo ${county} County incluindo ${city}. Suporte remoto 24/7 em PT, EN e ES.` },
+      { question: `Quanto custa o ${svc.toLowerCase()} em ${city}?`, answer: `A partir de $97/mes com 14 dias de teste gratis. Sem cartao de credito.` },
+    ],
+    alsoServe: (county: string) => `Tambem Atendemos Cidades Proximas em ${county} County`,
+    stats: { sales: "Aumento Medio", hours: "Economizado/Semana", cost: "Reducao de Custos", support: "Suporte" },
+  },
+  es: {
+    badge: (city: string) => `${city}, Massachusetts`,
+    title: (svc: string, city: string) => `${svc} en ${city}, MA`,
+    desc: (svc: string, city: string, county: string) => `Buscando ${svc.toLowerCase()} en ${city}? Bee Pro Hub ayuda negocios locales en ${city}, ${county} County a automatizar marketing, gestionar leads y crecer ingresos.`,
+    whatWeOffer: (city: string) => `Lo Que Ofrecemos para Negocios en ${city}`,
+    whyChoose: (city: string) => `Por Que Negocios en ${city} Eligen Bee Pro Hub`,
+    whyText: (city: string, county: string) => `Basados en Marlborough, Massachusetts, entendemos el mercado local en ${county} County. Con soporte en Espanol, Ingles y Portugues.`,
+    faqTitle: (city: string) => `FAQ Sobre Nuestros Servicios en ${city}`,
+    ctaTitle: (city: string) => `Listo para Crecer Tu Negocio en ${city}?`,
+    ctaBtn: "COMENZAR PRUEBA GRATIS",
+    services: (city: string) => [
+      { title: "CRM Inteligente", desc: `Gestiona relaciones con clientes de ${city} en una plataforma.` },
+      { title: "Automatizacion de Marketing", desc: `Automatiza email, SMS y WhatsApp para clientes de ${city}.` },
+      { title: "Generacion de Leads", desc: `Atrae leads calificados de ${city} con embudos optimizados.` },
+      { title: "Sistema Telefonico", desc: `Sistema telefonico profesional con presencia local en ${city}.` },
+      { title: "Agendamiento", desc: `Clientes de ${city} agendan online. Recordatorios automaticos.` },
+      { title: "Presupuestos y Facturas", desc: `Crea propuestas profesionales para clientes de ${city} en minutos.` },
+    ],
+    faq: (city: string, svc: string, county: string) => [
+      { question: `Que servicios ofrece Bee Pro Hub en ${city}?`, answer: `CRM completo, automatizacion, generacion de leads, telefonia, agendamiento y facturacion para negocios en ${city}, MA.` },
+      { question: `Esta disponible para pequenas empresas en ${city}?`, answer: `Si! Disenado para pequenas y medianas empresas en ${city}.` },
+      { question: `Ofrecen soporte en ${city}?`, answer: `Somos de Marlborough, MA. Soporte 24/7 en ES, EN y PT.` },
+      { question: `Cuanto cuesta en ${city}?`, answer: `Desde $97/mes con 14 dias gratis. Sin tarjeta.` },
+    ],
+    alsoServe: (county: string) => `Tambien Servimos Ciudades Cercanas en ${county} County`,
+    stats: { sales: "Aumento Promedio", hours: "Ahorrado/Semana", cost: "Reduccion de Costos", support: "Soporte" },
+  },
+  en: {
+    badge: (city: string) => `${city}, Massachusetts`,
+    title: (svc: string, city: string) => `${svc} in ${city}, MA`,
+    desc: (svc: string, city: string, county: string) => `Looking for professional ${svc.toLowerCase()} in ${city}? Bee Pro Hub helps local businesses in ${city}, ${county} County automate their marketing, manage leads, and grow revenue.`,
+    whatWeOffer: (city: string) => `What We Offer Businesses in ${city}`,
+    whyChoose: (city: string) => `Why ${city} Businesses Choose Bee Pro Hub`,
+    whyText: (city: string, county: string) => `Based in Marlborough, Massachusetts, we understand the local market in ${county} County. With support in English, Portuguese, and Spanish.`,
+    faqTitle: (city: string) => `FAQ About Our Services in ${city}`,
+    ctaTitle: (city: string) => `Ready to Grow Your ${city} Business?`,
+    ctaBtn: "START FREE TRIAL",
+    services: (city: string) => [
+      { title: "Smart CRM", desc: `Manage all your ${city} customer relationships in one platform.` },
+      { title: "Marketing Automation", desc: `Automate email, SMS, and WhatsApp to reach ${city} customers.` },
+      { title: "Lead Generation", desc: `Attract qualified leads from ${city} with optimized funnels.` },
+      { title: "Phone System", desc: `Professional phone system with local ${city} presence.` },
+      { title: "Scheduling", desc: `Let ${city} clients book online. Auto reminders reduce no-shows 80%.` },
+      { title: "Quotes & Invoicing", desc: `Create professional proposals for ${city} clients in minutes.` },
+    ],
+    faq: (city: string, svc: string, county: string) => [
+      { question: `What CRM services does Bee Pro Hub offer in ${city}?`, answer: `Complete CRM, marketing automation, lead generation, phone system, scheduling, and invoicing for businesses in ${city}, MA.` },
+      { question: `Is Bee Pro Hub available for small businesses in ${city}?`, answer: `Yes! Designed for small and medium businesses in ${city} and throughout Massachusetts.` },
+      { question: `Do you offer support in ${city}?`, answer: `Based in Marlborough, MA serving all of ${county} County. 24/7 support in EN, PT, ES.` },
+      { question: `How much does ${svc.toLowerCase()} cost in ${city}?`, answer: `Plans start at $97/month with 14-day free trial. No credit card required.` },
+    ],
+    alsoServe: (county: string) => `We Also Serve Nearby Cities in ${county} County`,
+    stats: { sales: "Avg Sales Increase", hours: "Saved Per Week", cost: "Cost Reduction", support: "Support" },
+  },
+};
 
 export default async function CityPage({ params }: { params: Promise<{ citypage: string; locale: string }> }) {
   const { citypage, locale } = await params;
   const result = parseCityPage(citypage);
   if (!result) notFound();
   const { service, city } = result;
+  const l = labels[locale as keyof typeof labels] || labels.en;
 
-  const nearbyCities = massachusettsCities
-    .filter((c) => c.county === city.county && c.slug !== city.slug)
-    .slice(0, 6);
-
-  const cityFaqs = [
-    {
-      question: `What CRM services does Bee Pro Hub offer in ${city.name}?`,
-      answer: `Bee Pro Hub provides complete CRM, marketing automation, lead generation, integrated phone system, scheduling, and invoicing services for businesses in ${city.name}, MA. Our platform replaces 10+ separate tools with one unified solution.`,
-    },
-    {
-      question: `How much does ${service.title.toLowerCase()} cost in ${city.name}?`,
-      answer: `Plans start at $97/month with a 14-day free trial. All plans include CRM, automation, and support. No credit card required to start.`,
-    },
-    {
-      question: `Is Bee Pro Hub available for small businesses in ${city.name}?`,
-      answer: `Absolutely! Bee Pro Hub is specifically designed for small and medium businesses in ${city.name} and throughout Massachusetts. We serve contractors, cleaning companies, roofing businesses, and all local service providers.`,
-    },
-    {
-      question: `Do you offer in-person support in ${city.name}, Massachusetts?`,
-      answer: `We're based in Marlborough, MA and serve all of ${city.county} County including ${city.name}. We offer remote support 24/7 in English, Portuguese, and Spanish, plus can arrange in-person consultations for businesses in the area.`,
-    },
-  ];
+  const nearbyCities = massachusettsCities.filter((c) => c.county === city.county && c.slug !== city.slug).slice(0, 6);
+  const cityFaqs = l.faq(city.name, service.title, city.county);
+  const svcs = l.services(city.name);
 
   return (
     <>
-      <JsonLd data={[
-        localBusinessSchema(city.name),
-        serviceSchema(service.title, `${service.description} for businesses in ${city.name}, MA`, `https://beeprohub.com/en/${citypage}`),
-        faqSchema(cityFaqs),
-        breadcrumbSchema([
-          { name: "Home", url: "https://beeprohub.com" },
-          { name: "Services", url: "https://beeprohub.com/en/services" },
-          { name: `${service.title} in ${city.name}`, url: `https://beeprohub.com/en/${citypage}` },
-        ]),
-      ]} />
+      <JsonLd data={[localBusinessSchema(city.name), serviceSchema(service.title, service.description, `https://beeprohub.com/${locale}/${citypage}`), faqSchema(cityFaqs), breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: service.title, url: `https://beeprohub.com/${locale}/services` }, { name: `${city.name}`, url: `https://beeprohub.com/${locale}/${citypage}` }])]} />
 
       {/* Hero */}
-      <section className="bg-dark py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block bg-primary/20 text-primary font-bold text-sm px-4 py-2 rounded-full mb-4">
-                {city.name}, Massachusetts
-              </span>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6">
-                {service.title} in {city.name}, MA
-              </h1>
-              <p className="text-lg text-gray-400 mb-8">
-                Looking for professional {service.description.toLowerCase()} in {city.name}? Bee Pro Hub helps local businesses in {city.name}, {city.county} County automate their marketing, manage leads, and grow revenue with our all-in-one CRM platform.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href={`/${locale}/contact`} className="bg-primary hover:bg-primary-hover text-dark font-bold px-8 py-4 rounded-xl text-lg transition-all animate-pulse-glow text-center">
-                  Get Free Demo
-                </Link>
-                <a href={PHONE_LINK} className="border-2 border-gray-600 hover:border-primary text-white hover:text-primary font-semibold px-8 py-4 rounded-xl text-lg transition-colors text-center">
-                  {PHONE}
-                </a>
+      <section className="relative bg-gradient-to-br from-dark via-dark-light to-dark overflow-hidden py-16 lg:py-24">
+        <div className="absolute inset-0 bg-dots opacity-20" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-3xl" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-fade-left text-white">
+              <div className="badge-gold mb-6">{l.badge(city.name)}</div>
+              <h1 className="section-heading mb-5">{l.title(service.title, city.name)}</h1>
+              <p className="text-gray-400 text-base lg:text-lg leading-relaxed mb-6">{l.desc(service.description, city.name, city.county)}</p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{l.ctaBtn} &rarr;</Link>
+                <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>
               </div>
             </div>
-            <div className="hidden lg:flex justify-center">
-              <Image src="/images/dashboard-multidevice.webp" alt={`CRM and marketing automation dashboard for businesses in ${city.name} MA`} width={500} height={400} className="rounded-2xl" />
-            </div>
+            <div className="animate-fade-right"><HeroForm /></div>
           </div>
         </div>
       </section>
 
-      {/* Services for this city */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-dark text-center mb-10">
-            What We Offer Businesses in {city.name}
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: "Smart CRM", desc: `Manage all your ${city.name} customer relationships in one centralized platform. Track every lead, call, and interaction.` },
-              { title: "Marketing Automation", desc: `Automate your email, SMS, and WhatsApp marketing to reach ${city.name} customers at the perfect time.` },
-              { title: "Lead Generation", desc: `Attract more qualified leads from ${city.name} and ${city.county} County with optimized funnels and ad campaigns.` },
-              { title: "Phone System", desc: `Professional phone system with local ${city.name} presence. Call recording, voicemail, and SMS built in.` },
-              { title: "Scheduling", desc: `Let ${city.name} clients book appointments online. Automatic reminders reduce no-shows by 80%.` },
-              { title: "Quotes & Invoicing", desc: `Create professional proposals for ${city.name} clients in minutes. Track payments and follow up automatically.` },
-            ].map((item, i) => (
-              <div key={i} className="bg-gray-50 p-6 rounded-2xl border border-gray-100 hover:border-primary/30 transition-all">
+      {/* Services */}
+      <section className="bg-white py-16 bg-dots">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-dark text-center mb-10">{l.whatWeOffer(city.name)}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {svcs.map((item, i) => (
+              <div key={i} className="card-gold p-6">
                 <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3">
-                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
+                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                 </div>
                 <h3 className="font-bold text-dark mb-2">{item.title}</h3>
                 <p className="text-sm text-gray-500">{item.desc}</p>
@@ -142,93 +179,54 @@ export default async function CityPage({ params }: { params: Promise<{ citypage:
         </div>
       </section>
 
-      {/* Why choose us for this city */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-dark mb-6">
-            Why {city.name} Businesses Choose Bee Pro Hub
-          </h2>
-          <p className="text-lg text-gray-600 leading-relaxed mb-8">
-            Based in Marlborough, Massachusetts, we understand the local market in {city.county} County. Whether you&apos;re a contractor, cleaning company, restaurant, or any local service business in {city.name}, our platform is built to help you compete and win. With support in English, Portuguese, and Spanish, we serve the diverse business community across Massachusetts.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-extrabold text-primary">300%</div>
-              <div className="text-xs text-gray-500">Avg Sales Increase</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-extrabold text-primary">15h</div>
-              <div className="text-xs text-gray-500">Saved Per Week</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-extrabold text-primary">70%</div>
-              <div className="text-xs text-gray-500">Cost Reduction</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-extrabold text-primary">24/7</div>
-              <div className="text-xs text-gray-500">Support</div>
-            </div>
-          </div>
+      {/* Stats */}
+      <section className="bg-gradient-to-r from-dark to-dark-light py-10">
+        <div className="max-w-4xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div><div className="text-3xl font-extrabold text-primary">300%</div><div className="text-xs text-gray-400">{l.stats.sales}</div></div>
+          <div><div className="text-3xl font-extrabold text-primary">15h</div><div className="text-xs text-gray-400">{l.stats.hours}</div></div>
+          <div><div className="text-3xl font-extrabold text-primary">70%</div><div className="text-xs text-gray-400">{l.stats.cost}</div></div>
+          <div><div className="text-3xl font-extrabold text-primary">24/7</div><div className="text-xs text-gray-400">{l.stats.support}</div></div>
+        </div>
+      </section>
+
+      {/* Why choose */}
+      <section className="bg-gradient-to-br from-gold-50 to-amber-50 py-16 bg-dots">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-dark mb-5">{l.whyChoose(city.name)}</h2>
+          <p className="text-gray-600 leading-relaxed text-lg">{l.whyText(city.name, city.county)}</p>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-16 bg-white">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-dark text-center mb-10">
-            FAQ About Our Services in {city.name}
-          </h2>
+      <section className="bg-white py-16">
+        <div className="max-w-2xl mx-auto px-4">
+          <h2 className="text-2xl font-extrabold text-dark text-center mb-10">{l.faqTitle(city.name)}</h2>
           <FAQ items={cityFaqs} />
         </div>
       </section>
 
       {/* Nearby cities */}
       {nearbyCities.length > 0 && (
-        <section className="py-16 bg-gray-50">
+        <section className="bg-gray-50 py-12">
           <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-dark text-center mb-8">
-              We Also Serve Nearby Cities in {city.county} County
-            </h2>
-            <div className="flex flex-wrap justify-center gap-3">
+            <h2 className="text-xl font-bold text-dark text-center mb-6">{l.alsoServe(city.county)}</h2>
+            <div className="flex flex-wrap justify-center gap-2">
               {nearbyCities.map((c) => (
-                <Link
-                  key={c.slug}
-                  href={`/${locale}/${service.slug}-${c.slug}-ma`}
-                  className="bg-white border border-gray-200 hover:border-primary text-gray-600 hover:text-primary px-4 py-2 rounded-lg text-sm transition-colors"
-                >
-                  {service.title} in {c.name}
+                <Link key={c.slug} href={`/${locale}/${service.slug}-${c.slug}-ma`} className="bg-white border border-gray-200 hover:border-primary text-gray-600 hover:text-primary px-4 py-2 rounded-lg text-sm transition-all">
+                  {service.title} {locale === "pt" ? "em" : locale === "es" ? "en" : "in"} {c.name}
                 </Link>
               ))}
-            </div>
-            <div className="flex flex-wrap justify-center gap-3 mt-4">
-              {cityServices
-                .filter((s) => s.slug !== service.slug)
-                .map((s) => (
-                  <Link
-                    key={s.slug}
-                    href={`/${locale}/${s.slug}-${city.slug}-ma`}
-                    className="bg-white border border-gray-200 hover:border-primary text-gray-600 hover:text-primary px-4 py-2 rounded-lg text-sm transition-colors"
-                  >
-                    {s.title} in {city.name}
-                  </Link>
-                ))}
             </div>
           </div>
         </section>
       )}
 
       {/* CTA */}
-      <section className="py-16 bg-primary">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-3xl font-extrabold text-dark mb-4">
-            Ready to Grow Your {city.name} Business?
-          </h2>
-          <p className="text-dark/70 mb-6">
-            Start your 14-day free trial. No credit card required.
-          </p>
-          <Link href={`/${locale}/contact`} className="inline-block bg-dark text-primary font-bold px-10 py-4 rounded-xl text-lg hover:bg-dark-light transition-colors">
-            Start Free Trial
-          </Link>
+      <section className="bg-gradient-animated py-14 relative overflow-hidden">
+        <div className="absolute inset-0 bg-dots opacity-10" />
+        <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-dark mb-4">{l.ctaTitle(city.name)}</h2>
+          <Link href={`/${locale}/contact`} className="btn-secondary btn-shine">{l.ctaBtn} &rarr;</Link>
         </div>
       </section>
     </>
