@@ -66,7 +66,7 @@ export default async function NicheLandingPage({ params }: { params: Promise<{ n
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image src={nicheImages[slug] || nicheImages.contractors} alt={niche.name} fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/60 to-primary/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/75 to-dark/50" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
