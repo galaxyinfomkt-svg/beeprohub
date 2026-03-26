@@ -46,7 +46,7 @@
         "headerParameters": { "parameters": [{ "name": "Version", "value": "2021-07-28" }] },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\"firstName\":\"{{ $json.firstName }}\",\"lastName\":\"{{ $json.lastName }}\",\"email\":\"{{ $json.email }}\",\"phone\":\"{{ $json.phone }}\",\"source\":\"{{ $json.source }}\",\"tags\":[\"website-lead\",\"free-trial\",\"hero-form\",\"beeprohub\"],\"locationId\":\"SEU_LOCATION_ID\"}",
+        "jsonBody": "={\"firstName\":\"{{ $json.firstName }}\",\"lastName\":\"{{ $json.lastName }}\",\"email\":\"{{ $json.email }}\",\"phone\":\"{{ $json.phone }}\",\"source\":\"{{ $json.source }}\",\"tags\":[\"website-lead\",\"free-trial\",\"hero-form\",\"beeprohub\"],\"locationId\":\"BCczy6muFwhd63dPhKCC\"}",
         "options": {}
       },
       "id": "ghl-create-contact",
@@ -65,7 +65,7 @@
         "headerParameters": { "parameters": [{ "name": "Version", "value": "2021-07-28" }] },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\"pipelineId\":\"SEU_PIPELINE_ID\",\"pipelineStageId\":\"SEU_STAGE_ID\",\"locationId\":\"SEU_LOCATION_ID\",\"contactId\":\"{{ $json.contact.id }}\",\"name\":\"{{ $('Format Data').item.json.fullName }} - Free Trial\",\"status\":\"open\",\"source\":\"BeeProHub Hero Form\"}",
+        "jsonBody": "={\"pipelineId\":\"SEU_PIPELINE_ID\",\"pipelineStageId\":\"SEU_STAGE_ID\",\"locationId\":\"BCczy6muFwhd63dPhKCC\",\"contactId\":\"{{ $json.contact.id }}\",\"name\":\"{{ $('Format Data').item.json.fullName }} - Free Trial\",\"status\":\"open\",\"source\":\"BeeProHub Hero Form\"}",
         "options": {}
       },
       "id": "ghl-create-opp",
@@ -84,7 +84,7 @@
         "headerParameters": { "parameters": [{ "name": "Version", "value": "2021-07-28" }] },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\"type\":\"Email\",\"contactId\":\"{{ $('GHL - Create Contact').item.json.contact.id }}\",\"subject\":\"Bem-vindo ao Bee Pro Hub - Seu Teste Gratis!\",\"message\":\"Ola {{ $('Format Data').item.json.firstName }},\\n\\nObrigado por se cadastrar para o teste gratis de 14 dias do Bee Pro Hub!\\n\\nNossa equipe vai configurar sua conta e entrar em contato em ate 24 horas para o seu treinamento personalizado.\\n\\nEnquanto isso, nos envie uma mensagem no WhatsApp para comecar mais rapido: (774) 285-2299\\n\\nSeus bonus inclusos:\\n- Setup completo da plataforma\\n- 70 minutos de telefone gratis\\n- 50 emails gratis\\n- Templates prontos + Treinamento\\n\\nAtenciosamente,\\nEquipe Bee Pro Hub\\nby Galaxy IT & Marketing\",\"locationId\":\"SEU_LOCATION_ID\"}",
+        "jsonBody": "={\"type\":\"Email\",\"contactId\":\"{{ $('GHL - Create Contact').item.json.contact.id }}\",\"subject\":\"Bem-vindo ao Bee Pro Hub - Seu Teste Gratis!\",\"message\":\"Ola {{ $('Format Data').item.json.firstName }},\\n\\nObrigado por se cadastrar para o teste gratis de 14 dias do Bee Pro Hub!\\n\\nNossa equipe vai configurar sua conta e entrar em contato em ate 24 horas para o seu treinamento personalizado.\\n\\nEnquanto isso, nos envie uma mensagem no WhatsApp para comecar mais rapido: (774) 285-2299\\n\\nSeus bonus inclusos:\\n- Setup completo da plataforma\\n- 70 minutos de telefone gratis\\n- 50 emails gratis\\n- Templates prontos + Treinamento\\n\\nAtenciosamente,\\nEquipe Bee Pro Hub\\nby Galaxy IT & Marketing\",\"locationId\":\"BCczy6muFwhd63dPhKCC\"}",
         "options": {}
       },
       "id": "ghl-welcome-email",

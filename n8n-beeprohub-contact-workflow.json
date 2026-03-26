@@ -52,7 +52,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\"firstName\":\"{{ $json.firstName }}\",\"lastName\":\"{{ $json.lastName }}\",\"email\":\"{{ $json.email }}\",\"phone\":\"{{ $json.phone }}\",\"companyName\":\"{{ $json.company }}\",\"source\":\"{{ $json.source }}\",\"tags\":[\"website-lead\",\"contact-form\",\"beeprohub\"],\"locationId\":\"SEU_LOCATION_ID\"}",
+        "jsonBody": "={\"firstName\":\"{{ $json.firstName }}\",\"lastName\":\"{{ $json.lastName }}\",\"email\":\"{{ $json.email }}\",\"phone\":\"{{ $json.phone }}\",\"companyName\":\"{{ $json.company }}\",\"source\":\"{{ $json.source }}\",\"tags\":[\"website-lead\",\"contact-form\",\"beeprohub\"],\"locationId\":\"BCczy6muFwhd63dPhKCC\"}",
         "options": {}
       },
       "id": "ghl-create-contact",
@@ -75,7 +75,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\"pipelineId\":\"SEU_PIPELINE_ID\",\"pipelineStageId\":\"SEU_STAGE_ID\",\"locationId\":\"SEU_LOCATION_ID\",\"contactId\":\"{{ $json.contact.id }}\",\"name\":\"{{ $('Format Data').item.json.fullName }} - BeeProHub Contact\",\"status\":\"open\",\"source\":\"BeeProHub Website\"}",
+        "jsonBody": "={\"pipelineId\":\"SEU_PIPELINE_ID\",\"pipelineStageId\":\"SEU_STAGE_ID\",\"locationId\":\"BCczy6muFwhd63dPhKCC\",\"contactId\":\"{{ $json.contact.id }}\",\"name\":\"{{ $('Format Data').item.json.fullName }} - BeeProHub Contact\",\"status\":\"open\",\"source\":\"BeeProHub Website\"}",
         "options": {}
       },
       "id": "ghl-create-opp",
@@ -98,7 +98,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\"body\":\"BeeProHub Contact Form\\nCompany: {{ $('Format Data').item.json.company }}\\nMessage: {{ $('Format Data').item.json.message }}\\nLocale: {{ $('Format Data').item.json.locale }}\",\"locationId\":\"SEU_LOCATION_ID\"}",
+        "jsonBody": "={\"body\":\"BeeProHub Contact Form\\nCompany: {{ $('Format Data').item.json.company }}\\nMessage: {{ $('Format Data').item.json.message }}\\nLocale: {{ $('Format Data').item.json.locale }}\",\"locationId\":\"BCczy6muFwhd63dPhKCC\"}",
         "options": {}
       },
       "id": "ghl-add-note",
@@ -121,7 +121,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\"type\":\"Email\",\"contactId\":\"{{ $('GHL - Create Contact').item.json.contact.id }}\",\"subject\":\"Obrigado por entrar em contato com o Bee Pro Hub!\",\"message\":\"Ola {{ $('Format Data').item.json.firstName }},\\n\\nObrigado por entrar em contato com o Bee Pro Hub! Recebemos sua mensagem e responderemos em ate 24 horas.\\n\\nPara uma resposta mais rapida, nos envie uma mensagem no WhatsApp: (774) 285-2299\\n\\nAtenciosamente,\\nEquipe Bee Pro Hub\\nby Galaxy IT & Marketing\",\"locationId\":\"SEU_LOCATION_ID\"}",
+        "jsonBody": "={\"type\":\"Email\",\"contactId\":\"{{ $('GHL - Create Contact').item.json.contact.id }}\",\"subject\":\"Obrigado por entrar em contato com o Bee Pro Hub!\",\"message\":\"Ola {{ $('Format Data').item.json.firstName }},\\n\\nObrigado por entrar em contato com o Bee Pro Hub! Recebemos sua mensagem e responderemos em ate 24 horas.\\n\\nPara uma resposta mais rapida, nos envie uma mensagem no WhatsApp: (774) 285-2299\\n\\nAtenciosamente,\\nEquipe Bee Pro Hub\\nby Galaxy IT & Marketing\",\"locationId\":\"BCczy6muFwhd63dPhKCC\"}",
         "options": {}
       },
       "id": "ghl-auto-reply",
