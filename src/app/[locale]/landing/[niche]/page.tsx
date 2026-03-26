@@ -66,7 +66,7 @@ export default async function NicheLandingPage({ params }: { params: Promise<{ n
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image src={nicheImages[slug] || nicheImages.contractors} alt={niche.name} fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/65 via-amber-400/55 to-amber-200/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-cyan-800/50 to-primary/40" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -75,8 +75,8 @@ export default async function NicheLandingPage({ params }: { params: Promise<{ n
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 {forLabel} {niche.name}
               </div>
-              <h1 className="section-heading text-dark mb-5">{heroTitle}</h1>
-              <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-6">{heroSubtitle}</p>
+              <h1 className="section-heading text-white mb-5">{heroTitle}</h1>
+              <p className="text-gray-200 text-base lg:text-lg leading-relaxed mb-6">{heroSubtitle}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{trialLabel} &rarr;</Link>
                 <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>

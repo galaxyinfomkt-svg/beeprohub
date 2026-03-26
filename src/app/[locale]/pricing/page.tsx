@@ -33,14 +33,14 @@ export default function PricingPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1400&q=80" alt="Business strategy" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/65 via-amber-400/55 to-amber-200/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/80 via-teal-800/60 to-primary/40" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-left">
               <div className="badge-gold mb-6">{t("title")}</div>
-              <h1 className="section-heading text-dark mb-5">{t("title")}</h1>
-              <p className="text-gray-600 text-base lg:text-lg leading-relaxed">{t("subtitle")}</p>
+              <h1 className="section-heading text-white mb-5">{t("title")}</h1>
+              <p className="text-gray-200 text-base lg:text-lg leading-relaxed">{t("subtitle")}</p>
             </div>
             <div className="animate-fade-right"><HeroForm /></div>
           </div>

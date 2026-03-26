@@ -145,14 +145,14 @@ export default async function CityPage({ params }: { params: Promise<{ citypage:
       <section className="relative overflow-hidden py-16 lg:py-24">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80" alt={city.name} fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/65 via-amber-400/55 to-amber-200/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/80 via-blue-800/60 to-primary/40" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-left">
               <div className="badge-gold mb-6">{l.badge(city.name)}</div>
-              <h1 className="section-heading text-dark mb-5">{l.title(service.title, city.name)}</h1>
-              <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-6">{l.desc(service.description, city.name, city.county)}</p>
+              <h1 className="section-heading text-white mb-5">{l.title(service.title, city.name)}</h1>
+              <p className="text-gray-200 text-base lg:text-lg leading-relaxed mb-6">{l.desc(service.description, city.name, city.county)}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{l.ctaBtn} &rarr;</Link>
                 <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>

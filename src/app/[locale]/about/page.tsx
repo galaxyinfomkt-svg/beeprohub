@@ -26,14 +26,14 @@ export default function AboutPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=80" alt="Team working" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/60 via-amber-400/50 to-amber-200/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-indigo-800/60 to-primary/40" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-left">
               <div className="badge-gold mb-6">{t("title")}</div>
-              <h1 className="section-heading text-dark mb-5">{t("subtitle")}</h1>
-              <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-8">{t("mission.text")}</p>
+              <h1 className="section-heading text-white mb-5">{t("subtitle")}</h1>
+              <p className="text-gray-200 text-base lg:text-lg leading-relaxed mb-8">{t("mission.text")}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">FALE CONOSCO &rarr;</Link>
                 <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>

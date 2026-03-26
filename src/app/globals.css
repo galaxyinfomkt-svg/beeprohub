@@ -109,6 +109,15 @@
     background-size: 400% 400%;
     animation: gradient 6s ease infinite;
   }
+  /* Neon glow text */
+  .text-neon {
+    text-shadow: 0 0 10px rgba(254,198,3,0.5), 0 0 30px rgba(254,198,3,0.3), 0 0 60px rgba(254,198,3,0.1);
+  }
+
+  /* Neon border */
+  .border-neon {
+    box-shadow: 0 0 10px rgba(254,198,3,0.3), 0 0 20px rgba(254,198,3,0.1), inset 0 0 10px rgba(254,198,3,0.05);
+  }
 }
 
 /* Scrollbar */

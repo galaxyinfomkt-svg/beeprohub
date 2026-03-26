@@ -24,12 +24,12 @@ export default function ContactPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1400&q=80" alt="Contact us" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-amber-400/55 to-amber-200/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-900/80 via-amber-800/60 to-primary/40" />
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16 lg:py-20 relative z-10 text-center">
           <div className="badge-gold mb-6 mx-auto">{t("title")}</div>
-          <h1 className="section-heading text-dark mb-5">{t("title")}</h1>
-          <p className="text-gray-600 text-base lg:text-lg leading-relaxed max-w-xl mx-auto">{t("subtitle")}</p>
+          <h1 className="section-heading text-white mb-5">{t("title")}</h1>
+          <p className="text-gray-200 text-base lg:text-lg leading-relaxed max-w-xl mx-auto">{t("subtitle")}</p>
         </div>
       </section>
 

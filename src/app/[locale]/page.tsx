@@ -31,7 +31,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden py-12 lg:py-20">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" alt="Business dashboard" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-amber-400/60 to-amber-300/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-violet-900/80 via-purple-800/60 to-primary/40" />
         </div>
         <div className="absolute top-[-150px] right-[-150px] w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl" />
 
@@ -44,7 +44,7 @@ export default function HomePage() {
                 {t("hero.badge")}
               </div>
 
-              <h1 className="section-heading text-dark mb-5">
+              <h1 className="section-heading text-white mb-5">
                 <span className="text-gradient-gold">{t("hero.title")}</span>
               </h1>
 
@@ -52,7 +52,7 @@ export default function HomePage() {
 
               <ul className="space-y-3 mb-8">
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <li key={i} className="flex items-start gap-3 text-gray-700 text-sm">
+                  <li key={i} className="flex items-start gap-3 text-gray-100 text-sm">
                     <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                       <svg className="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                     </div>
