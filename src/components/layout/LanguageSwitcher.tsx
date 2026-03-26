@@ -42,7 +42,9 @@ export default function LanguageSwitcher() {
   const switchLocale = (newLocale: string) => {
     const segments = pathname.split("/");
     segments[1] = newLocale;
-    router.push(segments.join("/"));
+    const scrollY = window.scrollY;
+    router.replace(segments.join("/"), { scroll: false });
+    requestAnimationFrame(() => window.scrollTo(0, scrollY));
   };
 
   return (
