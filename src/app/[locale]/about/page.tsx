@@ -22,36 +22,28 @@ export default function AboutPage() {
     <>
       <JsonLd data={[organizationSchema(), breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: "About", url: "https://beeprohub.com/pt/about" }])]} />
 
-      {/* Hero - Gradiente escuro com imagem */}
-      <section className="relative bg-gradient-to-br from-dark via-dark-light to-dark overflow-hidden py-16 lg:py-24">
-        <div className="absolute inset-0 bg-dots opacity-20" />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      {/* Hero - imagem de fundo de escritorio/equipe */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=80" alt="Team working" fill className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60" />
+        </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-left">
               <div className="badge-gold mb-6">{t("title")}</div>
-              <h1 className="section-heading text-white mb-5">{t("subtitle")}</h1>
-              <p className="text-gray-400 text-base lg:text-lg leading-relaxed mb-8">{t("mission.text")}</p>
+              <h1 className="section-heading text-dark mb-5">{t("subtitle")}</h1>
+              <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-8">{t("mission.text")}</p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">
-                  FALE CONOSCO &rarr;
-                </Link>
+                <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">FALE CONOSCO &rarr;</Link>
                 <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>
               </div>
             </div>
-            <div className="animate-fade-right">
-              <div className="relative bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl p-4 border border-primary/20">
-                <Image src="/images/dashboard-multidevice.webp" alt="BeeProHub Platform" width={560} height={440} className="rounded-2xl animate-float" />
-                <div className="absolute -top-3 -right-3 bg-primary text-dark font-bold text-xs px-4 py-2 rounded-full shadow-lg animate-bounce-in">
-                  Desde 2004
-                </div>
-              </div>
-            </div>
+            <div className="animate-fade-right"><HeroForm /></div>
           </div>
         </div>
       </section>
 
-      {/* Story */}
       <section className="bg-white py-16 lg:py-20">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-dark mb-6">{t("story.title")}</h2>
@@ -59,7 +51,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why Us */}
       <section className="bg-gradient-to-br from-gold-50 to-amber-50 py-16 lg:py-20 bg-dots">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-dark text-center mb-12">{t("whyUs.title")}</h2>
@@ -74,16 +65,6 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-gradient-animated py-14 relative overflow-hidden">
-        <div className="absolute inset-0 bg-dots opacity-10" />
-        <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-dark mb-4">Quer Saber Mais?</h2>
-          <p className="text-dark/70 mb-6">Entre em contato e descubra como podemos transformar seu negocio.</p>
-          <Link href={`/${locale}/contact`} className="btn-secondary btn-shine">FALAR COM ESPECIALISTA &rarr;</Link>
         </div>
       </section>
     </>

@@ -10,6 +10,14 @@ import HeroForm from "@/components/ui/HeroForm";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schemas";
 import { PHONE, PHONE_LINK } from "@/lib/utils";
 
+const nicheImages: Record<string, string> = {
+  contractors: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80",
+  cleaning: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1400&q=80",
+  roofing: "https://images.unsplash.com/photo-1632759145351-1d592919f522?w=1400&q=80",
+  painting: "https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=1400&q=80",
+  landscaping: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1400&q=80",
+};
+
 export function generateStaticParams() {
   return niches.map((n) => ({ niche: n.slug }));
 }
@@ -54,19 +62,21 @@ export default async function NicheLandingPage({ params }: { params: Promise<{ n
         breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: niche.name, url: `https://beeprohub.com/${locale}/landing/${niche.slug}` }]),
       ]} />
 
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-dark via-dark-light to-dark overflow-hidden py-16 lg:py-24">
-        <div className="absolute inset-0 bg-dots opacity-20" />
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-3xl" />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      {/* Hero - imagem de fundo correspondente ao nicho */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src={nicheImages[slug] || nicheImages.contractors} alt={niche.name} fill className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60" />
+        </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-left text-white">
+            <div className="animate-fade-left">
               <div className="badge-gold mb-6">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 {forLabel} {niche.name}
               </div>
-              <h1 className="section-heading mb-5">{heroTitle}</h1>
-              <p className="text-gray-400 text-base lg:text-lg leading-relaxed mb-6">{heroSubtitle}</p>
+              <h1 className="section-heading text-dark mb-5">{heroTitle}</h1>
+              <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-6">{heroSubtitle}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{trialLabel} &rarr;</Link>
                 <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>

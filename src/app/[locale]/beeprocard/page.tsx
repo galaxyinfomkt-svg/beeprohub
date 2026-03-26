@@ -21,32 +21,25 @@ export default function BeeProCardPage() {
     <>
       <JsonLd data={[breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: "BeeProCard", url: "https://beeprohub.com/pt/beeprocard" }])]} />
 
-      {/* Hero - Gradiente escuro com imagem de celular */}
-      <section className="relative bg-gradient-to-br from-dark via-dark-light to-dark overflow-hidden py-16 lg:py-24">
-        <div className="absolute inset-0 bg-dots opacity-20" />
-        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-3xl" />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      {/* Hero - imagem de fundo de networking */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1400&q=80" alt="Business networking" fill className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60" />
+        </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-left text-white">
-              <span className="bg-primary text-dark font-extrabold text-xs px-4 py-2 rounded-full uppercase tracking-wide">{t("sectionTag")}</span>
-              <h1 className="section-heading mt-5 mb-5">{t("title")}</h1>
-              <p className="text-gray-400 text-base lg:text-lg leading-relaxed mb-6">{t("subtitle")}</p>
-              <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow">
-                {t("cta")} &rarr;
-              </Link>
+            <div className="animate-fade-left">
+              <div className="badge-gold mb-6">{t("sectionTag")}</div>
+              <h1 className="section-heading text-dark mb-5">{t("title")}</h1>
+              <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-6">{t("subtitle")}</p>
+              <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow">{t("cta")} &rarr;</Link>
             </div>
-            <div className="animate-fade-right flex justify-center">
-              <div className="relative">
-                <Image src="/images/mobile-crm.webp" alt="BeeProCard" width={260} height={520} className="rounded-2xl shadow-2xl animate-float" />
-                <div className="absolute -top-3 -right-3 bg-primary text-dark font-bold text-xs px-4 py-2 rounded-full shadow-lg animate-bounce-in">QR Code</div>
-                <div className="absolute -bottom-3 -left-3 bg-white text-dark font-bold text-xs px-4 py-2 rounded-full shadow-lg animate-bounce-in delay-300">100% Gratis</div>
-              </div>
-            </div>
+            <div className="animate-fade-right"><HeroForm /></div>
           </div>
         </div>
       </section>
 
-      {/* Features */}
       <section className="bg-white py-16 lg:py-20 bg-dots">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
@@ -64,12 +57,14 @@ export default function BeeProCardPage() {
               </div>
             ))}
           </div>
-
-          {/* How it works */}
           <div className="bg-gradient-to-br from-gold-50 to-amber-50 rounded-3xl p-6 sm:p-10 border-2 border-primary/10 mb-12">
-            <h2 className="text-2xl font-extrabold text-dark text-center mb-8">Como Funciona</h2>
+            <h2 className="text-2xl font-extrabold text-dark text-center mb-8">{locale === "pt" ? "Como Funciona" : locale === "es" ? "Como Funciona" : "How It Works"}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[{ s: "1", t: "Crie Seu Card", d: "Personalize com suas cores, logo, foto e links." }, { s: "2", t: "Compartilhe", d: "Via QR Code, link, WhatsApp ou redes sociais." }, { s: "3", t: "Acompanhe", d: "Veja acessos, cliques e colete avaliacoes." }].map((item) => (
+              {[
+                { s: "1", t: locale === "pt" ? "Crie Seu Card" : "Create Your Card", d: locale === "pt" ? "Personalize com suas cores, logo, foto e links." : "Customize with your colors, logo, photo and links." },
+                { s: "2", t: locale === "pt" ? "Compartilhe" : "Share", d: locale === "pt" ? "Via QR Code, link, WhatsApp ou redes sociais." : "Via QR Code, link, WhatsApp or social media." },
+                { s: "3", t: locale === "pt" ? "Acompanhe" : "Track", d: locale === "pt" ? "Veja acessos, cliques e colete avaliacoes." : "See views, clicks and collect reviews." },
+              ].map((item) => (
                 <div key={item.s} className="text-center">
                   <div className="w-14 h-14 bg-gradient-to-r from-primary to-primary-hover text-dark font-extrabold text-xl rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-glow">{item.s}</div>
                   <h3 className="font-bold text-dark mb-2">{item.t}</h3>
@@ -78,7 +73,6 @@ export default function BeeProCardPage() {
               ))}
             </div>
           </div>
-
           <div className="text-center">
             <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-lg px-12 py-5">{t("cta")} &rarr;</Link>
           </div>

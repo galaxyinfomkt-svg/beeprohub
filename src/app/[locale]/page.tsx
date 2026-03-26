@@ -28,9 +28,12 @@ export default function HomePage() {
       <JsonLd data={[organizationSchema(), localBusinessSchema(), faqSchema(homeFaqs)]} />
 
       {/* ========== HERO ========== */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-white to-gold-50 bg-dots py-12 lg:py-20">
-        <div className="absolute top-[-150px] right-[-150px] w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-[-100px] left-[-100px] w-[400px] h-[400px] bg-gold-200/10 rounded-full blur-3xl" />
+      <section className="relative overflow-hidden py-12 lg:py-20">
+        <div className="absolute inset-0">
+          <Image src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" alt="Business dashboard" fill className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-50/95 via-gold-50/90 to-white/75" />
+        </div>
+        <div className="absolute top-[-150px] right-[-150px] w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl" />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">

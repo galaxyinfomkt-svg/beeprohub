@@ -67,7 +67,7 @@
 
   /* Gold badge */
   .badge-gold {
-    @apply inline-flex items-center gap-2 bg-gradient-to-r from-primary/20 to-gold-200/30 text-amber-800 font-bold text-xs tracking-wider uppercase px-4 py-2 rounded-full border border-primary/30;
+    @apply inline-flex items-center gap-2 bg-white/90 text-dark font-bold text-xs tracking-wider uppercase px-4 py-2 rounded-full border border-primary shadow-sm backdrop-blur-sm;
   }
 
   /* Section heading */
