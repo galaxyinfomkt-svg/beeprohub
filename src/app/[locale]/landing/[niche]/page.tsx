@@ -66,7 +66,7 @@ export default async function NicheLandingPage({ params }: { params: Promise<{ n
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image src={nicheImages[slug] || nicheImages.contractors} alt={niche.name} fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-cyan-800/50 to-primary/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/60 to-primary/20" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -76,7 +76,7 @@ export default async function NicheLandingPage({ params }: { params: Promise<{ n
                 {forLabel} {niche.name}
               </div>
               <h1 className="section-heading text-white mb-5">{heroTitle}</h1>
-              <p className="text-gray-200 text-base lg:text-lg leading-relaxed mb-6">{heroSubtitle}</p>
+              <p className="text-white/80 text-base lg:text-lg leading-relaxed mb-6">{heroSubtitle}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{trialLabel} &rarr;</Link>
                 <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>
@@ -123,7 +123,7 @@ export default async function NicheLandingPage({ params }: { params: Promise<{ n
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-5">{forLabel} {niche.name}</h2>
-              <p className="text-gray-600 leading-relaxed text-lg">{description}</p>
+              <p className="text-white/80 leading-relaxed text-lg">{description}</p>
             </div>
             <div className="flex justify-center">
               <Image src="/images/dashboard-multidevice.webp" alt={`${niche.name} CRM`} width={480} height={380} className="rounded-2xl shadow-xl animate-float" />

@@ -145,14 +145,14 @@ export default async function CityPage({ params }: { params: Promise<{ citypage:
       <section className="relative overflow-hidden py-16 lg:py-24">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80" alt={city.name} fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/80 via-blue-800/60 to-primary/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/60 to-primary/20" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-left">
               <div className="badge-gold mb-6">{l.badge(city.name)}</div>
               <h1 className="section-heading text-white mb-5">{l.title(service.title, city.name)}</h1>
-              <p className="text-gray-200 text-base lg:text-lg leading-relaxed mb-6">{l.desc(service.description, city.name, city.county)}</p>
+              <p className="text-white/80 text-base lg:text-lg leading-relaxed mb-6">{l.desc(service.description, city.name, city.county)}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{l.ctaBtn} &rarr;</Link>
                 <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>
@@ -195,7 +195,7 @@ export default async function CityPage({ params }: { params: Promise<{ citypage:
       <section className="bg-gradient-to-br from-gold-50 to-amber-50 py-16 bg-dots">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-dark mb-5">{l.whyChoose(city.name)}</h2>
-          <p className="text-gray-600 leading-relaxed text-lg">{l.whyText(city.name, city.county)}</p>
+          <p className="text-white/80 leading-relaxed text-lg">{l.whyText(city.name, city.county)}</p>
         </div>
       </section>
 

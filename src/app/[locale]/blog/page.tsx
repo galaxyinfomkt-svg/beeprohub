@@ -38,7 +38,7 @@ export default function BlogPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=1400&q=80" alt="Blog" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-fuchsia-900/80 via-purple-800/60 to-primary/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/60 to-primary/20" />
         </div>
         <div className="max-w-4xl mx-auto text-center px-4 py-16 lg:py-20 relative z-10">
           <div className="badge-gold mb-5 mx-auto !bg-white/90">{t("title")}</div>

@@ -31,7 +31,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden py-12 lg:py-20">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" alt="Business dashboard" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-violet-900/80 via-purple-800/60 to-primary/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/60 to-primary/20" />
         </div>
         <div className="absolute top-[-150px] right-[-150px] w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl" />
 
@@ -48,7 +48,7 @@ export default function HomePage() {
                 <span className="text-gradient-gold">{t("hero.title")}</span>
               </h1>
 
-              <p className="text-gray-500 text-base lg:text-lg leading-relaxed mb-8 max-w-lg">{t("hero.subtitle")}</p>
+              <p className="text-white/80 text-base lg:text-lg leading-relaxed mb-8 max-w-lg">{t("hero.subtitle")}</p>
 
               <ul className="space-y-3 mb-8">
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -77,10 +77,10 @@ export default function HomePage() {
                     <div key={i} className={`w-8 h-8 rounded-full border-2 border-white ${i===1?'bg-primary/20':i===2?'bg-blue-200':i===3?'bg-green-200':'bg-pink-200'}`} />
                   ))}
                 </div>
-                <span className="text-gray-500 font-medium">{t("hero.trust")}</span>
-                <div className="flex items-center gap-1 bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">
+                <span className="text-white/70 font-medium">{t("hero.trust")}</span>
+                <div className="flex items-center gap-1 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full border border-white/30">
                   <span className="text-primary font-bold">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                  <span className="text-gray-600 text-xs">{t("hero.rating")}</span>
+                  <span className="text-white text-xs">{t("hero.rating")}</span>
                 </div>
               </div>
             </div>
