@@ -35,10 +35,10 @@ export default async function LocaleLayout({ children, params }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/logo.png" />
       </head>
-      <body style={{ margin: 0, padding: 0, minHeight: "100vh", display: "flex", flexDirection: "column", background: "#fff", color: "#1A1A1A" }}>
+      <body className="m-0 p-0 min-h-screen bg-white text-dark">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
-          <main style={{ flex: 1, paddingTop: 72 }}>{children}</main>
+          <main className="pt-[72px]">{children}</main>
           <Footer />
           <WhatsAppButton />
           <ChatWidget />

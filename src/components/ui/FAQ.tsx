@@ -2,51 +2,29 @@
 
 import { useState } from "react";
 
-interface FAQItem {
-  question: string;
-  answer: string;
-}
+interface FAQItem { question: string; answer: string; }
 
 export default function FAQ({ items }: { items: FAQItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="flex flex-col gap-3">
       {items.map((item, i) => (
-        <div key={i} style={{ border: "1px solid #E5E7EB", borderRadius: 12, overflow: "hidden", background: "#fff" }}>
+        <div key={i} className="border border-gray-200 rounded-xl overflow-hidden bg-white">
           <button
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "16px 20px",
-              textAlign: "left",
-              cursor: "pointer",
-              background: openIndex === i ? "#F9FAFB" : "#fff",
-              border: "none",
-              font: "inherit",
-              transition: "background 0.2s",
-            }}
+            className={`w-full flex items-center justify-between px-5 py-4 text-left cursor-pointer transition-colors ${openIndex === i ? "bg-gray-50" : "bg-white hover:bg-gray-50"}`}
           >
-            <span style={{ fontWeight: 600, color: "#1A1A1A", paddingRight: 16, fontSize: 15 }}>{item.question}</span>
+            <span className="font-semibold text-dark pr-4 text-[15px]">{item.question}</span>
             <svg
-              style={{
-                width: 20,
-                height: 20,
-                color: "#F5B800",
-                flexShrink: 0,
-                transition: "transform 0.3s",
-                transform: openIndex === i ? "rotate(180deg)" : "rotate(0deg)",
-              }}
+              className={`w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300 ${openIndex === i ? "rotate-180" : ""}`}
               fill="none" stroke="currentColor" viewBox="0 0 24 24"
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
           {openIndex === i && (
-            <div style={{ padding: "0 20px 16px", color: "#6B7280", fontSize: 14, lineHeight: 1.7 }}>
+            <div className="px-5 pb-4 text-gray-500 text-sm leading-relaxed">
               {item.answer}
             </div>
           )}
