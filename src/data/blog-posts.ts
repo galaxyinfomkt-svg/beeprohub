@@ -49,7 +49,7 @@ If you're a contractor in Massachusetts competing for local jobs, you need a sys
     date: "2026-03-15",
     author: "Bee Pro Hub Team",
     category: "CRM",
-    image: "/images/dashboard-multidevice.webp",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
     keywords: ["CRM for contractors", "contractor CRM Massachusetts", "construction CRM", "GoHighLevel for contractors"]
   },
   {
@@ -97,7 +97,7 @@ Bee Pro Hub combines all these automations into one platform. No need for separa
     date: "2026-03-10",
     author: "Bee Pro Hub Team",
     category: "Automation",
-    image: "/images/mobile-crm.webp",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     keywords: ["marketing automation small business", "business automation 2026", "automated marketing", "small business automation tools"]
   },
   {
@@ -150,7 +150,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-05",
     author: "Bee Pro Hub Team",
     category: "Lead Generation",
-    image: "/images/hand-phone-calendar.webp",
+    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80",
     keywords: ["lead generation local business", "lead generation USA", "how to get more leads", "local business marketing"]
   },
   {
@@ -161,7 +161,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-20",
     author: "Bee Pro Hub Team",
     category: "CRM",
-    image: "/images/dashboard-multidevice.webp",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     keywords: ["best CRM small business", "CRM comparison 2026", "small business CRM", "affordable CRM"]
   },
   {
@@ -172,7 +172,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-18",
     author: "Bee Pro Hub Team",
     category: "Marketing",
-    image: "/images/mobile-crm.webp",
+    image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&q=80",
     keywords: ["WhatsApp marketing", "WhatsApp business automation", "WhatsApp lead generation", "WhatsApp CRM"]
   },
   {
@@ -183,7 +183,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-16",
     author: "Bee Pro Hub Team",
     category: "Cleaning",
-    image: "/images/hand-phone-calendar.webp",
+    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
     keywords: ["cleaning company marketing", "cleaning business growth", "maid service marketing", "cleaning leads"]
   },
   {
@@ -194,7 +194,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-14",
     author: "Bee Pro Hub Team",
     category: "Roofing",
-    image: "/images/dashboard-multidevice.webp",
+    image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?w=800&q=80",
     keywords: ["roofing leads", "roofing lead generation", "roofing marketing", "roofing CRM"]
   },
   {
@@ -205,7 +205,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-12",
     author: "Bee Pro Hub Team",
     category: "SEO",
-    image: "/images/mobile-crm.webp",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
     keywords: ["Google Reviews", "local SEO", "get more reviews", "review automation"]
   },
   {
@@ -216,7 +216,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-11",
     author: "Bee Pro Hub Team",
     category: "Painting",
-    image: "/images/hand-phone-calendar.webp",
+    image: "https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=800&q=80",
     keywords: ["painting contractor marketing", "painter lead generation", "painting business growth", "house painter marketing"]
   },
   {
@@ -227,7 +227,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-09",
     author: "Bee Pro Hub Team",
     category: "Landscaping",
-    image: "/images/dashboard-multidevice.webp",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80",
     keywords: ["landscaping automation", "landscaping CRM", "lawn care business software", "landscaping scheduling"]
   },
   {
@@ -238,7 +238,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-08",
     author: "Bee Pro Hub Team",
     category: "Marketing",
-    image: "/images/mobile-opportunities.webp",
+    image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80",
     keywords: ["SMS marketing", "text message marketing", "SMS automation", "local business SMS"]
   },
   {
@@ -249,7 +249,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-07",
     author: "Bee Pro Hub Team",
     category: "HVAC",
-    image: "/images/dashboard-multidevice.webp",
+    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
     keywords: ["HVAC marketing", "HVAC CRM", "HVAC lead generation", "HVAC contractor marketing"]
   },
   {
@@ -260,7 +260,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-06",
     author: "Bee Pro Hub Team",
     category: "Ads",
-    image: "/images/mobile-crm.webp",
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80",
     keywords: ["Facebook ads local business", "Facebook lead generation", "Instagram ads local", "social media advertising local"]
   },
   {
@@ -271,7 +271,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-04",
     author: "Bee Pro Hub Team",
     category: "Email",
-    image: "/images/hand-phone-calendar.webp",
+    image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=800&q=80",
     keywords: ["email marketing automation", "email drip campaign", "automated email", "email marketing beginners"]
   },
   {
@@ -282,7 +282,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-03",
     author: "Bee Pro Hub Team",
     category: "Phone",
-    image: "/images/mobile-opportunities.webp",
+    image: "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=800&q=80",
     keywords: ["business phone system", "VoIP small business", "professional phone number", "business phone CRM"]
   },
   {
@@ -293,7 +293,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-02",
     author: "Bee Pro Hub Team",
     category: "Scheduling",
-    image: "/images/hand-phone-calendar.webp",
+    image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80",
     keywords: ["reduce no-shows", "appointment scheduling", "automated scheduling", "booking system small business"]
   },
   {
@@ -304,7 +304,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-01",
     author: "Bee Pro Hub Team",
     category: "Marketing",
-    image: "/images/dashboard-multidevice.webp",
+    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&q=80",
     keywords: ["marketing digital brasileiro EUA", "empresa brasileira Estados Unidos", "marketing portugues USA", "Brazilian business marketing USA"]
   },
   {
@@ -315,7 +315,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-02-28",
     author: "Bee Pro Hub Team",
     category: "Funnels",
-    image: "/images/mobile-crm.webp",
+    image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80",
     keywords: ["sales funnel local business", "lead funnel", "conversion funnel", "service business funnel"]
   },
   {
@@ -326,7 +326,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-02-25",
     author: "Bee Pro Hub Team",
     category: "Retention",
-    image: "/images/mobile-opportunities.webp",
+    image: "https://images.unsplash.com/photo-1552581234-26160f608093?w=800&q=80",
     keywords: ["customer retention", "client retention strategies", "keep customers coming back", "customer loyalty"]
   }
 ];

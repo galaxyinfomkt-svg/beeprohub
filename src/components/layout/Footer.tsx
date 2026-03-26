@@ -4,7 +4,7 @@ import Image from "next/image";
 import { PHONE, PHONE_LINK, LOGIN_URL } from "@/lib/utils";
 import { massachusettsCities } from "@/data/massachusetts-cities";
 
-const topCities = massachusettsCities.slice(0, 30);
+const allCities = massachusettsCities;
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -117,17 +117,14 @@ export default function Footer() {
               {locale === "en" ? "We Serve All Massachusetts Cities" : locale === "es" ? "Servimos Todas las Ciudades de Massachusetts" : "Atendemos Todas as Cidades de Massachusetts"}
             </h3>
             <div className="flex flex-wrap gap-x-1 gap-y-0.5">
-              {topCities.map((city, i) => (
+              {allCities.map((city, i) => (
                 <span key={city.slug}>
-                  <Link href={`/en/marketing-agency-${city.slug}-ma`} className="text-xs text-gray-500 hover:text-primary transition-colors">
+                  <Link href={`/${locale}/marketing-agency-${city.slug}-ma`} className="text-xs text-gray-500 hover:text-primary transition-colors">
                     {city.name}
                   </Link>
-                  {i < topCities.length - 1 && <span className="text-gray-700 mx-0.5">&middot;</span>}
+                  {i < allCities.length - 1 && <span className="text-gray-700 mx-0.5">&middot;</span>}
                 </span>
               ))}
-              <Link href={`/${locale}/services`} className="text-xs text-primary font-semibold ml-1">
-                {locale === "en" ? "& more..." : locale === "es" ? "y mas..." : "e mais..."}
-              </Link>
             </div>
           </div>
 

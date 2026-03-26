@@ -25,7 +25,7 @@ export const nicheTranslations: NicheTranslations = {
       ctaTitle: "Pronto para Crescer Seu Negocio de Contractor?",
       faq: [
         { q: "Qual o melhor CRM para contractors?", a: "O Bee Pro Hub e o CRM mais completo para contractors. Combina gestao de leads, follow-ups automaticos, agendamento, faturamento e telefonia — tudo feito para negocios de servicos." },
-        { q: "Quanto custa o Bee Pro Hub para contractors?", a: "Planos a partir de $97/mes com 14 dias de teste gratis. Sem cartao de credito, sem contratos." },
+        { q: "Quanto custa o Bee Pro Hub para contractors?", a: "Temos varios planos com 14 dias de teste gratis. Sem cartao de credito, sem contratos." },
         { q: "Posso automatizar o marketing do meu negocio?", a: "Sim! O Bee Pro Hub automatiza email, SMS, WhatsApp e follow-ups de voz projetados especificamente para contractors. Configure uma vez e deixe rodar 24/7." },
         { q: "Tem suporte em portugues?", a: "Sim! Suporte 24/7 em Portugues, Ingles e Espanhol." },
       ],
@@ -41,7 +41,7 @@ export const nicheTranslations: NicheTranslations = {
       ctaTitle: "Listo para Crecer Tu Negocio?",
       faq: [
         { q: "Cual es el mejor CRM para contractors?", a: "Bee Pro Hub es el CRM mas completo para contractors. Combina gestion de leads, follow-ups automaticos, agendamiento, facturacion y telefonia." },
-        { q: "Cuanto cuesta Bee Pro Hub?", a: "Planes desde $97/mes con 14 dias de prueba gratis. Sin tarjeta de credito." },
+        { q: "Cuanto cuesta Bee Pro Hub?", a: "Tenemos varios planes con 14 dias de prueba gratis. Sin tarjeta de credito." },
         { q: "Puedo automatizar el marketing?", a: "Si! Bee Pro Hub automatiza email, SMS, WhatsApp y follow-ups de voz. Configura una vez y dejalo funcionar 24/7." },
         { q: "Tienen soporte en espanol?", a: "Si! Soporte 24/7 en Espanol, Ingles y Portugues." },
       ],
@@ -59,7 +59,7 @@ export const nicheTranslations: NicheTranslations = {
       ctaTitle: "Pronto para Crescer Sua Empresa de Limpeza?",
       faq: [
         { q: "Qual o melhor CRM para empresas de limpeza?", a: "Bee Pro Hub e ideal para empresas de limpeza. Agendamento, lembretes, avaliacoes e automacao em uma plataforma." },
-        { q: "Quanto custa?", a: "A partir de $97/mes. Teste gratis por 14 dias." },
+        { q: "Quanto custa?", a: "Temos varios planos. Teste gratis por 14 dias." },
         { q: "Posso automatizar o marketing?", a: "Sim! Email, SMS, WhatsApp automaticos. Configure uma vez." },
         { q: "Tem suporte em portugues?", a: "Sim! Suporte 24/7 em PT, EN e ES." },
       ],
@@ -75,7 +75,7 @@ export const nicheTranslations: NicheTranslations = {
       ctaTitle: "Listo para Crecer Tu Empresa de Limpieza?",
       faq: [
         { q: "Cual es el mejor CRM para empresas de limpieza?", a: "Bee Pro Hub es ideal. Agendamiento, recordatorios, resenas y automatizacion en una plataforma." },
-        { q: "Cuanto cuesta?", a: "Desde $97/mes. Prueba gratis 14 dias." },
+        { q: "Cuanto cuesta?", a: "Tenemos varios planes. Prueba gratis 14 dias." },
         { q: "Puedo automatizar el marketing?", a: "Si! Email, SMS, WhatsApp automaticos." },
         { q: "Soporte en espanol?", a: "Si! Soporte 24/7 en ES, EN y PT." },
       ],
@@ -93,7 +93,7 @@ export const nicheTranslations: NicheTranslations = {
       ctaTitle: "Pronto para Crescer Seu Negocio de Roofing?",
       faq: [
         { q: "Qual o melhor CRM para roofing?", a: "Bee Pro Hub combina CRM, automacao, telefonia e faturamento em uma plataforma feita para roofing." },
-        { q: "Quanto custa?", a: "A partir de $97/mes. 14 dias gratis." },
+        { q: "Quanto custa?", a: "Temos varios planos. 14 dias gratis." },
         { q: "Posso automatizar campanhas de tempestade?", a: "Sim! Lance campanhas SMS e email automaticamente apos mau tempo." },
         { q: "Suporte em portugues?", a: "Sim! 24/7 em PT, EN e ES." },
       ],
@@ -109,7 +109,7 @@ export const nicheTranslations: NicheTranslations = {
       ctaTitle: "Listo para Crecer Tu Negocio de Roofing?",
       faq: [
         { q: "Mejor CRM para roofing?", a: "Bee Pro Hub combina CRM, automatizacion, telefonia y facturacion para roofing." },
-        { q: "Cuanto cuesta?", a: "Desde $97/mes. 14 dias gratis." },
+        { q: "Cuanto cuesta?", a: "Tenemos varios planes. 14 dias gratis." },
         { q: "Automatizar campanas de tormenta?", a: "Si! SMS y email automaticos despues de mal clima." },
         { q: "Soporte en espanol?", a: "Si! 24/7 en ES, EN y PT." },
       ],
@@ -127,7 +127,7 @@ export const nicheTranslations: NicheTranslations = {
       ctaTitle: "Pronto para Crescer Seu Negocio de Pintura?",
       faq: [
         { q: "Melhor CRM para pintores?", a: "Bee Pro Hub com CRM, orcamentos, agendamento e automacao." },
-        { q: "Quanto custa?", a: "A partir de $97/mes. 14 dias gratis." },
+        { q: "Quanto custa?", a: "Temos varios planos. 14 dias gratis." },
         { q: "Automatizar marketing sazonal?", a: "Sim! Campanhas automaticas por estacao." },
         { q: "Suporte em portugues?", a: "Sim! 24/7." },
       ],
@@ -143,7 +143,7 @@ export const nicheTranslations: NicheTranslations = {
       ctaTitle: "Listo para Crecer Tu Negocio de Pintura?",
       faq: [
         { q: "Mejor CRM para pintores?", a: "Bee Pro Hub con CRM, presupuestos, agendamiento y automatizacion." },
-        { q: "Cuanto cuesta?", a: "Desde $97/mes. 14 dias gratis." },
+        { q: "Cuanto cuesta?", a: "Tenemos varios planes. 14 dias gratis." },
         { q: "Automatizar marketing estacional?", a: "Si! Campanas automaticas por estacion." },
         { q: "Soporte en espanol?", a: "Si! 24/7." },
       ],
@@ -161,7 +161,7 @@ export const nicheTranslations: NicheTranslations = {
       ctaTitle: "Pronto para Crescer Seu Negocio de Paisagismo?",
       faq: [
         { q: "Melhor CRM para paisagismo?", a: "Bee Pro Hub com CRM, agendamento, orcamentos e automacao." },
-        { q: "Quanto custa?", a: "A partir de $97/mes. 14 dias gratis." },
+        { q: "Quanto custa?", a: "Temos varios planos. 14 dias gratis." },
         { q: "Automatizar vendas sazonais?", a: "Sim! Campanhas automaticas por estacao." },
         { q: "Suporte em portugues?", a: "Sim! 24/7." },
       ],
@@ -177,7 +177,7 @@ export const nicheTranslations: NicheTranslations = {
       ctaTitle: "Listo para Crecer Tu Negocio de Paisajismo?",
       faq: [
         { q: "Mejor CRM para paisajismo?", a: "Bee Pro Hub con CRM, agendamiento, presupuestos y automatizacion." },
-        { q: "Cuanto cuesta?", a: "Desde $97/mes. 14 dias gratis." },
+        { q: "Cuanto cuesta?", a: "Tenemos varios planes. 14 dias gratis." },
         { q: "Automatizar ventas estacionales?", a: "Si!" },
         { q: "Soporte en espanol?", a: "Si! 24/7." },
       ],

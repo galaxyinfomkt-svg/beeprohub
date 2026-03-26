@@ -38,7 +38,7 @@ export default async function NicheLandingPage({ params }: { params: Promise<{ n
   const ctaTitle = tr?.ctaTitle || `Ready to Grow Your ${niche.name} Business?`;
   const nicheFaqs = tr?.faq?.map(f => ({ question: f.q, answer: f.a })) || [
     { question: `What is the best CRM for ${niche.name.toLowerCase()}?`, answer: `Bee Pro Hub is the top-rated CRM for ${niche.name.toLowerCase()}. It combines lead management, automated follow-ups, scheduling, invoicing, and a phone system.` },
-    { question: `How much does Bee Pro Hub cost?`, answer: "Plans start at $97/month with a 14-day free trial. No credit card required." },
+    { question: `How much does Bee Pro Hub cost?`, answer: "We have several plans with a 14-day free trial. No credit card required, no contracts." },
     { question: `Can I automate my marketing?`, answer: `Yes! Bee Pro Hub automates email, SMS, WhatsApp, and voice follow-ups designed for ${niche.name.toLowerCase()}.` },
     { question: "Support in other languages?", answer: "Yes! Full 24/7 support in English, Portuguese, and Spanish." },
   ];
