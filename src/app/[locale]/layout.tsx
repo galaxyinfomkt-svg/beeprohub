@@ -1,10 +1,13 @@
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
+import { Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import ChatWidget from "@/components/ui/ChatWidget";
+
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 interface Props {
   children: React.ReactNode;
@@ -30,15 +33,15 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={inter.className}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/logo.png" />
       </head>
-      <body className="m-0 p-0 min-h-screen bg-white text-dark">
+      <body className="m-0 p-0 min-h-screen bg-white text-dark antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
-          <main className="pt-[72px]">{children}</main>
+          <main className="pt-[100px] sm:pt-[104px]">{children}</main>
           <Footer />
           <WhatsAppButton />
           <ChatWidget />

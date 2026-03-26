@@ -40,7 +40,9 @@ export default function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {/* Brand */}
             <div>
-              <Image src="/images/logo.png" alt="Bee Pro Hub" width={140} height={48} className="h-10 w-auto mb-5" />
+              <Link href={`/${locale}`}>
+                <Image src="/images/logo.png" alt="Bee Pro Hub" width={140} height={48} className="h-10 w-auto mb-5 hover:opacity-80 transition-opacity" />
+              </Link>
               <p className="text-sm text-gray-400 leading-relaxed mb-3">{t("description")}</p>
               <p className="text-xs text-gray-500">{t("byLine")}</p>
             </div>
