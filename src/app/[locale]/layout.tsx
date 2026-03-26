@@ -32,11 +32,26 @@ export default async function LocaleLayout({ children, params }: Props) {
     notFound();
   }
 
+  const hrefLangMap: Record<string, string> = {
+    pt: "pt-BR",
+    en: "en-US",
+    es: "es",
+  };
+
   return (
     <html lang={locale} className={inter.className}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/logo.png" />
+        <link rel="apple-touch-icon" href="/images/logo.png" />
+        {/* hreflang tags */}
+        {routing.locales.map((l) => (
+          <link key={l} rel="alternate" hrefLang={hrefLangMap[l]} href={`https://beeprohub.com/${l}`} />
+        ))}
+        <link rel="alternate" hrefLang="x-default" href="https://beeprohub.com/pt" />
+        {/* Preconnect for performance */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
       </head>
       <body className="m-0 p-0 min-h-screen bg-white text-dark antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>

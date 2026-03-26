@@ -22,7 +22,7 @@ function Check() {
 
 export default function HomePage() {
   const t = useTranslations();
-  const homeFaqs = [1, 2, 3, 4, 5].map((i) => ({ question: t(`services.faq.items.${i}.q`), answer: t(`services.faq.items.${i}.a`) }));
+  const homeFaqs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => ({ question: t(`services.faq.items.${i}.q`), answer: t(`services.faq.items.${i}.a`) }));
 
   return (
     <>

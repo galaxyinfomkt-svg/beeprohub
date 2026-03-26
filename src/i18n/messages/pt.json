@@ -242,7 +242,12 @@
         "2": { "q": "Preciso de conhecimento técnico?", "a": "De jeito nenhum! O Bee Pro Hub foi projetado para ser fácil de usar. Oferecemos setup completo, treinamento e suporte 24/7 em inglês, português e espanhol." },
         "3": { "q": "Posso cancelar a qualquer momento?", "a": "Sim, com certeza. Não há contratos de longo prazo. Você pode cancelar sua assinatura a qualquer momento sem multa." },
         "4": { "q": "O que diferencia o Bee Pro Hub de outros CRMs?", "a": "Diferente dos CRMs tradicionais, o Bee Pro Hub é uma solução completa. Ele substitui 10+ ferramentas separadas (CRM, email, SMS, telefone, calendário, faturamento, etc.) por uma fração do custo." },
-        "5": { "q": "Vocês oferecem suporte em outros idiomas?", "a": "Sim! Oferecemos suporte completo em inglês, português e espanhol. Nossa equipe é multilíngue e pronta para ajudar no seu idioma preferido." }
+        "5": { "q": "Vocês oferecem suporte em outros idiomas?", "a": "Sim! Oferecemos suporte completo em inglês, português e espanhol. Nossa equipe é multilíngue e pronta para ajudar no seu idioma preferido." },
+        "6": { "q": "O Bee Pro Hub funciona para empresas nos Estados Unidos?", "a": "Sim. O Bee Pro Hub foi criado especialmente para empresas locais nos Estados Unidos, com foco em Massachusetts. Atendemos contractors, empresas de limpeza, roofing, painting, landscaping e todos os tipos de negocios de servicos." },
+        "7": { "q": "Qual a diferenca entre Bee Pro Hub e GoHighLevel?", "a": "O Bee Pro Hub e construido SOBRE o GoHighLevel, mas com setup completo, treinamento em portugues, suporte dedicado e templates prontos. Voce ganha toda a potencia do GoHighLevel sem a complexidade tecnica." },
+        "8": { "q": "Como o Bee Pro Hub ajuda a gerar mais leads?", "a": "Atraves de funis de vendas otimizados, landing pages, Google Ads, Facebook Ads, automacao de email e SMS, e follow-ups automaticos que respondem leads em segundos - antes da concorrencia." },
+        "9": { "q": "O Bee Pro Hub tem sistema telefonico integrado?", "a": "Sim. Voce recebe um numero fixo profissional, pode fazer e receber ligacoes direto da plataforma, com gravacao automatica, transcricao por IA e SMS integrado." },
+        "10": { "q": "Quanto tempo leva para configurar o Bee Pro Hub?", "a": "O setup completo e feito pela nossa equipe em ate 48 horas. Voce ja pode comecar a usar no mesmo dia com os templates prontos incluidos gratuitamente." }
       }
     }
   },
