@@ -1,0 +1,137 @@
+{
+  "name": "BeeProHub - Hero Lead Form > GHL + Sheets",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "beeprohub-lead",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-lead",
+      "name": "Webhook Lead Form",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "beeprohub-lead"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "1", "name": "firstName", "value": "={{ $json.body.firstName }}", "type": "string" },
+            { "id": "2", "name": "lastName", "value": "={{ $json.body.lastName }}", "type": "string" },
+            { "id": "3", "name": "email", "value": "={{ $json.body.email }}", "type": "string" },
+            { "id": "4", "name": "phone", "value": "={{ $json.body.phone }}", "type": "string" },
+            { "id": "5", "name": "source", "value": "={{ $json.body.source }}", "type": "string" },
+            { "id": "6", "name": "fullName", "value": "={{ $json.body.firstName }} {{ $json.body.lastName }}", "type": "string" },
+            { "id": "7", "name": "date", "value": "={{ $json.body.date }}", "type": "string" },
+            { "id": "8", "name": "tags", "value": "={{ JSON.stringify($json.body.tags) }}", "type": "string" }
+          ]
+        }
+      },
+      "id": "set-lead",
+      "name": "Format Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://services.leadconnectorhq.com/contacts/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "Version", "value": "2021-07-28" }] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"firstName\":\"{{ $json.firstName }}\",\"lastName\":\"{{ $json.lastName }}\",\"email\":\"{{ $json.email }}\",\"phone\":\"{{ $json.phone }}\",\"source\":\"{{ $json.source }}\",\"tags\":[\"website-lead\",\"free-trial\",\"hero-form\",\"beeprohub\"],\"locationId\":\"SEU_LOCATION_ID\"}",
+        "options": {}
+      },
+      "id": "ghl-create-contact",
+      "name": "GHL - Create Contact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [720, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://services.leadconnectorhq.com/opportunities/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "Version", "value": "2021-07-28" }] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"pipelineId\":\"SEU_PIPELINE_ID\",\"pipelineStageId\":\"SEU_STAGE_ID\",\"locationId\":\"SEU_LOCATION_ID\",\"contactId\":\"{{ $json.contact.id }}\",\"name\":\"{{ $('Format Data').item.json.fullName }} - Free Trial\",\"status\":\"open\",\"source\":\"BeeProHub Hero Form\"}",
+        "options": {}
+      },
+      "id": "ghl-create-opp",
+      "name": "GHL - Create Opportunity",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [960, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://services.leadconnectorhq.com/conversations/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "Version", "value": "2021-07-28" }] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"type\":\"Email\",\"contactId\":\"{{ $('GHL - Create Contact').item.json.contact.id }}\",\"subject\":\"Bem-vindo ao Bee Pro Hub - Seu Teste Gratis!\",\"message\":\"Ola {{ $('Format Data').item.json.firstName }},\\n\\nObrigado por se cadastrar para o teste gratis de 14 dias do Bee Pro Hub!\\n\\nNossa equipe vai configurar sua conta e entrar em contato em ate 24 horas para o seu treinamento personalizado.\\n\\nEnquanto isso, nos envie uma mensagem no WhatsApp para comecar mais rapido: (774) 285-2299\\n\\nSeus bonus inclusos:\\n- Setup completo da plataforma\\n- 70 minutos de telefone gratis\\n- 50 emails gratis\\n- Templates prontos + Treinamento\\n\\nAtenciosamente,\\nEquipe Bee Pro Hub\\nby Galaxy IT & Marketing\",\"locationId\":\"SEU_LOCATION_ID\"}",
+        "options": {}
+      },
+      "id": "ghl-welcome-email",
+      "name": "GHL - Welcome Email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 200]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "mode": "url", "value": "" },
+        "sheetName": { "__rl": true, "mode": "list", "value": "BeeProHub Free Trial Leads" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ $('Format Data').item.json.date }}",
+            "Name": "={{ $('Format Data').item.json.fullName }}",
+            "Email": "={{ $('Format Data').item.json.email }}",
+            "Phone": "={{ $('Format Data').item.json.phone }}",
+            "Source": "={{ $('Format Data').item.json.source }}",
+            "Status": "New Free Trial"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-lead",
+      "name": "Google Sheets - Log Lead",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [720, 500]
+    },
+    {
+      "parameters": { "respondWith": "json", "responseBody": "={{ JSON.stringify({ success: true }) }}" },
+      "id": "respond-ok",
+      "name": "Respond Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1440, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Lead Form": { "main": [[{ "node": "Format Data", "type": "main", "index": 0 }]] },
+    "Format Data": { "main": [[{ "node": "GHL - Create Contact", "type": "main", "index": 0 }, { "node": "Google Sheets - Log Lead", "type": "main", "index": 0 }]] },
+    "GHL - Create Contact": { "main": [[{ "node": "GHL - Create Opportunity", "type": "main", "index": 0 }]] },
+    "GHL - Create Opportunity": { "main": [[{ "node": "GHL - Welcome Email", "type": "main", "index": 0 }]] },
+    "GHL - Welcome Email": { "main": [[{ "node": "Respond Success", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}

@@ -1,0 +1,196 @@
+{
+  "name": "BeeProHub - Contact Form > GHL + Sheets",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "beeprohub-contact",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-contact",
+      "name": "Webhook Contact Form",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "beeprohub-contact"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "1", "name": "firstName", "value": "={{ $json.body.firstName }}", "type": "string" },
+            { "id": "2", "name": "lastName", "value": "={{ $json.body.lastName }}", "type": "string" },
+            { "id": "3", "name": "email", "value": "={{ $json.body.email }}", "type": "string" },
+            { "id": "4", "name": "phone", "value": "={{ $json.body.phone }}", "type": "string" },
+            { "id": "5", "name": "company", "value": "={{ $json.body.company }}", "type": "string" },
+            { "id": "6", "name": "message", "value": "={{ $json.body.message }}", "type": "string" },
+            { "id": "7", "name": "source", "value": "={{ $json.body.source }}", "type": "string" },
+            { "id": "8", "name": "fullName", "value": "={{ $json.body.firstName }} {{ $json.body.lastName }}", "type": "string" },
+            { "id": "9", "name": "date", "value": "={{ $json.body.date }}", "type": "string" },
+            { "id": "10", "name": "locale", "value": "={{ $json.body.locale }}", "type": "string" }
+          ]
+        }
+      },
+      "id": "set-contact",
+      "name": "Format Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://services.leadconnectorhq.com/contacts/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Version", "value": "2021-07-28" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"firstName\":\"{{ $json.firstName }}\",\"lastName\":\"{{ $json.lastName }}\",\"email\":\"{{ $json.email }}\",\"phone\":\"{{ $json.phone }}\",\"companyName\":\"{{ $json.company }}\",\"source\":\"{{ $json.source }}\",\"tags\":[\"website-lead\",\"contact-form\",\"beeprohub\"],\"locationId\":\"SEU_LOCATION_ID\"}",
+        "options": {}
+      },
+      "id": "ghl-create-contact",
+      "name": "GHL - Create Contact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [720, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://services.leadconnectorhq.com/opportunities/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Version", "value": "2021-07-28" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"pipelineId\":\"SEU_PIPELINE_ID\",\"pipelineStageId\":\"SEU_STAGE_ID\",\"locationId\":\"SEU_LOCATION_ID\",\"contactId\":\"{{ $json.contact.id }}\",\"name\":\"{{ $('Format Data').item.json.fullName }} - BeeProHub Contact\",\"status\":\"open\",\"source\":\"BeeProHub Website\"}",
+        "options": {}
+      },
+      "id": "ghl-create-opp",
+      "name": "GHL - Create Opportunity",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [960, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://services.leadconnectorhq.com/contacts/{{ $json.contact.id }}/notes",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Version", "value": "2021-07-28" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"body\":\"BeeProHub Contact Form\\nCompany: {{ $('Format Data').item.json.company }}\\nMessage: {{ $('Format Data').item.json.message }}\\nLocale: {{ $('Format Data').item.json.locale }}\",\"locationId\":\"SEU_LOCATION_ID\"}",
+        "options": {}
+      },
+      "id": "ghl-add-note",
+      "name": "GHL - Add Note",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://services.leadconnectorhq.com/conversations/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Version", "value": "2021-07-28" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"type\":\"Email\",\"contactId\":\"{{ $('GHL - Create Contact').item.json.contact.id }}\",\"subject\":\"Obrigado por entrar em contato com o Bee Pro Hub!\",\"message\":\"Ola {{ $('Format Data').item.json.firstName }},\\n\\nObrigado por entrar em contato com o Bee Pro Hub! Recebemos sua mensagem e responderemos em ate 24 horas.\\n\\nPara uma resposta mais rapida, nos envie uma mensagem no WhatsApp: (774) 285-2299\\n\\nAtenciosamente,\\nEquipe Bee Pro Hub\\nby Galaxy IT & Marketing\",\"locationId\":\"SEU_LOCATION_ID\"}",
+        "options": {}
+      },
+      "id": "ghl-auto-reply",
+      "name": "GHL - Auto Reply Email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 200]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "mode": "url", "value": "" },
+        "sheetName": { "__rl": true, "mode": "list", "value": "BeeProHub Leads" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ $('Format Data').item.json.date }}",
+            "Name": "={{ $('Format Data').item.json.fullName }}",
+            "Email": "={{ $('Format Data').item.json.email }}",
+            "Phone": "={{ $('Format Data').item.json.phone }}",
+            "Company": "={{ $('Format Data').item.json.company }}",
+            "Message": "={{ $('Format Data').item.json.message }}",
+            "Source": "={{ $('Format Data').item.json.source }}",
+            "Locale": "={{ $('Format Data').item.json.locale }}",
+            "Status": "New Lead"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-contact",
+      "name": "Google Sheets - Log Lead",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [720, 500]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true }) }}"
+      },
+      "id": "respond-ok",
+      "name": "Respond Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1440, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Contact Form": {
+      "main": [[{ "node": "Format Data", "type": "main", "index": 0 }]]
+    },
+    "Format Data": {
+      "main": [[
+        { "node": "GHL - Create Contact", "type": "main", "index": 0 },
+        { "node": "Google Sheets - Log Lead", "type": "main", "index": 0 }
+      ]]
+    },
+    "GHL - Create Contact": {
+      "main": [[
+        { "node": "GHL - Create Opportunity", "type": "main", "index": 0 },
+        { "node": "GHL - Add Note", "type": "main", "index": 0 }
+      ]]
+    },
+    "GHL - Create Opportunity": {
+      "main": [[{ "node": "GHL - Auto Reply Email", "type": "main", "index": 0 }]]
+    },
+    "GHL - Auto Reply Email": {
+      "main": [[{ "node": "Respond Success", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" }
+}
