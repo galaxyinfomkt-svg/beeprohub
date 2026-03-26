@@ -31,7 +31,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden py-12 lg:py-20">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" alt="Business dashboard" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-amber-50/95 via-gold-50/90 to-white/75" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-amber-400/60 to-amber-300/50" />
         </div>
         <div className="absolute top-[-150px] right-[-150px] w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl" />
 

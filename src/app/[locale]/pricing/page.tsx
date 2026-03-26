@@ -33,7 +33,7 @@ export default function PricingPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1400&q=80" alt="Business strategy" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-white/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/65 via-amber-400/55 to-amber-200/40" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

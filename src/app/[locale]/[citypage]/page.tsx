@@ -145,7 +145,7 @@ export default async function CityPage({ params }: { params: Promise<{ citypage:
       <section className="relative overflow-hidden py-16 lg:py-24">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80" alt={city.name} fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/65 via-amber-400/55 to-amber-200/40" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

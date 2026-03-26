@@ -1,13 +1,29 @@
 export interface BlogPost {
   slug: string;
   title: string;
+  titlePt?: string;
+  titleEs?: string;
   excerpt: string;
+  excerptPt?: string;
+  excerptEs?: string;
   content: string;
   date: string;
   author: string;
   category: string;
   image: string;
   keywords: string[];
+}
+
+export function getPostTitle(post: BlogPost, locale: string): string {
+  if (locale === "pt" && post.titlePt) return post.titlePt;
+  if (locale === "es" && post.titleEs) return post.titleEs;
+  return post.title;
+}
+
+export function getPostExcerpt(post: BlogPost, locale: string): string {
+  if (locale === "pt" && post.excerptPt) return post.excerptPt;
+  if (locale === "es" && post.excerptEs) return post.excerptEs;
+  return post.excerpt;
 }
 
 export const blogPosts: BlogPost[] = [

@@ -25,7 +25,7 @@ export default function BeeProCardPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1400&q=80" alt="Business networking" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/65 via-amber-400/50 to-amber-200/40" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

@@ -24,7 +24,7 @@ export default function ContactPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1400&q=80" alt="Contact us" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-white/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-amber-400/55 to-amber-200/40" />
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16 lg:py-20 relative z-10 text-center">
           <div className="badge-gold mb-6 mx-auto">{t("title")}</div>
