@@ -46,15 +46,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // City pages (EN only)
+  // City pages (all locales)
   for (const city of massachusettsCities) {
     for (const svc of cityServices) {
-      entries.push({
-        url: `${BASE}/en/${svc.slug}-${city.slug}-ma`,
-        lastModified: new Date(),
-        changeFrequency: "monthly",
-        priority: 0.6,
-      });
+      for (const locale of locales) {
+        entries.push({
+          url: `${BASE}/${locale}/${svc.slug}-${city.slug}-ma`,
+          lastModified: new Date(),
+          changeFrequency: "monthly",
+          priority: 0.6,
+        });
+      }
     }
   }
 
