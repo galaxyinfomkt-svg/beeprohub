@@ -12,7 +12,7 @@ export function organizationSchema() {
       height: 600,
     },
     description: "All-in-one CRM and marketing automation platform for local businesses. Built on GoHighLevel. Serving businesses across Massachusetts and the entire United States.",
-    telephone: "+17742852299",
+    telephone: "+15084999279",
     email: "contact@beeprohub.com",
     address: {
       "@type": "PostalAddress",
@@ -75,7 +75,7 @@ export function localBusinessSchema(city?: string) {
       ? `Bee Pro Hub provides CRM, marketing automation, and lead generation services for businesses in ${city}, Massachusetts. All-in-one platform replacing 10+ tools.`
       : "All-in-one CRM and marketing automation platform for local businesses in Massachusetts and across the United States. Built on GoHighLevel.",
     url: "https://beeprohub.com",
-    telephone: "+17742852299",
+    telephone: "+15084999279",
     image: "https://beeprohub.com/images/logo.png",
     priceRange: "$$",
     currenciesAccepted: "USD",
@@ -156,7 +156,7 @@ export function serviceSchema(name: string, description: string, url: string) {
     availableChannel: {
       "@type": "ServiceChannel",
       serviceUrl: "https://beeprohub.com",
-      servicePhone: "+17742852299",
+      servicePhone: "+15084999279",
       availableLanguage: ["English", "Portuguese", "Spanish"],
     },
   };
