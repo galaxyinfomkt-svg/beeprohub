@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "sent">("idle");
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ export default function ChatWidget() {
       });
     } catch { /* silent */ }
     setStatus("sent");
-    setTimeout(() => { setStatus("idle"); setOpen(false); setForm({ name: "", email: "", message: "" }); }, 3000);
+    setTimeout(() => { setStatus("idle"); setOpen(false); setForm({ name: "", email: "", phone: "", message: "" }); }, 3000);
   };
 
   return (
@@ -65,6 +65,7 @@ export default function ChatWidget() {
                 </div>
                 <input type="text" placeholder="Seu nome" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-dark outline-none focus:border-primary" />
                 <input type="email" placeholder="Seu email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-dark outline-none focus:border-primary" />
+                <input type="tel" placeholder="Seu telefone / WhatsApp" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-dark outline-none focus:border-primary" />
                 <textarea placeholder="Sua mensagem..." required rows={3} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-dark outline-none focus:border-primary resize-none" />
                 <button type="submit" disabled={status === "loading"} className={`w-full bg-primary hover:bg-primary-hover text-dark font-bold py-2.5 rounded-lg text-sm transition-colors ${status === "loading" ? "opacity-70" : ""}`}>
                   {status === "loading" ? "Enviando..." : "Enviar Mensagem"}

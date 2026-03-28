@@ -5,7 +5,7 @@ const WEBHOOK_URL = "https://n8n.galaxyinfo.us/webhook/beeprohub-chat";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, message, page } = body;
+    const { name, email, phone, message, page } = body;
 
     if (!name || !email || !message) {
       return NextResponse.json({ success: false, error: "Todos os campos sao obrigatorios" }, { status: 400 });
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     await fetch(WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, message, page: page || "unknown", date: new Date().toISOString() }),
+      body: JSON.stringify({ name, email, phone: phone || "", message, page: page || "unknown", date: new Date().toISOString() }),
     }).catch(() => {});
 
     return NextResponse.json({ success: true });
