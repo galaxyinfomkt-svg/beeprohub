@@ -4,22 +4,6 @@ import { useState } from "react";
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
-  const [status, setStatus] = useState<"idle" | "loading" | "sent">("idle");
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("loading");
-    try {
-      await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, page: window.location.pathname }),
-      });
-    } catch { /* silent */ }
-    setStatus("sent");
-    setTimeout(() => { setStatus("idle"); setOpen(false); setForm({ name: "", email: "", phone: "", message: "" }); }, 3000);
-  };
 
   return (
     <>
@@ -36,7 +20,7 @@ export default function ChatWidget() {
       </button>
 
       {open && (
-        <div className="fixed bottom-24 left-6 z-[901] w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden animate-scale-in">
+        <div className="fixed bottom-24 left-6 z-[901] w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden animate-scale-in">
           <div className="bg-dark p-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
@@ -48,31 +32,23 @@ export default function ChatWidget() {
               </div>
             </div>
           </div>
-
-          <div className="p-4">
-            {status === "sent" ? (
-              <div className="text-center py-6">
-                <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <svg width={24} height={24} fill="none" stroke="#059669" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                </div>
-                <p className="font-semibold text-dark text-sm">Mensagem enviada!</p>
-                <p className="text-xs text-gray-500 mt-1">Responderemos em breve.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
-                <div className="bg-gray-100 rounded-lg p-3 text-sm text-gray-600">
-                  Ola! Como podemos ajudar? Envie uma mensagem.
-                </div>
-                <input type="text" placeholder="Seu nome" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-dark outline-none focus:border-primary" />
-                <input type="email" placeholder="Seu email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-dark outline-none focus:border-primary" />
-                <input type="tel" placeholder="Seu telefone / WhatsApp" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-dark outline-none focus:border-primary" />
-                <textarea placeholder="Sua mensagem..." required rows={3} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-dark outline-none focus:border-primary resize-none" />
-                <button type="submit" disabled={status === "loading"} className={`w-full bg-primary hover:bg-primary-hover text-dark font-bold py-2.5 rounded-lg text-sm transition-colors ${status === "loading" ? "opacity-70" : ""}`}>
-                  {status === "loading" ? "Enviando..." : "Enviar Mensagem"}
-                </button>
-              </form>
-            )}
-          </div>
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/form/3Rzf3zW0TBnYk9zgIMVZ"
+            style={{ width: "100%", height: "500px", border: "none" }}
+            id="chat-form-3Rzf3zW0TBnYk9zgIMVZ"
+            data-layout='{"id":"INLINE"}'
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="bee pro"
+            data-height="500"
+            data-layout-iframe-id="chat-form-3Rzf3zW0TBnYk9zgIMVZ"
+            data-form-id="3Rzf3zW0TBnYk9zgIMVZ"
+            title="bee pro"
+          />
         </div>
       )}
     </>
