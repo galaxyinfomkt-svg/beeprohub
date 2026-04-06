@@ -243,7 +243,7 @@ These strategies work best when they're part of a unified system. Bee Pro Hub co
     date: "2026-03-09",
     author: "Bee Pro Hub Team",
     category: "Landscaping",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=800&q=80",
     keywords: ["landscaping automation", "landscaping CRM", "lawn care business software", "landscaping scheduling"]
   },
   {
