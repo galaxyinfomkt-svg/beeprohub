@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { blogPosts } from "@/data/blog-posts";
+import { blogTranslations } from "@/data/blog-translations";
 import JsonLd from "@/components/seo/JsonLd";
 import HeroForm from "@/components/ui/HeroForm";
 import { articleSchema, breadcrumbSchema } from "@/lib/schemas";
@@ -35,6 +36,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) notFound();
   const l = labels[locale] || labels.en;
+  const tr = blogTranslations[slug];
+  const title = locale === "pt" && tr?.titlePt ? tr.titlePt : locale === "es" && tr?.titleEs ? tr.titleEs : post.title;
+  const excerpt = locale === "pt" && tr?.excerptPt ? tr.excerptPt : locale === "es" && tr?.excerptEs ? tr.excerptEs : post.excerpt;
+  const content = locale === "pt" && tr?.contentPt ? tr.contentPt : locale === "es" && tr?.contentEs ? tr.contentEs : post.content;
   const relatedPosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 3);
 
   return (
@@ -60,8 +65,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <time className="text-gray-400 text-sm">{post.date}</time>
             <span className="text-gray-500 text-sm">By {post.author}</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-4">{post.title}</h1>
-          <p className="text-gray-400 text-base lg:text-lg max-w-2xl">{post.excerpt}</p>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-4">{title}</h1>
+          <p className="text-gray-400 text-base lg:text-lg max-w-2xl">{excerpt}</p>
         </div>
       </section>
 
@@ -75,7 +80,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <Image src={post.image} alt={post.title} fill className="object-cover" priority />
               </div>
               <article className="prose prose-lg max-w-none">
-                <div dangerouslySetInnerHTML={{ __html: post.content.replace(/\\n## /g, '<h2 class="text-2xl font-extrabold text-dark mt-10 mb-4">').replace(/\\n### /g, '<h3 class="text-xl font-bold text-dark mt-8 mb-3">').replace(/\\n- \*\*/g, '<li class="flex items-start gap-2 mb-2 text-gray-600"><span class="text-primary font-bold">&#x2022;</span><strong>').replace(/\\n\\n/g, '</p><p class="text-gray-600 leading-relaxed mb-4">').replace(/\*\*(.*?)\*\*/g, '<strong class="text-dark font-bold">$1</strong>').replace(/^/, '<p class="text-gray-600 leading-relaxed mb-4">') + '</p>' }} />
+                <div dangerouslySetInnerHTML={{ __html: content.replace(/\\n## /g, '<h2 class="text-2xl font-extrabold text-dark mt-10 mb-4">').replace(/\\n### /g, '<h3 class="text-xl font-bold text-dark mt-8 mb-3">').replace(/\\n- \*\*/g, '<li class="flex items-start gap-2 mb-2 text-gray-600"><span class="text-primary font-bold">&#x2022;</span><strong>').replace(/\\n\\n/g, '</p><p class="text-gray-600 leading-relaxed mb-4">').replace(/\*\*(.*?)\*\*/g, '<strong class="text-dark font-bold">$1</strong>').replace(/^/, '<p class="text-gray-600 leading-relaxed mb-4">') + '</p>' }} />
               </article>
             </div>
 
@@ -110,7 +115,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                           <Image src={rp.image} alt={rp.title} fill className="object-cover" />
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-dark group-hover:text-primary transition-colors line-clamp-2">{rp.title}</p>
+                          <p className="text-sm font-semibold text-dark group-hover:text-primary transition-colors line-clamp-2">{locale === "pt" && blogTranslations[rp.slug]?.titlePt ? blogTranslations[rp.slug].titlePt : locale === "es" && blogTranslations[rp.slug]?.titleEs ? blogTranslations[rp.slug].titleEs : rp.title}</p>
                           <p className="text-xs text-gray-400 mt-1">{rp.date}</p>
                         </div>
                       </Link>
