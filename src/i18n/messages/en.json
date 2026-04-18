@@ -156,6 +156,26 @@
     "cancel": "Cancel anytime",
     "support": "Support in English, Portuguese & Spanish 24/7"
   },
+  "extras": {
+    "miniCtaText": "Ready to transform your business?",
+    "miniCtaButton": "GET STARTED NOW",
+    "conversionBadge": "+250% conversion",
+    "bonusLabel": "Special Bonus:",
+    "callPrefix": "CALL:",
+    "callNowPrefix": "CALL NOW:",
+    "freeTrialBtn": "START FREE TRIAL",
+    "stillQuestions": "Still have questions?",
+    "talkSpecialist": "TALK TO A SPECIALIST",
+    "finalCtaTitle": "Last Chance! Start Now Without Paying Anything!",
+    "finalCtaSubtitle": "14 days of full access. No card. No commitment.",
+    "finalCtaBonus": "Bonus: $944 in FREE resources when you sign up today!",
+    "finalTestOnline": "FREE ONLINE TRIAL",
+    "aboutContactCta": "CONTACT US",
+    "fiveTools": "5 TOOLS IN 1",
+    "muchMore": "+ much more",
+    "footerTagline": "Transforming businesses through technology",
+    "chatRepliesIn": "Replies in minutes"
+  },
   "pricing": {
     "title": "Simple, Transparent Pricing",
     "subtitle": "Choose the plan that fits your business. All plans include a 14-day free trial.",

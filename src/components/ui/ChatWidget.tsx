@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
+  const tExtras = useTranslations("extras");
 
   return (
     <>
@@ -28,7 +30,7 @@ export default function ChatWidget() {
               </div>
               <div>
                 <p className="text-white font-semibold text-sm">Bee Pro Hub</p>
-                <p className="text-gray-400 text-xs">Responde em minutos</p>
+                <p className="text-gray-400 text-xs">{tExtras("chatRepliesIn")}</p>
               </div>
             </div>
           </div>

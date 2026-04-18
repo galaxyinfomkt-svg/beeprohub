@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,6 +21,8 @@ function Check() {
 
 export default function HomePage() {
   const t = useTranslations();
+  const locale = useLocale();
+  const contactHref = `/${locale}/contact`;
   const homeFaqs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => ({ question: t(`services.faq.items.${i}.q`), answer: t(`services.faq.items.${i}.a`) }));
 
   return (
@@ -62,8 +64,8 @@ export default function HomePage() {
               </ul>
 
               <div className="flex flex-col sm:flex-row gap-3 mb-6">
-                <Link href="/pt/contact" className="btn-primary btn-shine animate-pulse-yellow text-center">
-                  TESTAR GRATIS POR 14 DIAS
+                <Link href={contactHref} className="btn-primary btn-shine animate-pulse-yellow text-center">
+                  {t("hero.cta")}
                 </Link>
                 <a href={PHONE_LINK} className="btn-outline text-center">
                   {PHONE}
@@ -92,14 +94,14 @@ export default function HomePage() {
 
                 {/* Floating badge top-right */}
                 <div className="absolute -top-4 -right-4 bg-white rounded-xl px-4 py-2 shadow-lg border border-primary/20 animate-bounce-in">
-                  <p className="text-primary font-extrabold text-lg leading-none">14 Dias</p>
-                  <p className="text-gray-500 text-[10px] font-semibold">Teste Gratis</p>
+                  <p className="text-primary font-extrabold text-lg leading-none">{t("stats.trial.value")}</p>
+                  <p className="text-gray-500 text-[10px] font-semibold">{t("stats.trial.label")}</p>
                 </div>
 
                 {/* Floating badge bottom-left */}
                 <div className="absolute -bottom-4 -left-4 bg-dark rounded-xl px-4 py-2 shadow-lg border border-primary/30 animate-bounce-in delay-300">
-                  <p className="text-primary font-extrabold text-lg leading-none">24/7</p>
-                  <p className="text-gray-400 text-[10px] font-semibold">Suporte Total</p>
+                  <p className="text-primary font-extrabold text-lg leading-none">{t("stats.support.value")}</p>
+                  <p className="text-gray-400 text-[10px] font-semibold">{t("stats.support.label")}</p>
                 </div>
               </div>
             </div>
@@ -125,9 +127,9 @@ export default function HomePage() {
       {/* ========== MINI CTA ========== */}
       <section className="bg-gradient-animated py-5">
         <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-dark font-bold text-base sm:text-lg text-center sm:text-left">Pronto para transformar seu negocio?</p>
-          <Link href="/pt/contact" className="bg-dark text-primary font-bold px-8 py-3 rounded-xl text-sm btn-shine whitespace-nowrap">
-            COMECAR AGORA &rarr;
+          <p className="text-dark font-bold text-base sm:text-lg text-center sm:text-left">{t("extras.miniCtaText")}</p>
+          <Link href={contactHref} className="bg-dark text-primary font-bold px-8 py-3 rounded-xl text-sm btn-shine whitespace-nowrap">
+            {t("extras.miniCtaButton")} &rarr;
           </Link>
         </div>
       </section>
@@ -165,14 +167,14 @@ export default function HomePage() {
                     <p className="text-xs text-gray-400 mt-2 not-italic font-bold">&mdash; {t("features.crm.testimonial.author")}</p>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Link href="/pt/contact" className="btn-primary btn-shine">{t("features.crm.cta")} &rarr;</Link>
-                    <Link href="/pt/contact" className="btn-outline">{t("features.crm.ctaSecondary")}</Link>
+                    <Link href={contactHref} className="btn-primary btn-shine">{t("features.crm.cta")} &rarr;</Link>
+                    <Link href={contactHref} className="btn-outline">{t("features.crm.ctaSecondary")}</Link>
                   </div>
                 </div>
                 <div className="flex justify-center">
                   <div className="relative">
                     <Image src="/images/mobile-crm.webp" alt="CRM BeeProHub" width={260} height={520} className="rounded-2xl shadow-2xl animate-float" />
-                    <div className="absolute -bottom-3 -right-3 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-full shadow-lg">+250% conversao</div>
+                    <div className="absolute -bottom-3 -right-3 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-full shadow-lg">{t("extras.conversionBadge")}</div>
                   </div>
                 </div>
               </div>
@@ -205,7 +207,7 @@ export default function HomePage() {
                       </div>
                     ))}
                   </div>
-                  <Link href="/pt/contact" className="btn-primary btn-shine">{t("features.calendar.cta")} &rarr;</Link>
+                  <Link href={contactHref} className="btn-primary btn-shine">{t("features.calendar.cta")} &rarr;</Link>
                 </div>
               </div>
             </div>
@@ -235,7 +237,7 @@ export default function HomePage() {
                     <p className="text-xs text-gray-400 mt-2 not-italic font-bold">&mdash; {t("features.automation.testimonial.author")}</p>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Link href="/pt/contact" className="btn-primary btn-shine">{t("features.automation.cta")} &rarr;</Link>
+                    <Link href={contactHref} className="btn-primary btn-shine">{t("features.automation.cta")} &rarr;</Link>
                     <a href={PHONE_LINK} className="btn-outline">{PHONE}</a>
                   </div>
                 </div>
@@ -270,9 +272,9 @@ export default function HomePage() {
                     ))}
                   </ul>
                   <div className="glass-card p-4 mb-6">
-                    <p className="text-sm text-gray-300"><strong className="text-primary">Bonus Especial:</strong> {t("features.telephony.bonus")}</p>
+                    <p className="text-sm text-gray-300"><strong className="text-primary">{t("extras.bonusLabel")}</strong> {t("features.telephony.bonus")}</p>
                   </div>
-                  <Link href="/pt/contact" className="btn-primary btn-shine">{t("features.telephony.cta")} &rarr;</Link>
+                  <Link href={contactHref} className="btn-primary btn-shine">{t("features.telephony.cta")} &rarr;</Link>
                 </div>
               </div>
             </div>
@@ -287,11 +289,11 @@ export default function HomePage() {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-dark mb-4">{t("cta.ready")}</h2>
           <p className="text-dark/70 mb-8 text-lg">{t("cta.subtitle")}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Link href="/pt/contact" className="btn-secondary btn-shine text-lg">
-              COMECAR TESTE GRATIS &rarr;
+            <Link href={contactHref} className="btn-secondary btn-shine text-lg">
+              {t("extras.freeTrialBtn")} &rarr;
             </Link>
             <a href={PHONE_LINK} className="bg-white text-dark font-bold px-10 py-4 rounded-xl text-lg shadow-lg hover:-translate-y-1 transition-all btn-shine">
-              LIGAR: {PHONE}
+              {t("extras.callPrefix")} {PHONE}
             </a>
           </div>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-dark/60">
@@ -324,8 +326,8 @@ export default function HomePage() {
             })}
           </div>
           <div className="text-center mt-12">
-            <Link href="/pt/contact" className="btn-primary btn-shine animate-pulse-yellow text-lg px-12 py-5">
-              COMECAR TESTE GRATIS &rarr;
+            <Link href={contactHref} className="btn-primary btn-shine animate-pulse-yellow text-lg px-12 py-5">
+              {t("extras.freeTrialBtn")} &rarr;
             </Link>
           </div>
         </div>
@@ -352,7 +354,7 @@ export default function HomePage() {
             ))}
           </div>
           <div className="text-center">
-            <Link href="/pt/beeprocard" className="btn-primary btn-shine animate-pulse-yellow text-lg">
+            <Link href={`/${locale}/beeprocard`} className="btn-primary btn-shine animate-pulse-yellow text-lg">
               {t("beeprocard.cta")} &rarr;
             </Link>
           </div>
@@ -368,8 +370,8 @@ export default function HomePage() {
           </div>
           <FAQ items={homeFaqs} />
           <div className="text-center mt-10">
-            <p className="text-gray-500 mb-4">Ainda tem duvidas?</p>
-            <Link href="/pt/contact" className="btn-primary btn-shine">FALAR COM ESPECIALISTA &rarr;</Link>
+            <p className="text-gray-500 mb-4">{t("extras.stillQuestions")}</p>
+            <Link href={contactHref} className="btn-primary btn-shine">{t("extras.talkSpecialist")} &rarr;</Link>
           </div>
         </div>
       </section>
@@ -378,13 +380,13 @@ export default function HomePage() {
       <section className="bg-gradient-animated py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-dots opacity-10" />
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-dark mb-4">Ultima Chance! Comece Agora Sem Pagar Nada!</h2>
-          <p className="text-dark/70 mb-3 text-lg">14 dias de acesso total. Sem cartao. Sem compromisso.</p>
-          <p className="text-dark font-bold mb-8">Bonus: $944 em recursos GRATIS ao se cadastrar hoje!</p>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-dark mb-4">{t("extras.finalCtaTitle")}</h2>
+          <p className="text-dark/70 mb-3 text-lg">{t("extras.finalCtaSubtitle")}</p>
+          <p className="text-dark font-bold mb-8">{t("extras.finalCtaBonus")}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href={PHONE_LINK} className="btn-secondary btn-shine text-lg">LIGAR AGORA: {PHONE}</a>
-            <Link href="/pt/contact" className="bg-white text-dark font-bold px-10 py-4 rounded-xl text-lg shadow-xl hover:-translate-y-1 transition-all btn-shine">
-              TESTE GRATIS ONLINE &rarr;
+            <a href={PHONE_LINK} className="btn-secondary btn-shine text-lg">{t("extras.callNowPrefix")} {PHONE}</a>
+            <Link href={contactHref} className="bg-white text-dark font-bold px-10 py-4 rounded-xl text-lg shadow-xl hover:-translate-y-1 transition-all btn-shine">
+              {t("extras.finalTestOnline")} &rarr;
             </Link>
           </div>
         </div>

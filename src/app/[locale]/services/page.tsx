@@ -20,6 +20,7 @@ const icons = ["M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.2
 
 export default function ServicesPage() {
   const t = useTranslations("services");
+  const tExtras = useTranslations("extras");
   const locale = useLocale();
   const faqs = [1, 2, 3, 4, 5].map((i) => ({ question: t(`faq.items.${i}.q`), answer: t(`faq.items.${i}.a`) }));
 
@@ -36,7 +37,7 @@ export default function ServicesPage() {
             <div className="animate-fade-left">
               <div className="inline-flex items-center gap-2 bg-dark/20 text-white font-bold text-xs tracking-wider uppercase px-4 py-2 rounded-full mb-6">
                 <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                5 FERRAMENTAS EM 1
+                {tExtras("fiveTools")}
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-dark leading-tight mb-5">{t("title")}</h1>
               <p className="text-dark/70 text-base lg:text-lg leading-relaxed mb-6">{t("subtitle")}</p>
@@ -44,7 +45,7 @@ export default function ServicesPage() {
                 <Image src="/images/mobile-crm.webp" alt="CRM" width={48} height={48} className="w-12 h-12 rounded-lg shadow-md" />
                 <Image src="/images/hand-phone-calendar.webp" alt="Calendar" width={48} height={48} className="w-12 h-12 rounded-lg shadow-md" />
                 <Image src="/images/dashboard-multidevice.webp" alt="Dashboard" width={48} height={48} className="w-12 h-12 rounded-lg shadow-md" />
-                <span className="text-dark/60 text-sm font-semibold ml-2">+ muito mais</span>
+                <span className="text-dark/60 text-sm font-semibold ml-2">{tExtras("muchMore")}</span>
               </div>
             </div>
             <div className="animate-fade-right"><HeroForm /></div>

@@ -156,6 +156,26 @@
     "cancel": "Cancelacion en cualquier momento",
     "support": "Soporte en Espanol, Ingles y Portugues 24/7"
   },
+  "extras": {
+    "miniCtaText": "¿Listo para transformar tu negocio?",
+    "miniCtaButton": "COMENZAR AHORA",
+    "conversionBadge": "+250% conversion",
+    "bonusLabel": "Bono Especial:",
+    "callPrefix": "LLAMAR:",
+    "callNowPrefix": "LLAMAR AHORA:",
+    "freeTrialBtn": "COMENZAR PRUEBA GRATIS",
+    "stillQuestions": "¿Aun tienes dudas?",
+    "talkSpecialist": "HABLAR CON ESPECIALISTA",
+    "finalCtaTitle": "¡Ultima Oportunidad! ¡Empieza Ahora Sin Pagar Nada!",
+    "finalCtaSubtitle": "14 dias de acceso total. Sin tarjeta. Sin compromiso.",
+    "finalCtaBonus": "¡Bono: $944 en recursos GRATIS al registrarte hoy!",
+    "finalTestOnline": "PRUEBA GRATIS ONLINE",
+    "aboutContactCta": "CONTACTANOS",
+    "fiveTools": "5 HERRAMIENTAS EN 1",
+    "muchMore": "+ mucho mas",
+    "footerTagline": "Transformando negocios a traves de la tecnologia",
+    "chatRepliesIn": "Responde en minutos"
+  },
   "pricing": {
     "title": "Planes Simples y Transparentes",
     "subtitle": "Elige el plan ideal para tu negocio. Todos los planes incluyen 14 dias de prueba gratis.",

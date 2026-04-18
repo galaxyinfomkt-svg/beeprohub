@@ -9,6 +9,7 @@ const allCities = massachusettsCities;
 export default function Footer() {
   const t = useTranslations("footer");
   const nav = useTranslations("nav");
+  const tExtras = useTranslations("extras");
   const locale = useLocale();
 
   return (
@@ -146,7 +147,7 @@ export default function Footer() {
               </a>
               . {locale === "en" ? "All rights reserved." : locale === "es" ? "Todos los derechos reservados." : "Todos os direitos reservados."}
             </p>
-            <p className="text-xs text-gray-600">Transformando negocios atraves da tecnologia</p>
+            <p className="text-xs text-gray-600">{tExtras("footerTagline")}</p>
           </div>
         </div>
       </div>

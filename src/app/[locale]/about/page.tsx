@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function AboutPage() {
   const t = useTranslations("about");
+  const tExtras = useTranslations("extras");
   const locale = useLocale();
 
   return (
@@ -36,7 +37,7 @@ export default function AboutPage() {
               <h1 className="section-heading text-white mb-5">{t("subtitle")}</h1>
               <p className="text-white/80 text-base lg:text-lg leading-relaxed mb-8">{t("mission.text")}</p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">FALE CONOSCO &rarr;</Link>
+                <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{tExtras("aboutContactCta")} &rarr;</Link>
                 <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>
               </div>
             </div>
