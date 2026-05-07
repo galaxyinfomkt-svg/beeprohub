@@ -7,7 +7,6 @@ import { blogTranslations } from "@/data/blog-translations";
 import JsonLd from "@/components/seo/JsonLd";
 import HeroForm from "@/components/ui/HeroForm";
 import { articleSchema, breadcrumbSchema } from "@/lib/schemas";
-import { PHONE, PHONE_LINK } from "@/lib/utils";
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -96,9 +95,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     <Link href={`/${locale}/contact`} className="btn-primary btn-shine w-full text-center justify-center animate-pulse-yellow text-sm py-3">
                       {l.ctaBtn} &rarr;
                     </Link>
-                    <a href={PHONE_LINK} className="block text-center text-primary font-bold mt-3 text-sm hover:text-primary-hover transition-colors">
-                      {PHONE}
-                    </a>
                   </div>
                 </div>
 
@@ -143,9 +139,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-dark mb-4">{l.ctaTitle}</h2>
           <p className="text-dark/70 mb-6">{l.ctaText}</p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex justify-center">
             <Link href={`/${locale}/contact`} className="btn-secondary btn-shine">{l.ctaBtn} &rarr;</Link>
-            <a href={PHONE_LINK} className="bg-white text-dark font-bold px-8 py-4 rounded-xl shadow-lg hover:-translate-y-1 transition-all btn-shine">{PHONE}</a>
           </div>
         </div>
       </section>

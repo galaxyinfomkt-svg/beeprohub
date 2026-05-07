@@ -7,7 +7,6 @@ import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
 import { organizationSchema, localBusinessSchema, faqSchema, websiteSchema, siteNavigationSchema } from "@/lib/schemas";
 import { pageSeo } from "@/lib/seo";
-import { PHONE, PHONE_LINK } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -67,9 +66,6 @@ export default function HomePage() {
                 <Link href={contactHref} className="btn-primary btn-shine animate-pulse-yellow text-center">
                   {t("hero.cta")}
                 </Link>
-                <a href={PHONE_LINK} className="btn-outline text-center">
-                  {PHONE}
-                </a>
               </div>
 
               {/* Social proof */}
@@ -238,7 +234,6 @@ export default function HomePage() {
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Link href={contactHref} className="btn-primary btn-shine">{t("features.automation.cta")} &rarr;</Link>
-                    <a href={PHONE_LINK} className="btn-outline">{PHONE}</a>
                   </div>
                 </div>
                 <div className="flex justify-center">
@@ -288,13 +283,10 @@ export default function HomePage() {
         <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-dark mb-4">{t("cta.ready")}</h2>
           <p className="text-dark/70 mb-8 text-lg">{t("cta.subtitle")}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div className="flex justify-center mb-8">
             <Link href={contactHref} className="btn-secondary btn-shine text-lg">
               {t("extras.freeTrialBtn")} &rarr;
             </Link>
-            <a href={PHONE_LINK} className="bg-white text-dark font-bold px-10 py-4 rounded-xl text-lg shadow-lg hover:-translate-y-1 transition-all btn-shine">
-              {t("extras.callPrefix")} {PHONE}
-            </a>
           </div>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-dark/60">
             <span className="flex items-center gap-1"><Check /> {t("cta.noCard")}</span>
@@ -383,8 +375,7 @@ export default function HomePage() {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-dark mb-4">{t("extras.finalCtaTitle")}</h2>
           <p className="text-dark/70 mb-3 text-lg">{t("extras.finalCtaSubtitle")}</p>
           <p className="text-dark font-bold mb-8">{t("extras.finalCtaBonus")}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href={PHONE_LINK} className="btn-secondary btn-shine text-lg">{t("extras.callNowPrefix")} {PHONE}</a>
+          <div className="flex justify-center">
             <Link href={contactHref} className="bg-white text-dark font-bold px-10 py-4 rounded-xl text-lg shadow-xl hover:-translate-y-1 transition-all btn-shine">
               {t("extras.finalTestOnline")} &rarr;
             </Link>

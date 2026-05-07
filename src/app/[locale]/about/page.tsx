@@ -7,7 +7,6 @@ import JsonLd from "@/components/seo/JsonLd";
 import HeroForm from "@/components/ui/HeroForm";
 import { organizationSchema, breadcrumbSchema } from "@/lib/schemas";
 import { pageSeo } from "@/lib/seo";
-import { PHONE, PHONE_LINK } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -38,7 +37,6 @@ export default function AboutPage() {
               <p className="text-white/80 text-base lg:text-lg leading-relaxed mb-8">{t("mission.text")}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{tExtras("aboutContactCta")} &rarr;</Link>
-                <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>
               </div>
             </div>
             <div className="animate-fade-right"><HeroForm /></div>

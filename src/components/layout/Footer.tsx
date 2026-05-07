@@ -1,7 +1,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
-import { PHONE, PHONE_LINK, LOGIN_URL } from "@/lib/utils";
+import { LOGIN_URL } from "@/lib/utils";
 import { massachusettsCities } from "@/data/massachusetts-cities";
 
 const allCities = massachusettsCities;
@@ -24,10 +24,7 @@ export default function Footer() {
           <p className="text-dark/70 mb-6 text-base">
             {locale === "en" ? "14 days full access. Cancel anytime." : locale === "es" ? "14 dias acceso total. Cancela cuando quieras." : "14 dias de acesso total. Cancele quando quiser."}
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href={PHONE_LINK} className="btn-secondary btn-shine">
-              {locale === "en" ? "Call & Activate" : locale === "es" ? "Llamar y Activar" : "Ligar e Ativar"}
-            </a>
+          <div className="flex justify-center">
             <Link href={`/${locale}/contact`} className="bg-white text-dark font-bold px-8 py-4 rounded-xl text-base shadow-lg hover:-translate-y-1 transition-all btn-shine">
               {locale === "en" ? "Start Online" : locale === "es" ? "Prueba Online" : "Teste Online"}
             </Link>
@@ -108,10 +105,6 @@ export default function Footer() {
             <div>
               <h3 className="text-white font-bold text-base mb-5 uppercase tracking-wide">{t("contactTitle")}</h3>
               <div className="space-y-4">
-                <a href={PHONE_LINK} className="flex items-center gap-2.5 text-primary font-bold text-lg hover:text-primary-hover transition-colors">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                  {t("phone")}
-                </a>
                 <p className="text-sm text-gray-400">{t("hours")}</p>
                 <div className="border-t border-gray-800 pt-3">
                   <p className="text-sm text-gray-400 font-semibold">{t("company")}</p>

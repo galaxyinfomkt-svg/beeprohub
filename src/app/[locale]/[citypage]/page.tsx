@@ -7,7 +7,6 @@ import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
 import HeroForm from "@/components/ui/HeroForm";
 import { localBusinessSchema, serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schemas";
-import { PHONE, PHONE_LINK } from "@/lib/utils";
 
 function parseCityPage(slug: string) {
   for (const svc of cityServices) {
@@ -155,7 +154,6 @@ export default async function CityPage({ params }: { params: Promise<{ citypage:
               <p className="text-white/80 text-base lg:text-lg leading-relaxed mb-6">{l.desc(service.description, city.name, city.county)}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{l.ctaBtn} &rarr;</Link>
-                <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>
               </div>
             </div>
             <div className="animate-fade-right"><HeroForm /></div>
