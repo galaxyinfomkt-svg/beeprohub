@@ -115,3 +115,27 @@ export const cityServices = [
   { slug: "business-automation", title: "Business Automation", description: "Marketing and sales automation" },
   { slug: "digital-marketing", title: "Digital Marketing", description: "Complete digital marketing solutions" },
 ];
+
+const countyToRegion: Record<string, { region: string; hubs: string[] }> = {
+  Suffolk: { region: "Greater Boston", hubs: ["Boston", "Cambridge", "Quincy"] },
+  Middlesex: { region: "Greater Boston / MetroWest", hubs: ["Cambridge", "Newton", "Framingham", "Marlborough"] },
+  Norfolk: { region: "Greater Boston / South Shore", hubs: ["Brookline", "Quincy", "Braintree"] },
+  Essex: { region: "North Shore", hubs: ["Lynn", "Salem", "Beverly", "Lawrence"] },
+  Worcester: { region: "Worcester Region / Central MA", hubs: ["Worcester", "Leominster", "Fitchburg"] },
+  Hampden: { region: "Pioneer Valley / Western MA", hubs: ["Springfield", "Chicopee", "Holyoke"] },
+  Hampshire: { region: "Pioneer Valley / Western MA", hubs: ["Northampton", "Amherst"] },
+  Bristol: { region: "South Coast", hubs: ["New Bedford", "Fall River", "Taunton"] },
+  Plymouth: { region: "South Shore", hubs: ["Plymouth", "Brockton", "Weymouth"] },
+  Barnstable: { region: "Cape Cod", hubs: ["Barnstable", "Falmouth", "Hyannis"] },
+  Berkshire: { region: "Berkshires / Western MA", hubs: ["Pittsfield"] },
+};
+
+export function getCityRegion(county: string): { region: string; hubs: string[] } {
+  return countyToRegion[county] || { region: "Massachusetts", hubs: [] };
+}
+
+export function citySize(population: number): "large" | "mid" | "small" {
+  if (population >= 100000) return "large";
+  if (population >= 30000) return "mid";
+  return "small";
+}

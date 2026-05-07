@@ -37,10 +37,13 @@ export default async function LocaleLayout({ children, params }: Props) {
     es: "es",
   };
 
+  const aiSummary = messages?.meta?.aiSummary as string | undefined;
+
   return (
     <html lang={locale} className={inter.className}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {aiSummary && <meta name="ai-summary" content={aiSummary} />}
         <link rel="icon" href="/images/logo.png" />
         <link rel="apple-touch-icon" href="/images/logo.png" />
         {/* hreflang tags */}

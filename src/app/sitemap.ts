@@ -7,7 +7,7 @@ const BASE = "https://beeprohub.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ["en", "pt", "es"];
-  const pages = ["", "/about", "/services", "/pricing", "/contact", "/blog", "/beeprocard"];
+  const pages = ["", "/about", "/services", "/pricing", "/contact", "/blog", "/beeprocard", "/reviews"];
   const entries: MetadataRoute.Sitemap = [];
 
   // Main pages in all locales

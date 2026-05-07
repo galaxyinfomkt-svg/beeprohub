@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { massachusettsCities, cityServices } from "@/data/massachusetts-cities";
+import { massachusettsCities, cityServices, getCityRegion, citySize } from "@/data/massachusetts-cities";
 import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
 import HeroForm from "@/components/ui/HeroForm";
@@ -45,10 +45,10 @@ const labels = {
   pt: {
     badge: (city: string) => `${city}, Massachusetts`,
     title: (svc: string, city: string) => `${svc} em ${city}, MA`,
-    desc: (svc: string, city: string, county: string) => `Procurando ${svc.toLowerCase()} em ${city}? O Bee Pro Hub ajuda negocios locais em ${city}, ${county} County a automatizar marketing, gerenciar leads e crescer receita com nossa plataforma CRM all-in-one.`,
+    desc: (svc: string, city: string, county: string, region: string, pop: number, size: string) => `Procurando ${svc.toLowerCase()} em ${city}, MA? O Bee Pro Hub atende ${pop.toLocaleString("pt-BR")} moradores e ${size === "large" ? "milhares de pequenas e medias empresas" : size === "mid" ? "centenas de negocios locais" : "dezenas de negocios familiares"} em ${city}, na regiao ${region} de ${county} County. Automatizamos marketing, gerenciamos leads e fazemos sua receita crescer com a plataforma CRM all-in-one mais completa de Massachusetts.`,
     whatWeOffer: (city: string) => `O Que Oferecemos para Negocios em ${city}`,
     whyChoose: (city: string) => `Por Que Negocios em ${city} Escolhem Bee Pro Hub`,
-    whyText: (city: string, county: string) => `Baseados em Marlborough, Massachusetts, entendemos o mercado local em ${county} County. Seja voce um contractor, empresa de limpeza, restaurante ou qualquer negocio de servicos em ${city}, nossa plataforma e feita para ajudar voce a competir e vencer. Com suporte em Portugues, Ingles e Espanhol.`,
+    whyText: (city: string, county: string, region: string, hubs: string[]) => `Baseados em Marlborough, MA — a apenas alguns kilometros de ${city} — entendemos profundamente o mercado da regiao ${region}. Atendemos negocios em ${county} County e nos hubs proximos como ${hubs.filter(h => h !== city).slice(0, 3).join(", ")}. Seja voce um contractor, empresa de limpeza, restaurante, escritorio de advocacia ou qualquer negocio de servicos em ${city}, nossa plataforma e feita para voce competir com as grandes redes. Suporte completo em Portugues, Ingles e Espanhol — atendendo a comunidade brasileira, hispanica e americana de Massachusetts.`,
     faqTitle: (city: string) => `FAQ Sobre Nossos Servicos em ${city}`,
     ctaTitle: (city: string) => `Pronto para Crescer Seu Negocio em ${city}?`,
     ctaBtn: "COMECAR TESTE GRATIS",
@@ -72,10 +72,10 @@ const labels = {
   es: {
     badge: (city: string) => `${city}, Massachusetts`,
     title: (svc: string, city: string) => `${svc} en ${city}, MA`,
-    desc: (svc: string, city: string, county: string) => `Buscando ${svc.toLowerCase()} en ${city}? Bee Pro Hub ayuda negocios locales en ${city}, ${county} County a automatizar marketing, gestionar leads y crecer ingresos.`,
+    desc: (svc: string, city: string, county: string, region: string, pop: number, size: string) => `Buscando ${svc.toLowerCase()} en ${city}, MA? Bee Pro Hub atiende a ${pop.toLocaleString("es-ES")} residentes y ${size === "large" ? "miles de pequenas y medianas empresas" : size === "mid" ? "cientos de negocios locales" : "decenas de negocios familiares"} en ${city}, en la region ${region} del condado de ${county}. Automatizamos marketing, gestionamos leads y crecemos tus ingresos con la plataforma CRM todo-en-uno mas completa de Massachusetts.`,
     whatWeOffer: (city: string) => `Lo Que Ofrecemos para Negocios en ${city}`,
     whyChoose: (city: string) => `Por Que Negocios en ${city} Eligen Bee Pro Hub`,
-    whyText: (city: string, county: string) => `Basados en Marlborough, Massachusetts, entendemos el mercado local en ${county} County. Con soporte en Espanol, Ingles y Portugues.`,
+    whyText: (city: string, county: string, region: string, hubs: string[]) => `Basados en Marlborough, MA — a pocos kilometros de ${city} — entendemos profundamente el mercado de la region ${region}. Atendemos negocios en ${county} County y en los hubs cercanos como ${hubs.filter(h => h !== city).slice(0, 3).join(", ")}. Sea usted contratista, empresa de limpieza, restaurante, oficina o cualquier negocio de servicios en ${city}, nuestra plataforma esta hecha para que compita con las grandes cadenas. Soporte completo en Espanol, Ingles y Portugues — atendiendo a las comunidades hispana, brasilena y americana de Massachusetts.`,
     faqTitle: (city: string) => `FAQ Sobre Nuestros Servicios en ${city}`,
     ctaTitle: (city: string) => `Listo para Crecer Tu Negocio en ${city}?`,
     ctaBtn: "COMENZAR PRUEBA GRATIS",
@@ -99,10 +99,10 @@ const labels = {
   en: {
     badge: (city: string) => `${city}, Massachusetts`,
     title: (svc: string, city: string) => `${svc} in ${city}, MA`,
-    desc: (svc: string, city: string, county: string) => `Looking for professional ${svc.toLowerCase()} in ${city}? Bee Pro Hub helps local businesses in ${city}, ${county} County automate their marketing, manage leads, and grow revenue.`,
+    desc: (svc: string, city: string, county: string, region: string, pop: number, size: string) => `Looking for professional ${svc.toLowerCase()} in ${city}, MA? Bee Pro Hub serves ${pop.toLocaleString("en-US")} residents and ${size === "large" ? "thousands of small and mid-size businesses" : size === "mid" ? "hundreds of local businesses" : "dozens of family-owned businesses"} in ${city}, in the ${region} area of ${county} County. We automate marketing, manage leads, and grow revenue with the most complete all-in-one CRM platform in Massachusetts.`,
     whatWeOffer: (city: string) => `What We Offer Businesses in ${city}`,
     whyChoose: (city: string) => `Why ${city} Businesses Choose Bee Pro Hub`,
-    whyText: (city: string, county: string) => `Based in Marlborough, Massachusetts, we understand the local market in ${county} County. With support in English, Portuguese, and Spanish.`,
+    whyText: (city: string, county: string, region: string, hubs: string[]) => `Headquartered in Marlborough, MA — just minutes from ${city} — we deeply understand the ${region} market. We serve businesses across ${county} County and nearby hubs like ${hubs.filter(h => h !== city).slice(0, 3).join(", ")}. Whether you're a contractor, cleaning company, restaurant, law firm, or any service business in ${city}, our platform is built to help you compete with the big chains. Full support in English, Portuguese, and Spanish — serving the American, Brazilian, and Hispanic communities across Massachusetts.`,
     faqTitle: (city: string) => `FAQ About Our Services in ${city}`,
     ctaTitle: (city: string) => `Ready to Grow Your ${city} Business?`,
     ctaBtn: "START FREE TRIAL",
@@ -135,6 +135,9 @@ export default async function CityPage({ params }: { params: Promise<{ citypage:
   const nearbyCities = massachusettsCities.filter((c) => c.county === city.county && c.slug !== city.slug).slice(0, 6);
   const cityFaqs = l.faq(city.name, service.title, city.county);
   const svcs = l.services(city.name);
+  const { region, hubs } = getCityRegion(city.county);
+  const size = citySize(city.population);
+  const mapQuery = encodeURIComponent(`${city.name}, ${city.county} County, MA`);
 
   return (
     <>
@@ -143,7 +146,7 @@ export default async function CityPage({ params }: { params: Promise<{ citypage:
       {/* Hero */}
       <section className="relative overflow-hidden py-16 lg:py-24">
         <div className="absolute inset-0">
-          <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80" alt={city.name} fill className="object-cover" />
+          <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80" alt={`${service.title} for businesses in ${city.name}, ${city.county} County, Massachusetts`} fill className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/75 to-dark/50" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
@@ -151,7 +154,7 @@ export default async function CityPage({ params }: { params: Promise<{ citypage:
             <div className="animate-fade-left">
               <div className="badge-gold mb-6">{l.badge(city.name)}</div>
               <h1 className="section-heading text-white mb-5">{l.title(service.title, city.name)}</h1>
-              <p className="text-white/80 text-base lg:text-lg leading-relaxed mb-6">{l.desc(service.description, city.name, city.county)}</p>
+              <p className="text-white/80 text-base lg:text-lg leading-relaxed mb-6">{l.desc(service.description, city.name, city.county, region, city.population, size)}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{l.ctaBtn} &rarr;</Link>
               </div>
@@ -193,7 +196,27 @@ export default async function CityPage({ params }: { params: Promise<{ citypage:
       <section className="bg-gradient-to-br from-gold-50 to-amber-50 py-16 bg-dots">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-dark mb-5">{l.whyChoose(city.name)}</h2>
-          <p className="text-white/80 leading-relaxed text-lg">{l.whyText(city.name, city.county)}</p>
+          <p className="text-gray-700 leading-relaxed text-lg">{l.whyText(city.name, city.county, region, hubs)}</p>
+        </div>
+      </section>
+
+      {/* Map */}
+      <section className="bg-white py-12">
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-dark text-center mb-6">
+            {locale === "pt" ? `Atendendo ${city.name}, MA e Regiao` : locale === "es" ? `Atendiendo ${city.name}, MA y Region` : `Serving ${city.name}, MA and Surrounding Area`}
+          </h2>
+          <div className="rounded-2xl overflow-hidden border-2 border-primary/10 shadow-lg">
+            <iframe
+              src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+              width="100%"
+              height="360"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title={`Map of ${city.name}, ${city.county} County, Massachusetts`}
+            />
+          </div>
         </div>
       </section>
 

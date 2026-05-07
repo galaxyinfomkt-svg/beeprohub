@@ -23,7 +23,7 @@ export default function ContactPage() {
       {/* Hero - imagem de fundo de atendimento */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <Image src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1400&q=80" alt="Contact us" fill className="object-cover" />
+          <Image src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1400&q=80" alt="Contact Bee Pro Hub support team in Marlborough Massachusetts" fill className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/75 to-dark/50" />
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16 lg:py-20 relative z-10 text-center">

@@ -7,6 +7,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
 import { organizationSchema, localBusinessSchema, faqSchema, websiteSchema, siteNavigationSchema } from "@/lib/schemas";
 import { pageSeo } from "@/lib/seo";
+import { testimonials, getQuote, getResult, aggregateRating } from "@/data/testimonials";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -31,7 +32,7 @@ export default function HomePage() {
       {/* ========== HERO ========== */}
       <section className="relative overflow-hidden py-12 lg:py-20">
         <div className="absolute inset-0">
-          <Image src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" alt="Business dashboard" fill className="object-cover" />
+          <Image src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" alt="Bee Pro Hub CRM dashboard helping Massachusetts businesses manage leads and sales" fill className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/75 to-dark/50" />
         </div>
         <div className="absolute top-[-150px] right-[-150px] w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl" />
@@ -273,6 +274,38 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== REVIEWS / SOCIAL PROOF ========== */}
+      <section className="bg-gray-50 py-16 lg:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10">
+            <div className="badge-gold mb-4">
+              {locale === "pt" ? "O Que Nossos Clientes Dizem" : locale === "es" ? "Lo Que Dicen Nuestros Clientes" : "What Our Clients Say"}
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-dark mb-3">
+              <span className="text-primary">{aggregateRating().average} &#9733;</span>{" "}
+              {locale === "pt" ? `media baseada em ${aggregateRating().count}+ avaliacoes` : locale === "es" ? `promedio basado en ${aggregateRating().count}+ resenas` : `average rating from ${aggregateRating().count}+ reviews`}
+            </h2>
+            <Link href={`/${locale}/reviews`} className="text-primary font-semibold hover:text-primary-hover text-sm">
+              {locale === "pt" ? "Ver todas as avaliacoes" : locale === "es" ? "Ver todas las resenas" : "See all reviews"} &rarr;
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {testimonials.slice(0, 6).map((tm) => (
+              <article key={tm.id} className="bg-white rounded-2xl p-6 border-2 border-gray-100 hover:border-primary/30 transition-all card-gold">
+                <div className="flex items-center gap-1 mb-3 text-primary text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">&ldquo;{getQuote(tm, locale)}&rdquo;</p>
+                <div className="bg-primary/10 text-primary font-bold text-xs px-3 py-1.5 rounded-full inline-block mb-3">{getResult(tm, locale)}</div>
+                <div className="border-t border-gray-100 pt-3">
+                  <p className="font-bold text-dark text-sm">{tm.authorName}</p>
+                  <p className="text-xs text-gray-500">{tm.authorRole}, {tm.company}</p>
+                  <p className="text-xs text-gray-400 mt-0.5">{tm.city} &middot; {tm.industry}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
