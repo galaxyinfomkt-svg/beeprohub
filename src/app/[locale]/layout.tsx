@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import ChatWidget from "@/components/ui/ChatWidget";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
@@ -70,7 +69,6 @@ export default async function LocaleLayout({ children, params }: Props) {
           <Header />
           <main className="pt-[100px] sm:pt-[104px]">{children}</main>
           <Footer />
-          <WhatsAppButton />
           <ChatWidget />
         </NextIntlClientProvider>
       </body>
