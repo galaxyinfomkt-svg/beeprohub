@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import ChatWidget from "@/components/ui/ChatWidget";
+import FloatingCallButton from "@/components/ui/FloatingCallButton";
 import GHLFormTracker from "@/components/ui/GHLFormTracker";
 import StickyMobileCTA from "@/components/ui/StickyMobileCTA";
 
@@ -78,7 +78,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <Header />
           <main className="pt-[100px] sm:pt-[104px]">{children}</main>
           <Footer />
-          <ChatWidget />
+          <FloatingCallButton />
           <GHLFormTracker />
           <StickyMobileCTA />
         </NextIntlClientProvider>
