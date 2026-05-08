@@ -2,11 +2,12 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { blogPosts } from "@/data/blog-posts";
+import { blogPosts, getPillarFor, getClusterPosts } from "@/data/blog-posts";
 import { blogTranslations } from "@/data/blog-translations";
 import JsonLd from "@/components/seo/JsonLd";
 import HeroForm from "@/components/ui/HeroForm";
 import { articleSchema, breadcrumbSchema } from "@/lib/schemas";
+import { PHONE, PHONE_LINK } from "@/lib/utils";
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -24,10 +25,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-const labels: Record<string, { back: string; ctaTitle: string; ctaText: string; ctaBtn: string; readAlso: string; share: string }> = {
-  pt: { back: "Voltar ao Blog", ctaTitle: "Pronto para Transformar Seu Negocio?", ctaText: "Teste gratis por 14 dias e veja a diferenca que o Bee Pro Hub faz.", ctaBtn: "COMECAR TESTE GRATIS", readAlso: "Leia Tambem", share: "Compartilhe" },
-  es: { back: "Volver al Blog", ctaTitle: "Listo para Transformar Tu Negocio?", ctaText: "Prueba gratis por 14 dias y ve la diferencia.", ctaBtn: "COMENZAR PRUEBA GRATIS", readAlso: "Lee Tambien", share: "Comparte" },
-  en: { back: "Back to Blog", ctaTitle: "Ready to Transform Your Business?", ctaText: "Start your 14-day free trial and see the difference.", ctaBtn: "START FREE TRIAL", readAlso: "Read Also", share: "Share" },
+const labels: Record<string, { back: string; ctaTitle: string; ctaText: string; ctaBtn: string; readAlso: string; share: string; pillarBadge: string; partOfCluster: string; clusterPosts: string }> = {
+  pt: { back: "Voltar ao Blog", ctaTitle: "Pronto para Transformar Seu Negocio?", ctaText: "Teste gratis por 14 dias e veja a diferenca que o Bee Pro Hub faz.", ctaBtn: "COMECAR TESTE GRATIS", readAlso: "Leia Tambem", share: "Compartilhe", pillarBadge: "Artigo Pilar", partOfCluster: "Parte do guia:", clusterPosts: "Posts deste cluster" },
+  es: { back: "Volver al Blog", ctaTitle: "Listo para Transformar Tu Negocio?", ctaText: "Prueba gratis por 14 dias y ve la diferencia.", ctaBtn: "COMENZAR PRUEBA GRATIS", readAlso: "Lee Tambien", share: "Comparte", pillarBadge: "Articulo Pilar", partOfCluster: "Parte de la guia:", clusterPosts: "Posts de este cluster" },
+  en: { back: "Back to Blog", ctaTitle: "Ready to Transform Your Business?", ctaText: "Start your 14-day free trial and see the difference.", ctaBtn: "START FREE TRIAL", readAlso: "Read Also", share: "Share", pillarBadge: "Pillar Article", partOfCluster: "Part of guide:", clusterPosts: "Posts in this cluster" },
 };
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
@@ -40,6 +41,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const excerpt = locale === "pt" && tr?.excerptPt ? tr.excerptPt : locale === "es" && tr?.excerptEs ? tr.excerptEs : post.excerpt;
   const content = locale === "pt" && tr?.contentPt ? tr.contentPt : locale === "es" && tr?.contentEs ? tr.contentEs : post.content;
   const relatedPosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 3);
+  const pillarSlug = getPillarFor(slug);
+  const pillarPost = pillarSlug ? blogPosts.find((p) => p.slug === pillarSlug) : null;
+  const clusterSlugs = post.isPillar ? getClusterPosts(slug) : [];
+  const clusterPosts = blogPosts.filter((p) => clusterSlugs.includes(p.slug));
 
   return (
     <>
@@ -59,11 +64,24 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <Link href={`/${locale}/blog`} className="text-primary text-sm hover:text-primary-hover inline-flex items-center gap-1 font-semibold mb-6">
             &larr; {l.back}
           </Link>
-          <div className="flex items-center gap-3 mb-5">
+          <div className="flex items-center gap-3 mb-5 flex-wrap">
             <span className="bg-primary text-dark text-xs font-bold px-3 py-1.5 rounded-full">{post.category}</span>
+            {post.isPillar && (
+              <span className="bg-gradient-to-r from-amber-400 to-primary text-dark text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wide">
+                &#9733; {l.pillarBadge}
+              </span>
+            )}
             <time className="text-gray-400 text-sm">{post.date}</time>
             <span className="text-gray-500 text-sm">By {post.author}</span>
           </div>
+          {pillarPost && (
+            <div className="mt-4 inline-flex items-center gap-2 bg-white/10 border border-primary/30 rounded-full px-4 py-2 backdrop-blur-sm">
+              <span className="text-primary text-xs font-semibold">{l.partOfCluster}</span>
+              <Link href={`/${locale}/blog/${pillarPost.slug}`} className="text-white text-xs font-bold hover:text-primary transition-colors">
+                {pillarPost.title} &rarr;
+              </Link>
+            </div>
+          )}
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-4">{title}</h1>
           <p className="text-gray-400 text-base lg:text-lg max-w-2xl">{excerpt}</p>
         </div>
@@ -95,11 +113,34 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     <Link href={`/${locale}/contact`} className="btn-primary btn-shine w-full text-center justify-center animate-pulse-yellow text-sm py-3">
                       {l.ctaBtn} &rarr;
                     </Link>
+                    <a href={PHONE_LINK} className="block text-center text-primary font-bold mt-3 text-sm hover:text-primary-hover transition-colors">
+                      {PHONE}
+                    </a>
                   </div>
                 </div>
 
                 {/* Form */}
                 <HeroForm />
+
+                {/* Cluster posts (only on pillar pages) */}
+                {clusterPosts.length > 0 && (
+                  <div className="bg-gradient-to-br from-primary/10 to-gold-50 rounded-2xl p-6 border-2 border-primary/30">
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="bg-primary text-dark text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">&#9733; {l.pillarBadge}</span>
+                    </div>
+                    <h3 className="font-bold text-dark text-base mb-4">{l.clusterPosts}</h3>
+                    <ul className="space-y-2">
+                      {clusterPosts.map((cp) => (
+                        <li key={cp.slug}>
+                          <Link href={`/${locale}/blog/${cp.slug}`} className="text-sm text-dark hover:text-primary font-semibold transition-colors flex items-start gap-2">
+                            <span className="text-primary">&rarr;</span>
+                            <span>{locale === "pt" && blogTranslations[cp.slug]?.titlePt ? blogTranslations[cp.slug].titlePt : locale === "es" && blogTranslations[cp.slug]?.titleEs ? blogTranslations[cp.slug].titleEs : cp.title}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 {/* Related Posts */}
                 <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
@@ -139,8 +180,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-dark mb-4">{l.ctaTitle}</h2>
           <p className="text-dark/70 mb-6">{l.ctaText}</p>
-          <div className="flex justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href={`/${locale}/contact`} className="btn-secondary btn-shine">{l.ctaBtn} &rarr;</Link>
+            <a href={PHONE_LINK} className="bg-white text-dark font-bold px-8 py-4 rounded-xl shadow-lg hover:-translate-y-1 transition-all btn-shine">{PHONE}</a>
           </div>
         </div>
       </section>

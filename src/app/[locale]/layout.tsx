@@ -5,6 +5,8 @@ import { routing } from "@/i18n/routing";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ChatWidget from "@/components/ui/ChatWidget";
+import GHLFormTracker from "@/components/ui/GHLFormTracker";
+import StickyMobileCTA from "@/components/ui/StickyMobileCTA";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -43,6 +45,8 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={locale} className={inter.className}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#F5B800" />
+        <meta name="format-detection" content="telephone=no" />
         {aiSummary && <meta name="ai-summary" content={aiSummary} />}
         <link rel="icon" href="/images/logo.png" />
         <link rel="apple-touch-icon" href="/images/logo.png" />
@@ -51,8 +55,10 @@ export default async function LocaleLayout({ children, params }: Props) {
           <link key={l} rel="alternate" hrefLang={hrefLangMap[l]} href={`https://beeprohub.com/${l}`} />
         ))}
         <link rel="alternate" hrefLang="x-default" href="https://beeprohub.com/pt" />
-        {/* Preconnect for performance */}
+        {/* Preconnect + preload critical images */}
         <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://api.leadconnectorhq.com" />
+        <link rel="preconnect" href="https://link.msgsndr.com" />
         {/* Google Analytics - replace GA_MEASUREMENT_ID with your actual ID */}
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
@@ -73,6 +79,8 @@ export default async function LocaleLayout({ children, params }: Props) {
           <main className="pt-[100px] sm:pt-[104px]">{children}</main>
           <Footer />
           <ChatWidget />
+          <GHLFormTracker />
+          <StickyMobileCTA />
         </NextIntlClientProvider>
       </body>
     </html>

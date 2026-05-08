@@ -8,6 +8,7 @@ import FAQ from "@/components/ui/FAQ";
 import { organizationSchema, localBusinessSchema, faqSchema, websiteSchema, siteNavigationSchema } from "@/lib/schemas";
 import { pageSeo } from "@/lib/seo";
 import { testimonials, getQuote, getResult, aggregateRating } from "@/data/testimonials";
+import { PHONE, PHONE_LINK } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -32,7 +33,7 @@ export default function HomePage() {
       {/* ========== HERO ========== */}
       <section className="relative overflow-hidden py-12 lg:py-20">
         <div className="absolute inset-0">
-          <Image src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" alt="Bee Pro Hub CRM dashboard helping Massachusetts businesses manage leads and sales" fill className="object-cover" />
+          <Image src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" alt="Bee Pro Hub CRM dashboard helping Massachusetts businesses manage leads and sales" fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/75 to-dark/50" />
         </div>
         <div className="absolute top-[-150px] right-[-150px] w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl" />
@@ -67,6 +68,9 @@ export default function HomePage() {
                 <Link href={contactHref} className="btn-primary btn-shine animate-pulse-yellow text-center">
                   {t("hero.cta")}
                 </Link>
+                <a href={PHONE_LINK} className="btn-outline text-center">
+                  {PHONE}
+                </a>
               </div>
 
               {/* Social proof */}
@@ -117,6 +121,45 @@ export default function HomePage() {
                 <div className="text-[11px] text-gray-400 mt-1">{t(`stats.${key}.label`)}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== INTEGRATIONS / BUILT-ON STRIP (E05 SaaS-adapted) ========== */}
+      <section className="bg-white py-10 border-y border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <p className="text-center text-xs font-semibold text-gray-400 uppercase tracking-widest mb-6">
+            {locale === "pt"
+              ? "Construído sobre · Integra com"
+              : locale === "es"
+              ? "Construido sobre · Integra con"
+              : "Built on · Integrates with"}
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-gray-400">
+            <div className="flex items-center gap-2 hover:text-dark transition-colors">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12l2-2 2 2-2 2-2-2zm14 0l2-2 2 2-2 2-2-2zM10 5l2-2 2 2-2 2-2-2zm0 14l2-2 2 2-2 2-2-2zM10 12l2-2 2 2-2 2-2-2z" /></svg>
+              <span className="font-bold text-sm">GoHighLevel</span>
+            </div>
+            <div className="flex items-center gap-2 hover:text-dark transition-colors">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-1.81-.15-1.81z" /></svg>
+              <span className="font-bold text-sm">Google Calendar</span>
+            </div>
+            <div className="flex items-center gap-2 hover:text-dark transition-colors">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" /></svg>
+              <span className="font-bold text-sm">WhatsApp Business</span>
+            </div>
+            <div className="flex items-center gap-2 hover:text-dark transition-colors">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M22 4H2v16h20V4zm-2 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
+              <span className="font-bold text-sm">Mailgun</span>
+            </div>
+            <div className="flex items-center gap-2 hover:text-dark transition-colors">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M5.79 14.32c-.86 0-1.55-.7-1.55-1.55v-1.55c0-.86.7-1.55 1.55-1.55h.78v4.65h-.78zm12.42-4.65v4.65h-.78V9.67h.78zM12 7.34c-2.57 0-4.66 2.08-4.66 4.66S9.43 16.66 12 16.66s4.66-2.08 4.66-4.66S14.57 7.34 12 7.34zm0 7.76c-1.71 0-3.1-1.39-3.1-3.1s1.39-3.1 3.1-3.1 3.1 1.39 3.1 3.1-1.39 3.1-3.1 3.1z" /></svg>
+              <span className="font-bold text-sm">Twilio</span>
+            </div>
+            <div className="flex items-center gap-2 hover:text-dark transition-colors">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h.003z" /></svg>
+              <span className="font-bold text-sm">Stripe</span>
+            </div>
           </div>
         </div>
       </section>
@@ -235,6 +278,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Link href={contactHref} className="btn-primary btn-shine">{t("features.automation.cta")} &rarr;</Link>
+                    <a href={PHONE_LINK} className="btn-outline">{PHONE}</a>
                   </div>
                 </div>
                 <div className="flex justify-center">
@@ -316,10 +360,13 @@ export default function HomePage() {
         <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-dark mb-4">{t("cta.ready")}</h2>
           <p className="text-dark/70 mb-8 text-lg">{t("cta.subtitle")}</p>
-          <div className="flex justify-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link href={contactHref} className="btn-secondary btn-shine text-lg">
               {t("extras.freeTrialBtn")} &rarr;
             </Link>
+            <a href={PHONE_LINK} className="bg-white text-dark font-bold px-10 py-4 rounded-xl text-lg shadow-lg hover:-translate-y-1 transition-all btn-shine">
+              {t("extras.callPrefix")} {PHONE}
+            </a>
           </div>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-dark/60">
             <span className="flex items-center gap-1"><Check /> {t("cta.noCard")}</span>
@@ -408,7 +455,8 @@ export default function HomePage() {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-dark mb-4">{t("extras.finalCtaTitle")}</h2>
           <p className="text-dark/70 mb-3 text-lg">{t("extras.finalCtaSubtitle")}</p>
           <p className="text-dark font-bold mb-8">{t("extras.finalCtaBonus")}</p>
-          <div className="flex justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href={PHONE_LINK} className="btn-secondary btn-shine text-lg">{t("extras.callNowPrefix")} {PHONE}</a>
             <Link href={contactHref} className="bg-white text-dark font-bold px-10 py-4 rounded-xl text-lg shadow-xl hover:-translate-y-1 transition-all btn-shine">
               {t("extras.finalTestOnline")} &rarr;
             </Link>

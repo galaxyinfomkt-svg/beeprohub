@@ -1,7 +1,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
-import { LOGIN_URL } from "@/lib/utils";
+import { PHONE, PHONE_LINK, LOGIN_URL } from "@/lib/utils";
 import { massachusettsCities } from "@/data/massachusetts-cities";
 
 const allCities = massachusettsCities;
@@ -24,7 +24,10 @@ export default function Footer() {
           <p className="text-dark/70 mb-6 text-base">
             {locale === "en" ? "14 days full access. Cancel anytime." : locale === "es" ? "14 dias acceso total. Cancela cuando quieras." : "14 dias de acesso total. Cancele quando quiser."}
           </p>
-          <div className="flex justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href={PHONE_LINK} className="btn-secondary btn-shine">
+              {locale === "en" ? "Call & Activate" : locale === "es" ? "Llamar y Activar" : "Ligar e Ativar"}
+            </a>
             <Link href={`/${locale}/contact`} className="bg-white text-dark font-bold px-8 py-4 rounded-xl text-base shadow-lg hover:-translate-y-1 transition-all btn-shine">
               {locale === "en" ? "Start Online" : locale === "es" ? "Prueba Online" : "Teste Online"}
             </Link>
@@ -105,6 +108,10 @@ export default function Footer() {
             <div>
               <h3 className="text-white font-bold text-base mb-5 uppercase tracking-wide">{t("contactTitle")}</h3>
               <address className="not-italic space-y-4">
+                <a href={PHONE_LINK} className="flex items-center gap-2.5 text-primary font-bold text-lg hover:text-primary-hover transition-colors">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                  {PHONE}
+                </a>
                 <div className="flex items-start gap-2.5 text-sm text-gray-400">
                   <svg className="w-4 h-4 text-primary mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                   <span>Marlborough, MA 01752<br />United States</span>

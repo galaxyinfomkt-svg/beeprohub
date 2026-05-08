@@ -7,6 +7,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
 import HeroForm from "@/components/ui/HeroForm";
 import { localBusinessSchema, serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schemas";
+import { PHONE, PHONE_LINK } from "@/lib/utils";
 
 function parseCityPage(slug: string) {
   for (const svc of cityServices) {
@@ -146,7 +147,7 @@ export default async function CityPage({ params }: { params: Promise<{ citypage:
       {/* Hero */}
       <section className="relative overflow-hidden py-16 lg:py-24">
         <div className="absolute inset-0">
-          <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80" alt={`${service.title} for businesses in ${city.name}, ${city.county} County, Massachusetts`} fill className="object-cover" />
+          <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80" alt={`${service.title} for businesses in ${city.name}, ${city.county} County, Massachusetts`} fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/75 to-dark/50" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
@@ -157,6 +158,7 @@ export default async function CityPage({ params }: { params: Promise<{ citypage:
               <p className="text-white/80 text-base lg:text-lg leading-relaxed mb-6">{l.desc(service.description, city.name, city.county, region, city.population, size)}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{l.ctaBtn} &rarr;</Link>
+                <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>
               </div>
             </div>
             <div className="animate-fade-right"><HeroForm /></div>

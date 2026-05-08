@@ -8,6 +8,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
 import HeroForm from "@/components/ui/HeroForm";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schemas";
+import { PHONE, PHONE_LINK } from "@/lib/utils";
 
 const nicheImages: Record<string, string> = {
   contractors: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80",
@@ -78,6 +79,7 @@ export default async function NicheLandingPage({ params }: { params: Promise<{ n
               <p className="text-white/80 text-base lg:text-lg leading-relaxed mb-6">{heroSubtitle}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{trialLabel} &rarr;</Link>
+                <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>
               </div>
             </div>
             <div className="animate-fade-right"><HeroForm /></div>

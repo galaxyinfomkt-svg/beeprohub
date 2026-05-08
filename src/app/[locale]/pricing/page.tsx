@@ -47,7 +47,7 @@ export default function PricingPage() {
       {/* Hero - imagem de fundo de negocios */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <Image src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1400&q=80" alt="Bee Pro Hub pricing plans for small businesses in Massachusetts" fill className="object-cover" />
+          <Image src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1400&q=80" alt="Bee Pro Hub pricing plans for small businesses in Massachusetts" fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/75 to-dark/50" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 lg:py-24 relative z-10">

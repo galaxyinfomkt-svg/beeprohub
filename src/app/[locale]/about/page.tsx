@@ -7,6 +7,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import HeroForm from "@/components/ui/HeroForm";
 import { organizationSchema, breadcrumbSchema } from "@/lib/schemas";
 import { pageSeo } from "@/lib/seo";
+import { PHONE, PHONE_LINK } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -26,7 +27,7 @@ export default function AboutPage() {
       {/* Hero - imagem de fundo de escritorio/equipe */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <Image src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=80" alt="Bee Pro Hub team in Marlborough Massachusetts collaborating on CRM solutions" fill className="object-cover" />
+          <Image src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=80" alt="Bee Pro Hub team in Marlborough Massachusetts collaborating on CRM solutions" fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/75 to-dark/50" />
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 lg:py-24 relative z-10">
@@ -37,6 +38,7 @@ export default function AboutPage() {
               <p className="text-white/80 text-base lg:text-lg leading-relaxed mb-8">{t("mission.text")}</p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${locale}/contact`} className="btn-primary btn-shine animate-pulse-yellow text-center">{tExtras("aboutContactCta")} &rarr;</Link>
+                <a href={PHONE_LINK} className="btn-outline text-center">{PHONE}</a>
               </div>
             </div>
             <div className="animate-fade-right"><HeroForm /></div>

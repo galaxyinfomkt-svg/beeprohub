@@ -106,6 +106,8 @@ export default async function ReviewsPage({ params }: { params: Promise<{ locale
             src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1400&q=80"
             alt="Bee Pro Hub customer reviews and testimonials from Massachusetts businesses"
             fill
+            priority
+            sizes="100vw"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/75 to-dark/50" />
