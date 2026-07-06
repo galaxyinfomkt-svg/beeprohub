@@ -5,6 +5,7 @@ import { routing } from "@/i18n/routing";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingCallButton from "@/components/ui/FloatingCallButton";
+import FloatingWhatsAppButton from "@/components/ui/FloatingWhatsAppButton";
 import GHLFormTracker from "@/components/ui/GHLFormTracker";
 import StickyMobileCTA from "@/components/ui/StickyMobileCTA";
 
@@ -79,6 +80,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <main className="pt-[100px] sm:pt-[104px]">{children}</main>
           <Footer />
           <FloatingCallButton />
+          <FloatingWhatsAppButton />
           <GHLFormTracker />
           <StickyMobileCTA />
         </NextIntlClientProvider>
