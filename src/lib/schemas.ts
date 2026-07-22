@@ -16,7 +16,7 @@ export function organizationSchema() {
     email: "contact@beeprohub.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Marlborough",
+      streetAddress: "186 Main Street Suite 3",
       addressLocality: "Marlborough",
       addressRegion: "MA",
       postalCode: "01752",
@@ -82,7 +82,7 @@ export function localBusinessSchema(city?: string) {
     paymentAccepted: "Credit Card, Bank Transfer",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Marlborough",
+      streetAddress: "186 Main Street Suite 3",
       addressLocality: city || "Marlborough",
       addressRegion: "MA",
       postalCode: "01752",
