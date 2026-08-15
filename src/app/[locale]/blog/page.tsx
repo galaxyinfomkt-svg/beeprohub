@@ -11,8 +11,8 @@ import { pageSeo } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "blog" });
-  return pageSeo({ title: t("title"), description: t("subtitle"), path: "/blog", locale, keywords: "blog marketing digital, CRM tips, lead generation strategies, marketing automation guide" });
+  const t = await getTranslations({ locale, namespace: "pageMeta" });
+  return pageSeo({ title: t("blog.title"), description: t("blog.description"), path: "/blog", locale, keywords: "blog marketing digital, CRM tips, lead generation strategies, marketing automation guide" });
 }
 
 export default function BlogPage() {

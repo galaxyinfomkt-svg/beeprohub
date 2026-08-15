@@ -2,7 +2,7 @@ import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
 import { PHONE, PHONE_LINK, WHATSAPP, WHATSAPP_LINK, LOGIN_URL } from "@/lib/utils";
-import { massachusettsCities } from "@/data/massachusetts-cities";
+import { massachusettsCities, cityPagePath } from "@/data/massachusetts-cities";
 
 const allCities = massachusettsCities;
 
@@ -141,7 +141,7 @@ export default function Footer() {
             <div className="flex flex-wrap gap-x-1 gap-y-0.5">
               {allCities.map((city, i) => (
                 <span key={city.slug}>
-                  <Link href={`/${locale}/marketing-agency-${city.slug}-ma`} className="text-xs text-gray-500 hover:text-primary transition-colors">
+                  <Link href={`/${locale}/${cityPagePath(city.slug)}`} className="text-xs text-gray-500 hover:text-primary transition-colors">
                     {city.name}
                   </Link>
                   {i < allCities.length - 1 && <span className="text-gray-700 mx-0.5">&middot;</span>}

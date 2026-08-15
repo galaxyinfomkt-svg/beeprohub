@@ -1,32 +1,79 @@
+import { ADDRESS, EMAIL, PHONE_E164, PHONE_IS_FOREIGN, SITE_URL } from "./utils";
+
+// ---------------------------------------------------------------------------
+// NOTA SOBRE AVALIAÇÕES
+//
+// Removidos daqui: `aggregateRating` e o array `review`. Havia dois problemas.
+//
+// 1. Os dados eram inventados — `reviewCount: "50"` com 8 depoimentos no site,
+//    e os próprios depoimentos estão marcados como fictícios em testimonials.ts.
+// 2. Mesmo com dados reais, marcar AggregateRating em LocalBusiness/Product com
+//    avaliações hospedadas pelo próprio negócio ("self-serving reviews") é
+//    explicitamente desqualificado pelo Google desde 2019 — as estrelas não
+//    aparecem e a marcação inválida pode contaminar os outros schemas da página.
+//
+// O caminho correto para estrelas na SERP é acumular avaliações reais no Google
+// Business Profile. Elas aparecem sozinhas, sem markup no site.
+// ---------------------------------------------------------------------------
+
+const postalAddress = {
+  "@type": "PostalAddress",
+  streetAddress: ADDRESS.street,
+  addressLocality: ADDRESS.city,
+  addressRegion: ADDRESS.region,
+  postalCode: ADDRESS.postalCode,
+  addressCountry: ADDRESS.country,
+};
+
+const geo = {
+  "@type": "GeoCoordinates",
+  latitude: ADDRESS.lat,
+  longitude: ADDRESS.lng,
+};
+
+/** `telephone` de um LocalBusiness é lido como o telefone daquele endereço.
+ *  Enquanto o número não for dos EUA, ele fica fora daqui para não criar
+ *  contradição de NAP com o addressCountry "US". */
+const telephone = PHONE_IS_FOREIGN ? {} : { telephone: PHONE_E164 };
+
+/** Canal de atendimento da Organization. Ao contrário de `telephone`, um
+ *  ContactPoint não afirma presença física no endereço — então o número real
+ *  aparece nos dados estruturados mesmo sendo internacional, e o Google e os
+ *  modelos de IA conseguem citar um contato válido da empresa. */
+const contactPoint = {
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      telephone: PHONE_E164,
+      email: EMAIL,
+      availableLanguage: ["English", "Portuguese", "Spanish"],
+      areaServed: "US",
+    },
+  ],
+};
+
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://beeprohub.com/#organization",
+    "@id": `${SITE_URL}/#organization`,
     name: "Bee Pro Hub",
-    url: "https://beeprohub.com",
+    url: SITE_URL,
     logo: {
       "@type": "ImageObject",
-      url: "https://beeprohub.com/images/logo.png",
+      url: `${SITE_URL}/images/logo.png`,
       width: 600,
       height: 600,
     },
-    description: "All-in-one CRM and marketing automation platform for local businesses. Built on GoHighLevel. Serving businesses across Massachusetts and the entire United States.",
-    telephone: "+553522990041",
-    email: "contact@beeprohub.com",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "186 Main Street Suite 3",
-      addressLocality: "Marlborough",
-      addressRegion: "MA",
-      postalCode: "01752",
-      addressCountry: "US",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "42.3459",
-      longitude: "-71.5523",
-    },
+    image: `${SITE_URL}/opengraph-image`,
+    description:
+      "All-in-one CRM and marketing automation platform for local businesses. Built on GoHighLevel. Serving businesses across Massachusetts and the entire United States.",
+    ...telephone,
+    ...contactPoint,
+    email: EMAIL,
+    address: postalAddress,
+    geo,
     sameAs: [
       "https://www.facebook.com/galaxymkt.us",
       "https://www.instagram.com/galaxy.mkt",
@@ -47,52 +94,55 @@ export function organizationSchema() {
   };
 }
 
-export function websiteSchema() {
+export function websiteSchema(locale = "en") {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://beeprohub.com/#website",
+    "@id": `${SITE_URL}/#website`,
     name: "Bee Pro Hub",
-    url: "https://beeprohub.com",
+    url: SITE_URL,
     description: "All-in-one CRM and marketing automation platform for local businesses",
-    publisher: { "@id": "https://beeprohub.com/#organization" },
+    publisher: { "@id": `${SITE_URL}/#organization` },
     inLanguage: ["pt-BR", "en-US", "es"],
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://beeprohub.com/pt/blog?q={search_term_string}",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_URL}/${locale}/blog?q={search_term_string}`,
+      },
       "query-input": "required name=search_term_string",
     },
   };
 }
 
-export function localBusinessSchema(city?: string) {
+/**
+ * LocalBusiness da SEDE. O endereço é sempre o de Marlborough.
+ *
+ * Antes, `localBusinessSchema(city)` trocava o `addressLocality` pelo nome da
+ * cidade mas mantinha o CEP e as coordenadas de Marlborough — cada uma das
+ * páginas de cidade declarava um endereço que não existe (Boston com CEP 01752).
+ * Agora a cidade entra em `areaServed`, que é o campo correto para "atendemos
+ * essa região sem ter endereço lá".
+ */
+export function localBusinessSchema(servedCity?: string) {
   return {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "ProfessionalService", "MarketingAgency"],
-    "@id": "https://beeprohub.com/#localbusiness",
+    "@type": ["LocalBusiness", "ProfessionalService"],
+    "@id": `${SITE_URL}/#localbusiness`,
     name: "Bee Pro Hub",
-    description: city
-      ? `Bee Pro Hub provides CRM, marketing automation, and lead generation services for businesses in ${city}, Massachusetts. All-in-one platform replacing 10+ tools.`
+    description: servedCity
+      ? `Bee Pro Hub provides CRM, marketing automation, and lead generation services for businesses in ${servedCity}, Massachusetts, from its office in Marlborough, MA.`
       : "All-in-one CRM and marketing automation platform for local businesses in Massachusetts and across the United States. Built on GoHighLevel.",
-    url: "https://beeprohub.com",
-    telephone: "+553522990041",
-    image: "https://beeprohub.com/images/logo.png",
+    url: SITE_URL,
+    ...telephone,
+    email: EMAIL,
+    image: `${SITE_URL}/opengraph-image`,
     priceRange: "$$",
     currenciesAccepted: "USD",
     paymentAccepted: "Credit Card, Bank Transfer",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "186 Main Street Suite 3",
-      addressLocality: city || "Marlborough",
-      addressRegion: "MA",
-      postalCode: "01752",
-      addressCountry: "US",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "42.3459",
-      longitude: "-71.5523",
-    },
+    address: postalAddress,
+    geo,
+    parentOrganization: { "@id": `${SITE_URL}/#organization` },
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -101,34 +151,12 @@ export function localBusinessSchema(city?: string) {
         closes: "19:00",
       },
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      bestRating: "5",
-      worstRating: "1",
-      reviewCount: "50",
-      ratingCount: "50",
-    },
-    review: [
-      {
-        "@type": "Review",
-        reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-        author: { "@type": "Person", name: "Carlos Silva" },
-        reviewBody: "Aumentamos em 250% nossa taxa de conversao em apenas 60 dias usando o CRM do Bee Pro Hub.",
-        datePublished: "2025-12-15",
-      },
-      {
-        "@type": "Review",
-        reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-        author: { "@type": "Person", name: "Marina Costa" },
-        reviewBody: "Com as automacoes do Bee Pro Hub, nossa empresa passou de 5 para 50 vendas por mes sem contratar mais ninguem.",
-        datePublished: "2026-01-10",
-      },
-    ],
-    areaServed: {
-      "@type": "State",
-      name: "Massachusetts",
-    },
+    areaServed: servedCity
+      ? [
+          { "@type": "City", name: `${servedCity}, MA`, containedInPlace: { "@type": "State", name: "Massachusetts" } },
+          { "@type": "State", name: "Massachusetts" },
+        ]
+      : [{ "@type": "State", name: "Massachusetts" }],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Bee Pro Hub Services",
@@ -143,45 +171,88 @@ export function localBusinessSchema(city?: string) {
   };
 }
 
-export function serviceSchema(name: string, description: string, url: string) {
+export function serviceSchema({
+  name,
+  description,
+  url,
+  areaServed,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  /** Cidade específica quando a página for local; padrão é o estado. */
+  areaServed?: string;
+}) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     name,
     description,
     url,
-    provider: { "@id": "https://beeprohub.com/#organization" },
-    areaServed: { "@type": "State", name: "Massachusetts" },
+    provider: { "@id": `${SITE_URL}/#organization` },
+    areaServed: areaServed
+      ? { "@type": "City", name: `${areaServed}, MA`, containedInPlace: { "@type": "State", name: "Massachusetts" } }
+      : { "@type": "State", name: "Massachusetts" },
     serviceType: "Marketing and CRM Services",
     availableChannel: {
       "@type": "ServiceChannel",
-      serviceUrl: "https://beeprohub.com",
-      servicePhone: "+553522990041",
+      serviceUrl: url,
+      ...(PHONE_IS_FOREIGN ? {} : { servicePhone: PHONE_E164 }),
       availableLanguage: ["English", "Portuguese", "Spanish"],
     },
   };
 }
 
-export function productSchema(name: string, description: string) {
+/**
+ * SoftwareApplication com ofertas reais. Sem `aggregateRating` — ver nota no
+ * topo do arquivo. As ofertas precisam bater com o preço exibido na página.
+ */
+export function softwareSchema({
+  name,
+  description,
+  url,
+  offers,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  offers: { name: string; price: number; description?: string }[];
+}) {
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name,
     description,
+    url,
     applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
-    offers: {
-      "@type": "AggregateOffer",
+    applicationSubCategory: "CRM",
+    operatingSystem: "Web-based (any modern browser), iOS, Android",
+    provider: { "@id": `${SITE_URL}/#organization` },
+    brand: { "@type": "Brand", name: "Bee Pro Hub" },
+    featureList: [
+      "CRM and pipeline management",
+      "Email, SMS and WhatsApp automation",
+      "Business phone system with call recording",
+      "Online appointment scheduling with reminders",
+      "Quotes, invoices and payments",
+      "Landing pages and funnels",
+    ],
+    offers: offers.map((o) => ({
+      "@type": "Offer",
+      name: o.name,
+      ...(o.description ? { description: o.description } : {}),
+      price: o.price.toFixed(2),
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
-      offerCount: 3,
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      reviewCount: "50",
-    },
-    brand: { "@type": "Brand", name: "Bee Pro Hub" },
+      url,
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: o.price.toFixed(2),
+        priceCurrency: "USD",
+        unitCode: "MON",
+        billingIncrement: 1,
+      },
+    })),
   };
 }
 
@@ -192,10 +263,7 @@ export function faqSchema(faqs: { question: string; answer: string }[]) {
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
     })),
   };
 }
@@ -213,40 +281,72 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
   };
 }
 
-export function articleSchema(title: string, description: string, date: string, image: string, url: string) {
+const SCHEMA_LOCALE: Record<string, string> = { pt: "pt-BR", en: "en-US", es: "es" };
+
+/**
+ * Article no idioma da página. Antes o `headline` usava sempre o título em
+ * inglês e o `inLanguage` era fixo em "en-US" nas três versões, contradizendo
+ * o conteúdo renderizado.
+ */
+export function articleSchema({
+  title,
+  description,
+  datePublished,
+  dateModified,
+  image,
+  url,
+  locale,
+  author,
+  keywords,
+  wordCount,
+  section,
+}: {
+  title: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+  image: string;
+  url: string;
+  locale: string;
+  author: string;
+  keywords?: string[];
+  wordCount?: number;
+  section?: string;
+}) {
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: title,
+    "@type": "BlogPosting",
+    headline: title.slice(0, 110),
     description,
-    image,
-    datePublished: date,
-    dateModified: date,
-    author: { "@type": "Organization", name: "Bee Pro Hub", "@id": "https://beeprohub.com/#organization" },
-    publisher: {
-      "@type": "Organization",
-      name: "Bee Pro Hub",
-      logo: { "@type": "ImageObject", url: "https://beeprohub.com/images/logo.png" },
-    },
+    image: [image],
+    datePublished,
+    dateModified,
+    author: { "@type": "Person", name: author, worksFor: { "@id": `${SITE_URL}/#organization` } },
+    publisher: { "@id": `${SITE_URL}/#organization` },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    inLanguage: "en-US",
+    url,
+    inLanguage: SCHEMA_LOCALE[locale] || "en-US",
     isAccessibleForFree: true,
+    ...(section ? { articleSection: section } : {}),
+    ...(keywords?.length ? { keywords: keywords.join(", ") } : {}),
+    ...(wordCount ? { wordCount } : {}),
   };
 }
 
-export function siteNavigationSchema() {
+export function siteNavigationSchema(locale: string) {
+  const pages = [
+    ["Home", ""],
+    ["About", "/about"],
+    ["Services", "/services"],
+    ["Pricing", "/pricing"],
+    ["Blog", "/blog"],
+    ["BeeProCard", "/beeprocard"],
+    ["Contact", "/contact"],
+  ];
   return {
     "@context": "https://schema.org",
     "@type": "SiteNavigationElement",
-    name: ["Home", "About", "Services", "Pricing", "Blog", "BeeProCard", "Contact"],
-    url: [
-      "https://beeprohub.com/pt",
-      "https://beeprohub.com/pt/about",
-      "https://beeprohub.com/pt/services",
-      "https://beeprohub.com/pt/pricing",
-      "https://beeprohub.com/pt/blog",
-      "https://beeprohub.com/pt/beeprocard",
-      "https://beeprohub.com/pt/contact",
-    ],
+    name: pages.map(([label]) => label),
+    url: pages.map(([, path]) => `${SITE_URL}/${locale}${path}`),
   };
 }

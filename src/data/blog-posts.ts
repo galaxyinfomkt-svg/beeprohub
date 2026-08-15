@@ -8,6 +8,11 @@ export interface BlogPost {
   excerptEs?: string;
   content: string;
   date: string;
+  /** Data da última revisão real do conteúdo. Preencha ao atualizar o artigo —
+   *  vira `dateModified` no schema e o Google usa isso como sinal de frescor.
+   *  Não copie a data de publicação: `dateModified` igual a `datePublished` em
+   *  todos os posts diz ao Google que nada nunca é revisado. */
+  updated?: string;
   author: string;
   category: string;
   image: string;

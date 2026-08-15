@@ -36,12 +36,30 @@
     "rating": "5.0 rating"
   },
   "stats": {
-    "trial": { "value": "14 Days", "label": "Free Trial" },
-    "support": { "value": "24/7", "label": "Full Support" },
-    "companies": { "value": "50+", "label": "Active Companies" },
-    "sales": { "value": "300%", "label": "Average Sales Increase" },
-    "messages": { "value": "10,000+", "label": "Messages Sent/Month" },
-    "uptime": { "value": "99.9%", "label": "Guaranteed Uptime" }
+    "trial": {
+      "value": "14 Days",
+      "label": "Free Trial"
+    },
+    "support": {
+      "value": "24/7",
+      "label": "Full Support"
+    },
+    "companies": {
+      "value": "50+",
+      "label": "Active Companies"
+    },
+    "sales": {
+      "value": "300%",
+      "label": "Average Sales Increase"
+    },
+    "messages": {
+      "value": "10,000+",
+      "label": "Messages Sent/Month"
+    },
+    "uptime": {
+      "value": "99.9%",
+      "label": "Guaranteed Uptime"
+    }
   },
   "features": {
     "sectionTag": "5 Powerful Tools in 1 Platform",
@@ -53,12 +71,27 @@
       "title": "Manage All Your Leads in One Place",
       "description": "Never lose a potential customer again! Our CRM automatically captures, organizes, and tracks every lead from first contact to closing the sale.",
       "features": {
-        "1": { "title": "Advanced Segmentation", "desc": "Organize leads by tags, status, source, value, and 50+ customizable criteria." },
-        "2": { "title": "Complete History", "desc": "See all interactions, calls, emails, and messages with each contact." },
-        "3": { "title": "Automatic Scoring", "desc": "AI automatically classifies hot leads so you prioritize those that convert the most." },
-        "4": { "title": "Smart Alerts", "desc": "Get notified when leads open emails, click links, or return to your site." }
+        "1": {
+          "title": "Advanced Segmentation",
+          "desc": "Organize leads by tags, status, source, value, and 50+ customizable criteria."
+        },
+        "2": {
+          "title": "Complete History",
+          "desc": "See all interactions, calls, emails, and messages with each contact."
+        },
+        "3": {
+          "title": "Automatic Scoring",
+          "desc": "AI automatically classifies hot leads so you prioritize those that convert the most."
+        },
+        "4": {
+          "title": "Smart Alerts",
+          "desc": "Get notified when leads open emails, click links, or return to your site."
+        }
       },
-      "testimonial": { "quote": "We increased our conversion rate by 250% in just 60 days using Bee Pro Hub's CRM to prioritize the right leads.", "author": "Carlos Silva, CEO of TechSales" },
+      "testimonial": {
+        "quote": "We increased our conversion rate by 250% in just 60 days using Bee Pro Hub's CRM to prioritize the right leads.",
+        "author": "Carlos Silva, CEO of TechSales"
+      },
       "cta": "Try CRM Free",
       "ctaSecondary": "Talk to a Specialist"
     },
@@ -68,9 +101,18 @@
       "title": "Synced Calendar That Never Fails",
       "description": "No more scheduling confusion! Let your clients book meetings automatically during your available hours, with automatic reminders that reduce no-shows by 80%.",
       "features": {
-        "1": { "title": "Google Calendar Sync", "desc": "Connect with Google Calendar, Outlook, and iCloud. All appointments synced in real-time." },
-        "2": { "title": "Automatic Reminders", "desc": "Automatic SMS, Email, and WhatsApp 24h and 1h before. Dramatically reduce no-shows." },
-        "3": { "title": "Full Team", "desc": "Manage your entire team's schedules in one place. Automatic round-robin." }
+        "1": {
+          "title": "Google Calendar Sync",
+          "desc": "Connect with Google Calendar, Outlook, and iCloud. All appointments synced in real-time."
+        },
+        "2": {
+          "title": "Automatic Reminders",
+          "desc": "Automatic SMS, Email, and WhatsApp 24h and 1h before. Dramatically reduce no-shows."
+        },
+        "3": {
+          "title": "Full Team",
+          "desc": "Manage your entire team's schedules in one place. Automatic round-robin."
+        }
       },
       "bonus": "Custom branded scheduling page + Personalized link to share on social media and WhatsApp.",
       "cta": "Try Calendar"
@@ -97,12 +139,27 @@
       "title": "Marketing on Autopilot",
       "description": "Imagine your business selling while you sleep! Our smart automation nurtures leads, sends follow-ups, reactivates inactive customers, and recovers abandoned carts automatically.",
       "types": {
-        "1": { "title": "Automatic Email Marketing", "desc": "Welcome sequences, lead nurturing, cart recovery, birthdays, and more." },
-        "2": { "title": "Automatic SMS & WhatsApp", "desc": "Instant messages for hot leads, reminders, confirmations, and personalized follow-ups." },
-        "3": { "title": "Voice Messages", "desc": "Send personalized voice recordings in bulk. Great for reminders and special offers." },
-        "4": { "title": "Push Notifications", "desc": "Direct browser alerts to re-engage visitors who left your site." }
+        "1": {
+          "title": "Automatic Email Marketing",
+          "desc": "Welcome sequences, lead nurturing, cart recovery, birthdays, and more."
+        },
+        "2": {
+          "title": "Automatic SMS & WhatsApp",
+          "desc": "Instant messages for hot leads, reminders, confirmations, and personalized follow-ups."
+        },
+        "3": {
+          "title": "Voice Messages",
+          "desc": "Send personalized voice recordings in bulk. Great for reminders and special offers."
+        },
+        "4": {
+          "title": "Push Notifications",
+          "desc": "Direct browser alerts to re-engage visitors who left your site."
+        }
       },
-      "testimonial": { "quote": "With Bee Pro Hub automations, our company went from 5 to 50 sales per month without hiring anyone else. The system does the work of 3 salespeople!", "author": "Marina Costa, Owner of Beauty Store" },
+      "testimonial": {
+        "quote": "With Bee Pro Hub automations, our company went from 5 to 50 sales per month without hiring anyone else. The system does the work of 3 salespeople!",
+        "author": "Marina Costa, Owner of Beauty Store"
+      },
       "cta": "Activate Automation",
       "ctaSecondary": "Watch Live Demo"
     },
@@ -127,12 +184,30 @@
     "sectionTag": "Why Bee Pro Hub?",
     "title": "Benefits That Will Transform Your Business",
     "items": {
-      "1": { "title": "300% Sales Increase", "desc": "Companies using Bee Pro Hub increase sales an average of 300% in the first 90 days with automation and smart follow-up." },
-      "2": { "title": "Save 15 Hours/Week", "desc": "Automate repetitive tasks and reclaim your time to focus on what really matters: growing your business." },
-      "3": { "title": "Reduce Costs by 70%", "desc": "Replace 10+ expensive tools with one complete platform. Pay less, get more results." },
-      "4": { "title": "More Productive Team", "desc": "Centralize communication and management. Your team works 3x faster with everything in one place." },
-      "5": { "title": "Zero Lost Leads", "desc": "Capture, organize, and track every lead automatically. Never leave money on the table again." },
-      "6": { "title": "Security & Reliability", "desc": "99.9% uptime, automatic backups, and cutting-edge encryption. Your data always safe and accessible." }
+      "1": {
+        "title": "300% Sales Increase",
+        "desc": "Companies using Bee Pro Hub increase sales an average of 300% in the first 90 days with automation and smart follow-up."
+      },
+      "2": {
+        "title": "Save 15 Hours/Week",
+        "desc": "Automate repetitive tasks and reclaim your time to focus on what really matters: growing your business."
+      },
+      "3": {
+        "title": "Reduce Costs by 70%",
+        "desc": "Replace 10+ expensive tools with one complete platform. Pay less, get more results."
+      },
+      "4": {
+        "title": "More Productive Team",
+        "desc": "Centralize communication and management. Your team works 3x faster with everything in one place."
+      },
+      "5": {
+        "title": "Zero Lost Leads",
+        "desc": "Capture, organize, and track every lead automatically. Never leave money on the table again."
+      },
+      "6": {
+        "title": "Security & Reliability",
+        "desc": "99.9% uptime, automatic backups, and cutting-edge encryption. Your data always safe and accessible."
+      }
     }
   },
   "beeprocard": {
@@ -142,10 +217,22 @@
     "tagline": "Smart and Professional Networking",
     "description": "Create your personalized mini-site in minutes. Add your photo, logo, description, important links, and even scheduling buttons. Share via QR Code, WhatsApp, or direct link.",
     "features": {
-      "1": { "title": "Instant Sharing", "desc": "Generate a QR Code to print or share a link via WhatsApp, Email, Instagram Bio, and more." },
-      "2": { "title": "100% Customizable", "desc": "Your brand colors, logo, photo, description, custom buttons, and much more." },
-      "3": { "title": "Collect Reviews", "desc": "Direct button to Google Reviews. Boost your online reputation automatically." },
-      "4": { "title": "Track Views", "desc": "See how many people accessed your card, clicked buttons, and saved your contact." }
+      "1": {
+        "title": "Instant Sharing",
+        "desc": "Generate a QR Code to print or share a link via WhatsApp, Email, Instagram Bio, and more."
+      },
+      "2": {
+        "title": "100% Customizable",
+        "desc": "Your brand colors, logo, photo, description, custom buttons, and much more."
+      },
+      "3": {
+        "title": "Collect Reviews",
+        "desc": "Direct button to Google Reviews. Boost your online reputation automatically."
+      },
+      "4": {
+        "title": "Track Views",
+        "desc": "See how many people accessed your card, clicked buttons, and saved your contact."
+      }
     },
     "cta": "Create My Free BeeProCard"
   },
@@ -185,7 +272,14 @@
       "price": "$97",
       "period": "/month",
       "description": "Perfect for small businesses just getting started with automation.",
-      "features": ["Smart CRM", "Email Marketing", "Calendar & Scheduling", "1 Sales Pipeline", "Basic Automations", "Chat Support"]
+      "features": [
+        "Smart CRM",
+        "Email Marketing",
+        "Calendar & Scheduling",
+        "1 Sales Pipeline",
+        "Basic Automations",
+        "Chat Support"
+      ]
     },
     "professional": {
       "name": "Professional",
@@ -193,14 +287,32 @@
       "period": "/month",
       "popular": "Most Popular",
       "description": "Ideal for growing businesses that want the full power of automation.",
-      "features": ["Everything in Starter", "SMS & WhatsApp Automation", "Phone System (included)", "Unlimited Pipelines", "Advanced Automations", "Quotes & Invoices", "BeeProCard", "Priority Support"]
+      "features": [
+        "Everything in Starter",
+        "SMS & WhatsApp Automation",
+        "Phone System (included)",
+        "Unlimited Pipelines",
+        "Advanced Automations",
+        "Quotes & Invoices",
+        "BeeProCard",
+        "Priority Support"
+      ]
     },
     "enterprise": {
       "name": "Enterprise",
       "price": "$397",
       "period": "/month",
       "description": "For established businesses that need maximum power and customization.",
-      "features": ["Everything in Professional", "White-Label Options", "API Access", "Custom Integrations", "Dedicated Account Manager", "Custom Workflows", "Training for Team", "SLA 99.9% Uptime"]
+      "features": [
+        "Everything in Professional",
+        "White-Label Options",
+        "API Access",
+        "Custom Integrations",
+        "Dedicated Account Manager",
+        "Custom Workflows",
+        "Training for Team",
+        "SLA 99.9% Uptime"
+      ]
     },
     "cta": "Start Free Trial",
     "guarantee": "14-day money-back guarantee. No questions asked."
@@ -219,10 +331,22 @@
     "whyUs": {
       "title": "Why Choose Us?",
       "items": {
-        "1": { "title": "Local Expertise", "desc": "Based in Marlborough, MA, we understand the unique challenges of businesses in Massachusetts and across the US." },
-        "2": { "title": "All-in-One Solution", "desc": "CRM, email, SMS, phone, scheduling, invoicing, and automation — all in one platform." },
-        "3": { "title": "Bilingual Support", "desc": "Full support in English, Portuguese, and Spanish. We serve diverse communities." },
-        "4": { "title": "Proven Results", "desc": "Our clients see an average 300% increase in sales within the first 90 days." }
+        "1": {
+          "title": "Local Expertise",
+          "desc": "Based in Marlborough, MA, we understand the unique challenges of businesses in Massachusetts and across the US."
+        },
+        "2": {
+          "title": "All-in-One Solution",
+          "desc": "CRM, email, SMS, phone, scheduling, invoicing, and automation — all in one platform."
+        },
+        "3": {
+          "title": "Bilingual Support",
+          "desc": "Full support in English, Portuguese, and Spanish. We serve diverse communities."
+        },
+        "4": {
+          "title": "Proven Results",
+          "desc": "Our clients see an average 300% increase in sales within the first 90 days."
+        }
       }
     }
   },
@@ -233,42 +357,102 @@
       "crm": {
         "title": "CRM & Lead Management",
         "description": "Centralize all your customer data, track interactions, and never lose a lead. Our smart CRM powered by GoHighLevel gives you the tools to close more deals faster.",
-        "features": ["Contact management", "Lead scoring", "Pipeline tracking", "Interaction history", "Smart segmentation"]
+        "features": [
+          "Contact management",
+          "Lead scoring",
+          "Pipeline tracking",
+          "Interaction history",
+          "Smart segmentation"
+        ]
       },
       "automation": {
         "title": "Marketing Automation",
         "description": "Put your marketing on autopilot. From email sequences to SMS campaigns, our automation engine works 24/7 to nurture leads and close sales.",
-        "features": ["Email sequences", "SMS campaigns", "WhatsApp automation", "Lead nurturing", "Cart recovery"]
+        "features": [
+          "Email sequences",
+          "SMS campaigns",
+          "WhatsApp automation",
+          "Lead nurturing",
+          "Cart recovery"
+        ]
       },
       "leadgen": {
         "title": "Lead Generation",
         "description": "Attract qualified leads with high-converting funnels, landing pages, and targeted ad campaigns. We bring customers to your door.",
-        "features": ["Sales funnels", "Landing pages", "Facebook Ads", "Google Ads", "SEO optimization"]
+        "features": [
+          "Sales funnels",
+          "Landing pages",
+          "Facebook Ads",
+          "Google Ads",
+          "SEO optimization"
+        ]
       },
       "websites": {
         "title": "Websites & Funnels",
         "description": "Professional websites and conversion-optimized funnels built to turn visitors into paying customers.",
-        "features": ["Responsive websites", "Sales funnels", "Booking pages", "Membership sites", "Blog setup"]
+        "features": [
+          "Responsive websites",
+          "Sales funnels",
+          "Booking pages",
+          "Membership sites",
+          "Blog setup"
+        ]
       },
       "ads": {
         "title": "Ads Management",
         "description": "Strategic Google and Facebook ad campaigns that maximize your ROI and bring qualified leads consistently.",
-        "features": ["Google Ads management", "Facebook/Instagram Ads", "Retargeting campaigns", "Performance analytics", "A/B testing"]
+        "features": [
+          "Google Ads management",
+          "Facebook/Instagram Ads",
+          "Retargeting campaigns",
+          "Performance analytics",
+          "A/B testing"
+        ]
       }
     },
     "faq": {
       "title": "Frequently Asked Questions",
       "items": {
-        "1": { "q": "What is Bee Pro Hub?", "a": "Bee Pro Hub is an all-in-one CRM and marketing automation platform built on GoHighLevel. It combines CRM, email marketing, SMS, phone system, scheduling, invoicing, and automation into a single platform designed for local businesses." },
-        "2": { "q": "Do I need technical knowledge to use it?", "a": "Not at all! Bee Pro Hub is designed to be user-friendly. We provide complete setup, training, and 24/7 support in English, Portuguese, and Spanish." },
-        "3": { "q": "Can I cancel anytime?", "a": "Yes, absolutely. There are no long-term contracts. You can cancel your subscription at any time with no penalty." },
-        "4": { "q": "What makes Bee Pro Hub different from other CRMs?", "a": "Unlike traditional CRMs, Bee Pro Hub is a complete business solution. It replaces 10+ separate tools (CRM, email, SMS, phone, calendar, invoicing, etc.) at a fraction of the cost." },
-        "5": { "q": "Do you offer support in languages other than English?", "a": "Yes! We offer full support in English, Portuguese, and Spanish. Our team is bilingual and ready to help you in your preferred language." },
-        "6": { "q": "Does Bee Pro Hub work for businesses in the United States?", "a": "Yes. Bee Pro Hub was built specifically for local businesses in the United States, with a focus on Massachusetts. We serve contractors, cleaning companies, roofing, painting, landscaping, and all types of service businesses." },
-        "7": { "q": "What is the difference between Bee Pro Hub and GoHighLevel?", "a": "Bee Pro Hub is built ON TOP of GoHighLevel, but includes complete setup, training, dedicated support, and ready-made templates. You get all the power of GoHighLevel without the technical complexity." },
-        "8": { "q": "How does Bee Pro Hub help generate more leads?", "a": "Through optimized sales funnels, landing pages, Google Ads, Facebook Ads, email and SMS automation, and automatic follow-ups that respond to leads in seconds — before your competition." },
-        "9": { "q": "Does Bee Pro Hub have an integrated phone system?", "a": "Yes. You get a professional landline number, can make and receive calls directly from the platform, with automatic recording, AI transcription, and integrated SMS." },
-        "10": { "q": "How long does it take to set up Bee Pro Hub?", "a": "Complete setup is done by our team within 48 hours. You can start using it the same day with the ready-made templates included for free." }
+        "1": {
+          "q": "What is Bee Pro Hub?",
+          "a": "Bee Pro Hub is an all-in-one CRM and marketing automation platform built on GoHighLevel. It combines CRM, email marketing, SMS, phone system, scheduling, invoicing, and automation into a single platform designed for local businesses."
+        },
+        "2": {
+          "q": "Do I need technical knowledge to use it?",
+          "a": "Not at all! Bee Pro Hub is designed to be user-friendly. We provide complete setup, training, and 24/7 support in English, Portuguese, and Spanish."
+        },
+        "3": {
+          "q": "Can I cancel anytime?",
+          "a": "Yes, absolutely. There are no long-term contracts. You can cancel your subscription at any time with no penalty."
+        },
+        "4": {
+          "q": "What makes Bee Pro Hub different from other CRMs?",
+          "a": "Unlike traditional CRMs, Bee Pro Hub is a complete business solution. It replaces 10+ separate tools (CRM, email, SMS, phone, calendar, invoicing, etc.) at a fraction of the cost."
+        },
+        "5": {
+          "q": "Do you offer support in languages other than English?",
+          "a": "Yes! We offer full support in English, Portuguese, and Spanish. Our team is bilingual and ready to help you in your preferred language."
+        },
+        "6": {
+          "q": "Does Bee Pro Hub work for businesses in the United States?",
+          "a": "Yes. Bee Pro Hub was built specifically for local businesses in the United States, with a focus on Massachusetts. We serve contractors, cleaning companies, roofing, painting, landscaping, and all types of service businesses."
+        },
+        "7": {
+          "q": "What is the difference between Bee Pro Hub and GoHighLevel?",
+          "a": "Bee Pro Hub is built ON TOP of GoHighLevel, but includes complete setup, training, dedicated support, and ready-made templates. You get all the power of GoHighLevel without the technical complexity."
+        },
+        "8": {
+          "q": "How does Bee Pro Hub help generate more leads?",
+          "a": "Through optimized sales funnels, landing pages, Google Ads, Facebook Ads, email and SMS automation, and automatic follow-ups that respond to leads in seconds — before your competition."
+        },
+        "9": {
+          "q": "Does Bee Pro Hub have an integrated phone system?",
+          "a": "Yes. You get a professional landline number, can make and receive calls directly from the platform, with automatic recording, AI transcription, and integrated SMS."
+        },
+        "10": {
+          "q": "How long does it take to set up Bee Pro Hub?",
+          "a": "Complete setup is done by our team within 48 hours. You can start using it the same day with the ready-made templates included for free."
+        }
       }
     }
   },
@@ -336,5 +520,39 @@
     "noCreditCard": "No credit card required",
     "instantActivation": "Instant activation",
     "dataSecure": "Your data 100% secure"
+  },
+  "pageMeta": {
+    "home": {
+      "title": "CRM & Marketing Automation for Massachusetts",
+      "description": "CRM, marketing automation, and lead generation in one platform. Replaces 10+ tools. 14-day free trial, no credit card. Support in English, Portuguese, and Spanish."
+    },
+    "about": {
+      "title": "CRM & Marketing Agency in Marlborough, MA",
+      "description": "Who we are, how we work, and why local Massachusetts businesses choose Bee Pro Hub. Part of Galaxy IT & Marketing, operating since 2004."
+    },
+    "services": {
+      "title": "CRM, Automation & Lead Generation Services",
+      "description": "CRM, email, SMS and WhatsApp automation, lead generation, websites and funnels, and ads management — set up and configured for your business in 48 hours."
+    },
+    "pricing": {
+      "title": "CRM Pricing: Plans from $97 per Month",
+      "description": "Three plans, from $97 to $397 per month. Setup and training included, no long-term contract, and a 14-day free trial with no credit card required."
+    },
+    "contact": {
+      "title": "Talk to a CRM Specialist — Free 14-Day Trial",
+      "description": "Book a free demo and get an implementation plan for your business. Support in English, Portuguese, and Spanish."
+    },
+    "blog": {
+      "title": "CRM, Automation & Lead Generation Blog",
+      "description": "Practical guides on CRM, marketing automation, lead generation, and growth for small service businesses across Massachusetts."
+    },
+    "beeprocard": {
+      "title": "BeeProCard: Digital Business Card with QR Code",
+      "description": "Share contacts, social profiles, and portfolio with a single QR code. Track views, clicks, and collect reviews automatically."
+    },
+    "reviews": {
+      "title": "Customer Stories from Massachusetts Businesses",
+      "description": "Concrete results from Massachusetts companies using Bee Pro Hub: contractors, restaurants, retail, cleaning, HVAC, and landscaping."
+    }
   }
 }

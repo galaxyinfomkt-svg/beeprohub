@@ -10,8 +10,8 @@ import { PHONE, PHONE_LINK } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "contact" });
-  return pageSeo({ title: t("title"), description: t("subtitle"), path: "/contact", locale, keywords: "contato bee pro hub, demo gratis, teste gratis CRM" });
+  const t = await getTranslations({ locale, namespace: "pageMeta" });
+  return pageSeo({ title: t("contact.title"), description: t("contact.description"), path: "/contact", locale, keywords: "contato bee pro hub, demo gratis, teste gratis CRM" });
 }
 
 export default function ContactPage() {

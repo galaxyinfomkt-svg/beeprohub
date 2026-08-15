@@ -8,11 +8,12 @@ import FAQ from "@/components/ui/FAQ";
 import HeroForm from "@/components/ui/HeroForm";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schemas";
 import { pageSeo } from "@/lib/seo";
+import { SITE_URL } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "services" });
-  return pageSeo({ title: t("title"), description: t("subtitle"), path: "/services", locale, keywords: "CRM services, marketing automation, lead generation, websites, funnels, ads management, GoHighLevel" });
+  const t = await getTranslations({ locale, namespace: "pageMeta" });
+  return pageSeo({ title: t("services.title"), description: t("services.description"), path: "/services", locale, keywords: "CRM services, marketing automation, lead generation, websites, funnels, ads management, GoHighLevel" });
 }
 
 const serviceKeys = ["crm", "automation", "leadgen", "websites", "ads"] as const;
@@ -26,7 +27,20 @@ export default function ServicesPage() {
 
   return (
     <>
-      <JsonLd data={[...serviceKeys.map((k) => serviceSchema(t(`items.${k}.title`), t(`items.${k}.description`), `https://beeprohub.com/pt/services`)), faqSchema(faqs), breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: "Services", url: "https://beeprohub.com/pt/services" }])]} />
+      <JsonLd data={[
+        ...serviceKeys.map((k) =>
+          serviceSchema({
+            name: t(`items.${k}.title`),
+            description: t(`items.${k}.description`),
+            url: `${SITE_URL}/${locale}/services`,
+          })
+        ),
+        faqSchema(faqs),
+        breadcrumbSchema([
+          { name: "Home", url: `${SITE_URL}/${locale}` },
+          { name: t("title"), url: `${SITE_URL}/${locale}/services` },
+        ]),
+      ]} />
 
       {/* Hero - Gradiente amarelo vibrante com form */}
       <section className="relative bg-gradient-to-br from-primary via-primary-hover to-amber-500 overflow-hidden py-16 lg:py-24">

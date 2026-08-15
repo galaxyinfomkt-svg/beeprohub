@@ -5,15 +5,17 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
-import { organizationSchema, localBusinessSchema, faqSchema, websiteSchema, siteNavigationSchema } from "@/lib/schemas";
+import { organizationSchema, localBusinessSchema, faqSchema, websiteSchema, siteNavigationSchema, softwareSchema } from "@/lib/schemas";
 import { pageSeo } from "@/lib/seo";
-import { testimonials, getQuote, getResult, aggregateRating } from "@/data/testimonials";
-import { PHONE, PHONE_LINK } from "@/lib/utils";
+import { PLAN_OFFERS } from "@/data/plans";
+import { testimonials, getQuote, getResult } from "@/data/testimonials";
+import { PHONE, PHONE_LINK, SITE_URL } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "meta" });
-  return pageSeo({ title: t("title"), description: t("description"), keywords: t("keywords"), path: "", locale });
+  const t = await getTranslations({ locale, namespace: "pageMeta" });
+  const tMeta = await getTranslations({ locale, namespace: "meta" });
+  return pageSeo({ title: t("home.title"), description: t("home.description"), keywords: tMeta("keywords"), path: "", locale });
 }
 
 function Check() {
@@ -28,7 +30,19 @@ export default function HomePage() {
 
   return (
     <>
-      <JsonLd data={[organizationSchema(), localBusinessSchema(), websiteSchema(), siteNavigationSchema(), faqSchema(homeFaqs)]} />
+      <JsonLd data={[
+        organizationSchema(),
+        localBusinessSchema(),
+        websiteSchema(locale),
+        siteNavigationSchema(locale),
+        softwareSchema({
+          name: "Bee Pro Hub",
+          description: t("hero.subtitle"),
+          url: `${SITE_URL}/${locale}/pricing`,
+          offers: PLAN_OFFERS,
+        }),
+        faqSchema(homeFaqs),
+      ]} />
 
       {/* ========== HERO ========== */}
       <section className="relative overflow-hidden py-12 lg:py-20">
@@ -329,9 +343,16 @@ export default function HomePage() {
             <div className="badge-gold mb-4">
               {locale === "pt" ? "O Que Nossos Clientes Dizem" : locale === "es" ? "Lo Que Dicen Nuestros Clientes" : "What Our Clients Say"}
             </div>
+            {/* Sem nota agregada aqui: a média era calculada sobre depoimentos
+                marcados como fictícios no código e ia para o schema como
+                AggregateRating. Estrelas na SERP vêm do Google Business
+                Profile, não de markup no próprio site. */}
             <h2 className="text-2xl sm:text-3xl font-extrabold text-dark mb-3">
-              <span className="text-primary">{aggregateRating().average} &#9733;</span>{" "}
-              {locale === "pt" ? `media baseada em ${aggregateRating().count}+ avaliacoes` : locale === "es" ? `promedio basado en ${aggregateRating().count}+ resenas` : `average rating from ${aggregateRating().count}+ reviews`}
+              {locale === "pt"
+                ? `${testimonials.length} negócios de Massachusetts contam o que mudou`
+                : locale === "es"
+                ? `${testimonials.length} negocios de Massachusetts cuentan que cambio`
+                : `${testimonials.length} Massachusetts businesses on what changed`}
             </h2>
             <Link href={`/${locale}/reviews`} className="text-primary font-semibold hover:text-primary-hover text-sm">
               {locale === "pt" ? "Ver todas as avaliacoes" : locale === "es" ? "Ver todas las resenas" : "See all reviews"} &rarr;

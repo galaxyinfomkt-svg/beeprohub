@@ -8,7 +8,8 @@ import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
 import HeroForm from "@/components/ui/HeroForm";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schemas";
-import { PHONE, PHONE_LINK } from "@/lib/utils";
+import { pageSeo } from "@/lib/seo";
+import { PHONE, PHONE_LINK, SITE_URL } from "@/lib/utils";
 
 const nicheImages: Record<string, string> = {
   contractors: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80",
@@ -22,11 +23,23 @@ export function generateStaticParams() {
   return niches.map((n) => ({ niche: n.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ niche: string }> }): Promise<Metadata> {
-  const { niche: slug } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ niche: string; locale: string }> }): Promise<Metadata> {
+  const { niche: slug, locale } = await params;
   const niche = niches.find((n) => n.slug === slug);
   if (!niche) return {};
-  return { title: niche.title, description: niche.heroSubtitle, keywords: niche.keywords.join(", ") };
+
+  // Metadata no idioma da página. Antes o título e a description eram sempre
+  // os do objeto em inglês, mesmo em /pt e /es — título em inglês sobre H1 em
+  // português destrói o CTR e faz o Google reescrever o título.
+  const tr = nicheTranslations[slug]?.[locale];
+  return pageSeo({
+    title: tr?.heroTitle || niche.title,
+    description: tr?.heroSubtitle || niche.heroSubtitle,
+    keywords: niche.keywords.join(", "),
+    path: `/landing/${slug}`,
+    locale,
+    image: nicheImages[slug],
+  });
 }
 
 export default async function NicheLandingPage({ params }: { params: Promise<{ niche: string; locale: string }> }) {
@@ -57,9 +70,12 @@ export default async function NicheLandingPage({ params }: { params: Promise<{ n
   return (
     <>
       <JsonLd data={[
-        serviceSchema(niche.title, description, `https://beeprohub.com/${locale}/landing/${niche.slug}`),
+        serviceSchema({ name: heroTitle, description, url: `${SITE_URL}/${locale}/landing/${niche.slug}` }),
         faqSchema(nicheFaqs),
-        breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: niche.name, url: `https://beeprohub.com/${locale}/landing/${niche.slug}` }]),
+        breadcrumbSchema([
+          { name: "Home", url: `${SITE_URL}/${locale}` },
+          { name: niche.name, url: `${SITE_URL}/${locale}/landing/${niche.slug}` },
+        ]),
       ]} />
 
       {/* Hero - imagem de fundo correspondente ao nicho */}
@@ -123,7 +139,9 @@ export default async function NicheLandingPage({ params }: { params: Promise<{ n
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-dark mb-5">{forLabel} {niche.name}</h2>
-              <p className="text-white/80 leading-relaxed text-lg">{description}</p>
+              {/* Era text-white/80 sobre o gradiente gold-50 → amber-50: o
+                  parágrafo mais importante da página ficava invisível. */}
+              <p className="text-gray-700 leading-relaxed text-lg">{description}</p>
             </div>
             <div className="flex justify-center">
               <Image src="/images/dashboard-multidevice.webp" alt={`${niche.name} CRM`} width={480} height={380} className="rounded-2xl shadow-xl animate-float" />
@@ -135,7 +153,13 @@ export default async function NicheLandingPage({ params }: { params: Promise<{ n
       {/* FAQ */}
       <section className="bg-white py-16">
         <div className="max-w-2xl mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-dark text-center mb-10">FAQ</h2>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-dark text-center mb-10">
+            {locale === "pt"
+              ? `Perguntas Frequentes — CRM para ${niche.name}`
+              : locale === "es"
+              ? `Preguntas Frecuentes — CRM para ${niche.name}`
+              : `Frequently Asked Questions — CRM for ${niche.name}`}
+          </h2>
           <FAQ items={nicheFaqs} />
         </div>
       </section>

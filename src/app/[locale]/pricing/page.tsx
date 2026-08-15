@@ -6,16 +6,16 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import FAQ from "@/components/ui/FAQ";
 import HeroForm from "@/components/ui/HeroForm";
-import { faqSchema, breadcrumbSchema, productSchema } from "@/lib/schemas";
+import { faqSchema, breadcrumbSchema, softwareSchema } from "@/lib/schemas";
 import { pageSeo } from "@/lib/seo";
+import { PLANS, PLAN_OFFERS } from "@/data/plans";
+import { SITE_URL } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "pricing" });
-  return pageSeo({ title: t("title"), description: t("subtitle"), path: "/pricing", locale, keywords: "precos CRM, planos marketing automation, GoHighLevel pricing, CRM affordable" });
+  const t = await getTranslations({ locale, namespace: "pageMeta" });
+  return pageSeo({ title: t("pricing.title"), description: t("pricing.description"), path: "/pricing", locale, keywords: "precos CRM, planos marketing automation, GoHighLevel pricing, CRM affordable" });
 }
-
-const plans = ["starter", "professional", "enterprise"] as const;
 
 export default function PricingPage() {
   const t = useTranslations("pricing");
@@ -42,7 +42,22 @@ export default function PricingPage() {
 
   return (
     <>
-      <JsonLd data={[faqSchema(pricingFaqs), breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: "Pricing", url: "https://beeprohub.com/pt/pricing" }])]} />
+      <JsonLd data={[
+        // Offer com os mesmos preços exibidos nos cards. Antes a página não
+        // tinha Product/Offer nenhum — nenhuma chance de rich result de preço,
+        // que é justamente o formato que ganha CTR nessa busca.
+        softwareSchema({
+          name: "Bee Pro Hub",
+          description: t("subtitle"),
+          url: `${SITE_URL}/${locale}/pricing`,
+          offers: PLAN_OFFERS,
+        }),
+        faqSchema(pricingFaqs),
+        breadcrumbSchema([
+          { name: "Home", url: `${SITE_URL}/${locale}` },
+          { name: t("title"), url: `${SITE_URL}/${locale}/pricing` },
+        ]),
+      ]} />
 
       {/* Hero - imagem de fundo de negocios */}
       <section className="relative overflow-hidden">
@@ -65,17 +80,20 @@ export default function PricingPage() {
       <section className="bg-white py-16 lg:py-24 bg-dots">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {plans.map((plan) => {
-              const pop = plan === "professional";
+            {PLANS.map(({ key: plan, price, popular: pop }) => {
               return (
                 <div key={plan} className={`relative rounded-3xl p-8 transition-all duration-500 ${pop ? "bg-gradient-to-br from-primary via-primary-hover to-amber-500 text-dark border-2 border-primary shadow-glow-lg md:scale-105" : "bg-white border-2 border-gray-100 hover:border-primary/30 hover:shadow-card-hover card-gold"}`}>
                   {pop && <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-dark text-primary font-extrabold text-xs px-5 py-1.5 rounded-full shadow-lg">{t(`${plan}.popular`)}</span>}
-                  <h3 className={`text-xl font-bold mb-2 ${pop ? "text-dark" : "text-dark"}`}>{t(`${plan}.name`)}</h3>
+                  <h3 className="text-xl font-bold mb-2 text-dark">{t(`${plan}.name`)}</h3>
                   <p className={`text-sm mb-6 ${pop ? "text-dark/70" : "text-gray-500"}`}>{t(`${plan}.description`)}</p>
-                  <div className="mb-6">
-                    <span className={`text-2xl font-extrabold ${pop ? "text-dark" : "text-dark"}`}>
-                      {locale === "pt" ? "Fale Conosco" : locale === "es" ? "Contactenos" : "Contact Us"}
-                    </span>
+                  {/* O preço volta a aparecer. Os cards mostravam "Fale Conosco"
+                      enquanto o FAQ desta mesma página citava $97 e $197 — a
+                      contradição impedia tanto o rich result quanto a citação
+                      por modelos de IA. Valor vem de data/plans.ts, a mesma
+                      fonte que alimenta o schema Offer acima. */}
+                  <div className="mb-6 flex items-baseline gap-1">
+                    <span className="text-4xl font-extrabold text-dark tabular-nums">${price}</span>
+                    <span className={`text-sm font-semibold ${pop ? "text-dark/60" : "text-gray-500"}`}>{t(`${plan}.period`)}</span>
                   </div>
                   <ul className="space-y-2.5 mb-8">
                     {(t.raw(`${plan}.features`) as string[]).map((f: string, i: number) => (

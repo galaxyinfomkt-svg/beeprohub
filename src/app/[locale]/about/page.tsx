@@ -7,12 +7,19 @@ import JsonLd from "@/components/seo/JsonLd";
 import HeroForm from "@/components/ui/HeroForm";
 import { organizationSchema, breadcrumbSchema } from "@/lib/schemas";
 import { pageSeo } from "@/lib/seo";
-import { PHONE, PHONE_LINK } from "@/lib/utils";
+import { PHONE, PHONE_LINK, SITE_URL } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about" });
-  return pageSeo({ title: t("title"), description: t("mission.text").slice(0, 160), path: "/about", locale, keywords: "sobre bee pro hub, agencia marketing Massachusetts, Galaxy IT Marketing, quem somos" });
+  const tMeta = await getTranslations({ locale, namespace: "pageMeta" });
+  return pageSeo({
+    title: tMeta("about.title"),
+    description: tMeta("about.description"),
+    path: "/about",
+    locale,
+    keywords: t("title"),
+  });
 }
 
 export default function AboutPage() {
@@ -22,7 +29,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <JsonLd data={[organizationSchema(), breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: "About", url: "https://beeprohub.com/pt/about" }])]} />
+      <JsonLd data={[organizationSchema(), breadcrumbSchema([{ name: "Home", url: `${SITE_URL}/${locale}` }, { name: t("title"), url: `${SITE_URL}/${locale}/about` }])]} />
 
       {/* Hero - imagem de fundo de escritorio/equipe */}
       <section className="relative overflow-hidden">
@@ -127,13 +134,10 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <p className="text-xs text-gray-400 text-center mt-6 italic">
-            {locale === "pt"
-              ? "TODO: substituir iniciais por fotos reais da equipe."
-              : locale === "es"
-              ? "TODO: reemplazar iniciales por fotos reales del equipo."
-              : "TODO: replace initials with real team photos."}
-          </p>
+          {/* Próximo passo de E-E-A-T: trocar as iniciais por fotos reais e
+              adicionar sobrenome + LinkedIn de cada pessoa, e então incluir
+              Person schema com `knowsAbout`. A página "Sobre" é o principal
+              sinal de confiança de um site que vende consultoria. */}
         </div>
       </section>
     </>

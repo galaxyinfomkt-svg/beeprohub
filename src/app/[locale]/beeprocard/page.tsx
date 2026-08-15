@@ -7,11 +7,12 @@ import JsonLd from "@/components/seo/JsonLd";
 import HeroForm from "@/components/ui/HeroForm";
 import { breadcrumbSchema } from "@/lib/schemas";
 import { pageSeo } from "@/lib/seo";
+import { SITE_URL } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "beeprocard" });
-  return pageSeo({ title: "BeeProCard - Cartao Digital Profissional", description: t("subtitle"), path: "/beeprocard", locale, keywords: "cartao digital, QR code business card, cartao visita digital, BeeProCard" });
+  const t = await getTranslations({ locale, namespace: "pageMeta" });
+  return pageSeo({ title: t("beeprocard.title"), description: t("beeprocard.description"), path: "/beeprocard", locale, keywords: "cartao digital, QR code business card, cartao visita digital, BeeProCard" });
 }
 
 export default function BeeProCardPage() {
@@ -20,7 +21,7 @@ export default function BeeProCardPage() {
 
   return (
     <>
-      <JsonLd data={[breadcrumbSchema([{ name: "Home", url: "https://beeprohub.com" }, { name: "BeeProCard", url: "https://beeprohub.com/pt/beeprocard" }])]} />
+      <JsonLd data={[breadcrumbSchema([{ name: "Home", url: `${SITE_URL}/${locale}` }, { name: "BeeProCard", url: `${SITE_URL}/${locale}/beeprocard` }])]} />
 
       {/* Hero - imagem de fundo de networking */}
       <section className="relative overflow-hidden">
